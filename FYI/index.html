@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FYI - For Your Innings | Premium Custom Cricket Bats</title>
+
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap"
+		rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- AOS Animation -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+	<style>
+		/* --- CSS VARIABLES FOR THEMING --- */
+		:root {
+			/* Default to Dark Theme */
+			--bg-body: #121212;
+			--bg-card: #1e1e1e;
+			--bg-alt: #181818;
+			--text-main: #e0e0e0;
+			--text-muted: #a0a0a0;
+			--nav-bg: rgba(18, 18, 18, 0.95);
+			--border-color: rgba(255, 255, 255, 0.05);
+			--accent: #d9534f;
+			--shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+			--quote-color: rgba(255, 255, 255, 0.05);
+		}
+
+		/* Light Theme Overrides */
+		body.light-mode {
+			--bg-body: #ffffff;
+			--bg-card: #ffffff;
+			--bg-alt: #f4f4f4;
+			--text-main: #333333;
+			--text-muted: #666666;
+			--nav-bg: rgba(255, 255, 255, 0.95);
+			--border-color: rgba(0, 0, 0, 0.05);
+			--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+			--quote-color: #f0f0f0;
+		}
+
+		/* --- Base Styles --- */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			transition: background-color 0.3s ease, color 0.3s ease;
+		}
+
+		body {
+			font-family: 'Open Sans', sans-serif;
+			color: var(--text-main);
+			background-color: var(--bg-body);
+			line-height: 1.8;
+			overflow-x: hidden;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: 'Montserrat', sans-serif;
+			color: var(--text-main);
+			/* Adaptive Headings */
+			letter-spacing: -0.5px;
+		}
+
+		/* --- Header --- */
+		header {
+			background: var(--nav-bg);
+			border-bottom: 1px solid var(--border-color);
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 1000;
+			padding: 10px 0;
+			/* Reduced padding slightly for better fit */
+			backdrop-filter: blur(10px);
+		}
+
+		.header-flex {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		/* --- BRANDING / LOGO STYLES (UPDATED) --- */
+		.logo-container {
+			flex-shrink: 0;
+		}
+
+		.brand-link {
+			display: flex;
+			align-items: center;
+			text-decoration: none !important;
+			/* Removes underline */
+			gap: 15px;
+			/* Space between logo and text */
+		}
+
+		.brand-logo-img {
+			height: 55px;
+			width: auto;
+			border-radius: 4px;
+			object-fit: contain;
+		}
+
+		.brand-text-wrapper {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.brand-name {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 800;
+			/* Extra Bold */
+			font-size: 24px;
+			color: var(--text-main);
+			line-height: 1;
+			letter-spacing: -0.5px;
+			text-transform: uppercase;
+		}
+
+		.brand-tagline {
+			font-family: 'Open Sans', sans-serif;
+			font-size: 10px;
+			color: var(--accent);
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			font-weight: 700;
+			margin-top: 3px;
+		}
+
+		/* Hover effect for brand */
+		.brand-link:hover .brand-name {
+			color: var(--accent);
+			/* Optional: changes text color on hover */
+			transition: 0.3s;
+		}
+
+		.nav-container {
+			flex-grow: 1;
+			text-align: right;
+		}
+
+		nav ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		nav ul li {
+			display: inline-block;
+			margin-left: 30px;
+		}
+
+		nav ul li a {
+			color: var(--text-main);
+			text-decoration: none;
+			font-weight: 600;
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 1.5px;
+			position: relative;
+			padding-bottom: 5px;
+			transition: color 0.3s;
+			opacity: 0.9;
+		}
+
+		nav ul li a::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 2px;
+			bottom: 0;
+			left: 0;
+			background-color: var(--accent);
+			transition: width 0.3s ease;
+		}
+
+		nav ul li a:hover {
+			color: var(--accent);
+			opacity: 1;
+		}
+
+		nav ul li a:hover::after {
+			width: 100%;
+		}
+
+		/* Theme Toggle Button */
+		.theme-btn {
+			background: transparent;
+			border: 1px solid var(--border-color);
+			color: var(--text-main);
+			padding: 8px 12px;
+			border-radius: 20px;
+			cursor: pointer;
+			margin-left: 20px;
+			font-size: 14px;
+			transition: all 0.3s;
+		}
+
+		.theme-btn:hover {
+			background: var(--accent);
+			color: #fff;
+			border-color: var(--accent);
+		}
+
+		/* --- Hero --- */
+		.hero {
+			background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+				url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600') center center;
+			background-size: cover;
+			background-attachment: fixed;
+			height: 80vh;
+			min-height: 600px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			/* Always white text on image */
+			position: relative;
+			margin-top: 60px;
+		}
+
+		/* --- Sections --- */
+		.intro {
+			padding: 100px 0;
+			background: var(--bg-body);
+		}
+
+		.chain {
+			font-size: 48px;
+			font-weight: 700;
+			text-align: center;
+			margin-bottom: 30px;
+			color: var(--text-main);
+		}
+
+		.text-intro {
+			font-size: 20px;
+			text-align: center;
+			color: var(--text-muted);
+			font-weight: 300;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+
+		.thin-sep {
+			width: 70px;
+			height: 3px;
+			background: var(--accent);
+			margin: 30px auto;
+			box-shadow: 0 0 10px var(--accent);
+		}
+
+		.content-section {
+			padding: 90px 0;
+			background: var(--bg-body);
+		}
+
+		.content-section.alt {
+			background: var(--bg-alt);
+		}
+
+		.content-section h2 {
+			font-size: 36px;
+			font-weight: 700;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+		}
+
+		/* --- Cards --- */
+		.flex-row {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.flex-col {
+			display: flex;
+			flex-direction: column;
+			/* SPACING FIX: Ensures cards have vertical breathing room */
+			margin-bottom: 40px;
+		}
+
+		.team-card,
+		.testimonial-card {
+			background: var(--bg-card);
+			padding: 40px 30px;
+			border-radius: 12px;
+			box-shadow: var(--shadow);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			border: 1px solid var(--border-color);
+		}
+
+		.team-card {
+			align-items: center;
+		}
+
+		.testimonial-card {
+			align-items: flex-start;
+			position: relative;
+		}
+
+		.team-card:hover,
+		.testimonial-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+			border-color: var(--accent);
+		}
+
+		/* Testimonial Specifics */
+		.testimonial-card::before {
+			content: "\201C";
+			font-family: serif;
+			font-size: 80px;
+			color: var(--quote-color);
+			position: absolute;
+			top: 10px;
+			right: 20px;
+			line-height: 1;
+		}
+
+		.testimonial-card h4 {
+			font-size: 18px;
+			margin: 0;
+			color: var(--text-main);
+			font-weight: 700;
+		}
+
+		.testimonial-card small {
+			color: var(--accent);
+			font-weight: 600;
+			text-transform: uppercase;
+			font-size: 11px;
+			display: block;
+			margin-bottom: 15px;
+		}
+
+		.testimonial-card p {
+			font-size: 15px;
+			font-style: italic;
+			color: var(--text-muted);
+			z-index: 1;
+		}
+
+		/* Team Image */
+		.founder-img-container {
+			width: 160px;
+			height: 160px;
+			border-radius: 50%;
+			overflow: hidden;
+			margin-bottom: 25px;
+			border: 3px solid var(--border-color);
+		}
+
+		.founder-img-container img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: top;
+		}
+
+		.team-role {
+			color: var(--accent);
+			font-weight: 600;
+			text-transform: uppercase;
+			font-size: 12px;
+			letter-spacing: 1px;
+			margin-bottom: 20px;
+		}
+
+		/* --- Pricing Table --- */
+		.pricing-table {
+			margin-top: 40px;
+			background: var(--bg-card);
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: var(--shadow);
+			border: 1px solid var(--border-color);
+		}
+
+		.pricing-table thead th {
+			background: #000;
+			/* Header always dark for contrast */
+			color: #fff;
+			padding: 20px;
+			font-size: 14px;
+			text-transform: uppercase;
+			border: none;
+		}
+
+		.pricing-table tbody td {
+			padding: 20px;
+			vertical-align: middle;
+			border-top: 1px solid var(--border-color);
+			color: var(--text-muted);
+		}
+
+		.pricing-table .highlight {
+			background: rgba(217, 83, 79, 0.1);
+			color: var(--text-main);
+			font-weight: 700;
+			font-size: 18px;
+			border-left: 3px solid var(--accent);
+		}
+
+		/* --- Quote Box --- */
+		.quote-box {
+			background: var(--bg-alt);
+			padding: 30px;
+			border-left: 4px solid var(--accent);
+			margin-top: 30px;
+			font-style: italic;
+			color: var(--text-muted);
+			box-shadow: var(--shadow);
+		}
+
+		/* --- Process Section --- */
+		.process-section {
+			padding: 100px 0;
+			background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+				url('https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1600') center/cover;
+			background-attachment: fixed;
+			color: #fff;
+		}
+
+		.process-list li {
+			position: relative;
+			padding-left: 60px;
+			margin-bottom: 30px;
+			font-size: 18px;
+			color: #ddd;
+			line-height: 1.6;
+			transition: color 0.3s ease;
+		}
+
+		.process-list li:hover {
+			color: #fff;
+		}
+
+		/* Custom SVG Cricket Ball Bullet */
+		.process-list li::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: -5px;
+			width: 40px;
+			height: 40px;
+			/* Red Cricket Ball SVG */
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23b71c1c' stroke='%237f0000' stroke-width='2'/%3E%3Cpath d='M25,10 Q60,50 25,90' fill='none' stroke='%23fff' stroke-width='3' stroke-dasharray='5,3'/%3E%3Cpath d='M75,10 Q40,50 75,90' fill='none' stroke='%23fff' stroke-width='3' stroke-dasharray='5,3'/%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			background-size: contain;
+			filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
+
+			/* ANIMATION SETTINGS */
+			/* Rotate slowly by default (Seam movement) */
+			animation: seam-tumble 15s linear infinite;
+			transition: animation-duration 0.5s ease;
+		}
+
+		/* Spin faster when hovering over the step */
+		.process-list li:hover::before {
+			animation-duration: 2s;
+			/* Speed up! */
+		}
+
+		@keyframes seam-tumble {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		/* --- CTA --- */
+		.discover {
+			padding: 100px 0;
+			background: linear-gradient(135deg, #d9534f 0%, #b52b27 100%);
+			text-align: center;
+			color: #fff;
+		}
+
+		.shop-btn {
+			display: inline-block;
+			background: #fff;
+			color: var(--accent);
+			padding: 18px 50px;
+			border-radius: 50px;
+			font-weight: 700;
+			text-transform: uppercase;
+			text-decoration: none;
+			transition: all 0.3s ease;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+			margin-top: 30px;
+		}
+
+		.shop-btn:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+			background: var(--bg-body);
+			color: var(--text-main);
+			text-decoration: none;
+		}
+
+		/* --- Footer --- */
+		footer {
+			background: #080808;
+			/* Always dark footer */
+			color: #777;
+			padding: 70px 0 30px;
+			font-size: 14px;
+			border-top: 1px solid #222;
+		}
+
+		footer h3 {
+			color: #fff;
+			text-transform: uppercase;
+			font-weight: 700;
+			margin-bottom: 20px;
+		}
+
+		footer a {
+			color: #888;
+			text-decoration: none;
+			transition: 0.3s;
+		}
+
+		footer a:hover {
+			color: var(--accent);
+		}
+
+		.social-icons a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 40px;
+			height: 40px;
+			background: #222;
+			border-radius: 50%;
+			margin-right: 10px;
+			color: #fff;
+			transition: 0.3s;
+		}
+
+		.social-icons a:hover {
+			background: var(--accent);
+			transform: translateY(-3px);
+		}
+
+		/* --- Responsive --- */
+		@media (max-width: 768px) {
+			.hero {
+				height: 400px;
+			}
+
+			.chain {
+				font-size: 32px;
+			}
+
+			.header-flex {
+				display: block;
+				text-align: center;
+			}
+
+			.logo-container {
+				text-align: left;
+				display: inline-block;
+				float: left;
+			}
+
+			.theme-toggle-mobile {
+				display: inline-block;
+				float: right;
+				margin-top: 10px;
+			}
+
+			/* Mobile Toggle */
+			.nav-container {
+				display: none;
+			}
+
+			nav ul {
+				text-align: center;
+				margin-top: 20px;
+			}
+
+			nav ul li {
+				display: block;
+				margin: 15px 0;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- CINEMATIC INTRO -->
+	<div id="cinematic-loader">
+		<div class="shutter-top"></div>
+		<div class="shutter-bottom"></div>
+
+		<div class="loader-content">
+			<!-- The Glowing Seam (Abstract Cricket Ball) -->
+			<div class="seam-ring"></div>
+
+			<!-- The Logo -->
+			<div class="logo-wrapper">
+				<img src="img/bussiness-logo-1.png" alt="FYI" class="cinema-logo">
+				<div class="logo-shimmer"></div>
+			</div>
+
+			<!-- Tagline -->
+			<div class="loader-text">
+				<span>HANDPICKED</span>
+				<span class="dot">•</span>
+				<span>CUSTOM</span>
+				<span class="dot">•</span>
+				<span>PREMIUM</span>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		/* 1. CONTAINER */
+		#cinematic-loader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: transparent;
+			/* Shutters handle the color */
+			z-index: 99999;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			pointer-events: none;
+			/* Let clicks pass through after animation */
+		}
+
+		/* 2. THE SHUTTERS (Curtain Effect) */
+		.shutter-top,
+		.shutter-bottom {
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 50%;
+			background-color: #050505;
+			/* Deep Black */
+			z-index: 1;
+			transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+		}
+
+		.shutter-top {
+			top: 0;
+			transform-origin: top;
+		}
+
+		.shutter-bottom {
+			bottom: 0;
+			transform-origin: bottom;
+		}
+
+		/* Class added via JS to open curtains */
+		.curtains-open .shutter-top {
+			transform: translateY(-100%);
+		}
+
+		.curtains-open .shutter-bottom {
+			transform: translateY(100%);
+		}
+
+		/* 3. CONTENT WRAPPER */
+		.loader-content {
+			position: relative;
+			z-index: 10;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* 4. ABSTRACT SPINNING SEAM */
+		.seam-ring {
+			position: absolute;
+			width: 250px;
+			height: 250px;
+			border: 2px dashed rgba(217, 83, 79, 0.3);
+			/* Faint Red */
+			border-radius: 50%;
+			animation: spin-slow 10s linear infinite;
+		}
+
+		.seam-ring::after {
+			content: '';
+			position: absolute;
+			top: -2px;
+			left: -2px;
+			right: -2px;
+			bottom: -2px;
+			border: 2px solid transparent;
+			border-top-color: #d9534f;
+			/* Bright Red Accent */
+			border-radius: 50%;
+			animation: spin-fast 1.5s cubic-bezier(0.6, 0.2, 0.1, 1) infinite;
+		}
+
+		/* 5. LOGO & SHIMMER */
+		.logo-wrapper {
+			position: relative;
+			overflow: hidden;
+			border-radius: 8px;
+			box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+			opacity: 0;
+			transform: scale(0.8);
+			animation: logo-impact 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+			animation-delay: 0.5s;
+		}
+
+		.cinema-logo {
+			height: 100px;
+			width: auto;
+			display: block;
+		}
+
+		/* The Light Sweep Effect */
+		.logo-shimmer {
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 50%;
+			height: 100%;
+			background: linear-gradient(to right,
+					rgba(255, 255, 255, 0) 0%,
+					rgba(255, 255, 255, 0.3) 50%,
+					rgba(255, 255, 255, 0) 100%);
+			transform: skewX(-25deg);
+			animation: shimmer 1.5s infinite;
+			animation-delay: 1s;
+		}
+
+		/* 6. TEXT TYPING */
+		.loader-text {
+			margin-top: 30px;
+			color: #fff;
+			font-family: 'Montserrat', sans-serif;
+			font-size: 12px;
+			letter-spacing: 4px;
+			text-transform: uppercase;
+			opacity: 0;
+			animation: fade-in-up 0.8s ease forwards;
+			animation-delay: 1.2s;
+		}
+
+		.dot {
+			color: #d9534f;
+			margin: 0 5px;
+		}
+
+		/* --- ANIMATIONS --- */
+		@keyframes spin-slow {
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin-fast {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes logo-impact {
+			0% {
+				opacity: 0;
+				transform: scale(3);
+				filter: blur(10px);
+			}
+
+			100% {
+				opacity: 1;
+				transform: scale(1);
+				filter: blur(0);
+			}
+		}
+
+		@keyframes shimmer {
+			100% {
+				left: 200%;
+			}
+		}
+
+		@keyframes fade-in-up {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Fade out content before curtains open */
+		.content-fade-out {
+			opacity: 0;
+			transform: scale(1.1);
+			transition: all 0.5s ease;
+		}
+	</style>
+
+	<script>
+		window.addEventListener('load', function () {
+			const loader = document.getElementById('cinematic-loader');
+			const content = document.querySelector('.loader-content');
+
+			// Total Animation Time: 3 seconds
+			setTimeout(function () {
+				// 1. Fade out the logo/text first
+				content.classList.add('content-fade-out');
+
+				// 2. Open the Curtains shortly after
+				setTimeout(function () {
+					loader.classList.add('curtains-open');
+
+					// 3. Start AOS Animations on the main site
+					AOS.refresh();
+
+				}, 500); // Wait for content fade
+
+			}, 2500); // Main wait time
+		});
+	</script>
+
+
+	<style>
+		/* Loader Container */
+		#intro-loader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+			z-index: 99999;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			/* Fade out transition */
+			transition: opacity 0.5s ease-out, visibility 0.5s;
+		}
+
+		/* Content Wrapper */
+		.intro-content {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		/* 1. Logo Animation */
+		.intro-logo {
+			width: 150px;
+			opacity: 0;
+			animation: logo-reveal 2.5s forwards;
+			position: relative;
+			z-index: 2;
+		}
+
+		/* 2. The Ball Container */
+		.ball-container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 3;
+		}
+
+		/* 3. The Ball (SVG) */
+		.ball {
+			width: 40px;
+			height: 40px;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23b71c1c' stroke='%237f0000' stroke-width='2'/%3E%3Cpath d='M25,10 Q60,50 25,90' fill='none' stroke='%23fff' stroke-width='3' stroke-dasharray='5,3'/%3E%3Cpath d='M75,10 Q40,50 75,90' fill='none' stroke='%23fff' stroke-width='3' stroke-dasharray='5,3'/%3E%3C/svg%3E");
+			background-size: contain;
+			border-radius: 50%;
+
+			/* The "Smash" Animation */
+			animation: ball-smash 2s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+			animation-delay: 0.5s;
+			/* Wait for logo slightly */
+			opacity: 0;
+		}
+
+		/* KEYFRAMES */
+
+		/* Logo fades in then shakes */
+		@keyframes logo-reveal {
+			0% {
+				opacity: 0;
+				transform: scale(0.8);
+			}
+
+			20% {
+				opacity: 1;
+				transform: scale(1);
+			}
+
+			80% {
+				opacity: 1;
+				transform: scale(1);
+			}
+
+			90% {
+				opacity: 0;
+				transform: scale(1.5);
+			}
+
+			/* Fade out as ball hits */
+			100% {
+				opacity: 0;
+			}
+		}
+
+		/* Ball comes from distance and hits screen */
+		@keyframes ball-smash {
+			0% {
+				opacity: 0;
+				transform: scale(0) rotate(0deg);
+			}
+
+			10% {
+				opacity: 1;
+				transform: scale(1) rotate(0deg);
+				/* Bowler release point */
+			}
+
+			70% {
+				opacity: 1;
+				transform: scale(5) rotate(720deg);
+				/* Coming at you! */
+			}
+
+			100% {
+				opacity: 1;
+				transform: scale(100) rotate(1440deg);
+				/* SMASH into camera */
+			}
+		}
+
+		/* The White Flash */
+		.flash-effect {
+			animation: flash 0.5s forwards;
+		}
+
+		@keyframes flash {
+			0% {
+				background-color: #fff;
+			}
+
+			100% {
+				background-color: transparent;
+			}
+		}
+	</style>
+
+	<script>
+		// JS to handle the removal of the loader
+		window.addEventListener('load', function () {
+			const loader = document.getElementById('intro-loader');
+
+			// Wait for animation to finish (approx 2.5s)
+			setTimeout(function () {
+				// 1. Add Flash Effect
+				document.body.classList.add('flash-effect');
+
+				// 2. Hide Loader
+				loader.style.opacity = '0';
+				loader.style.visibility = 'hidden';
+
+				// 3. Trigger AOS animations on the page
+				AOS.refresh();
+			}, 2200); // 2.2 seconds matches the ball smash timing
+		});
+	</script>
+
+
+	<!-- HEADER -->
+	<header>
+		<div class="container">
+			<div class="header-flex">
+				<div class="logo-container">
+					<a href="#" class="brand-link">
+						<img src="img/bussiness-logo-1.png" alt="FYI" class="brand-logo-img">
+
+						<div class="brand-text-wrapper">
+							<span class="brand-name">FYI</span>
+							<span class="brand-tagline">For Your Innings</span>
+						</div>
+					</a>
+				</div>
+
+				<div class="visible-xs visible-sm pull-right">
+					<button id="theme-btn-mobile" class="theme-btn" style="margin-right: 10px;"><i
+							class="fa fa-sun-o"></i></button>
+					<a href="#" id="pull" style="color: var(--text-main); font-size: 24px; vertical-align: middle;"><i
+							class="fa fa-bars"></i></a>
+				</div>
+
+				<div class="nav-container hidden-xs hidden-sm">
+					<nav>
+						<ul>
+							<li><a href="#about">About</a></li>
+							<li><a href="#team">Team</a></li>
+							<li><a href="#pricing">Pricing</a></li>
+							<li><a href="#process">Process</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+						<button id="theme-btn-desktop" class="theme-btn" title="Toggle Light/Dark Mode">
+							<i class="fa fa-sun-o"></i>
+						</button>
+					</nav>
+				</div>
+			</div>
+
+			<div class="mobile-nav visible-xs visible-sm" style="display: none; padding-top: 20px;">
+				<nav>
+					<ul style="display: block; text-align: center;">
+						<li><a href="#about">About</a></li>
+						<li><a href="#team">Team</a></li>
+						<li><a href="#pricing">Pricing</a></li>
+						<li><a href="#process">Process</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<!-- HERO -->
+	<div class="hero">
+		<!-- Optional Overlay Content -->
+	</div>
+
+	<!-- MISSION / INTRO -->
+	<div class="intro" id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1" data-aos="fade-up" data-aos-duration="1000">
+					<h1 class="chain">Your Innings. Your Willow. Your Way.</h1>
+					<div class="thin-sep"></div>
+					<p class="text-intro">
+						FYI – For Your Innings is a premium cricket bat advisory and custom sourcing brand. We help
+						serious cricketers find the bat that genuinely suits their game through expert consultation and
+						handpicked English willow.
+					</p>
+
+					<p class="text-center"
+						style="margin-top: 40px; font-size: 22px; font-weight: 300; font-style: italic; opacity: 0.8;">
+						"When a bat truly suits your game, it becomes an extension of you."
+					</p>
+
+					<div style="text-align: center; margin-top: 50px;" data-aos="zoom-in" data-aos-delay="200">
+						<div
+							style="background: rgba(217, 83, 79, 0.1); border: 1px solid var(--accent); color: var(--text-main); padding: 15px 35px; display: inline-block; border-radius: 50px; font-weight: 600;">
+							<i class="fa fa-gift" style="color: var(--accent);"></i> <span
+								style="margin-left: 8px;">LAUNCH OFFER: First 50 customers get Free Consultation +
+								Oiling + Grips!</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- TARGET AUDIENCE -->
+	<section class="content-section alt">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center" data-aos="fade-up">
+					<h2>Who is FYI For?</h2>
+					<div class="thin-sep"></div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 50px;">
+				<div class="col-md-3 col-sm-6 text-center flex-col" data-aos="fade-up" data-aos-delay="100">
+					<i class="fa fa-users fa-3x" style="color: var(--accent); margin-bottom: 15px;"></i>
+					<h4>Club & Corporate</h4>
+					<p style="color: var(--text-muted);">Players who compete regularly and demand consistency from their
+						gear.</p>
+				</div>
+				<div class="col-md-3 col-sm-6 text-center flex-col" data-aos="fade-up" data-aos-delay="200">
+					<i class="fa fa-graduation-cap fa-3x" style="color: var(--accent); margin-bottom: 15px;"></i>
+					<h4>Academy Players</h4>
+					<p style="color: var(--text-muted);">Up-and-coming cricketers building their technique with
+						professional leather ball exposure.</p>
+				</div>
+				<div class="col-md-3 col-sm-6 text-center flex-col" data-aos="fade-up" data-aos-delay="300">
+					<i class="fa fa-heart fa-3x" style="color: var(--accent); margin-bottom: 15px;"></i>
+					<h4>Parents & Aspiring</h4>
+					<p style="color: var(--text-muted);">Those seeking honest, expert guidance to ensure investment
+						yields long-term value.</p>
+				</div>
+				<div class="col-md-3 col-sm-6 text-center flex-col" data-aos="fade-up" data-aos-delay="400">
+					<i class="fa fa-trophy fa-3x" style="color: var(--accent); margin-bottom: 15px;"></i>
+					<h4>Semi-Pros</h4>
+					<p style="color: var(--text-muted);">Performance-focused players looking for a true competitive edge
+						with custom specs.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- TEAM SECTION -->
+	<section class="content-section" id="team">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center" data-aos="fade-up">
+					<h2>Know Your Team</h2>
+					<p
+						style="font-size: 16px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+						Decisions driven by playing experience, not sales targets.</p>
+					<div class="thin-sep"></div>
+				</div>
+			</div>
+
+			<div class="row flex-row" style="margin-top: 50px;">
+				<!-- Hari's Profile -->
+				<div class="col-md-6 col-sm-6 flex-col" data-aos="fade-right">
+					<div class="team-card">
+						<div class="founder-img-container">
+							<img src="img/founder-1-hari.jpeg" alt="Hariharan Ravi">
+						</div>
+						<h3>Hariharan Ravi</h3>
+						<span class="team-role">Founder & Bat Selector</span>
+						<p>With over 20 years of playing experience, Hari has represented Tamil Nadu at the state level
+							and played for Durham County 2nd XI (UK). His approach is grounded in real match experience,
+							focusing on willow quality and balance.</p>
+					</div>
+				</div>
+				<!-- Ananth's Profile -->
+				<div class="col-md-6 col-sm-6 flex-col" data-aos="fade-left">
+					<div class="team-card">
+						<div class="founder-img-container">
+							<img src="img/founder-2-anant.jpeg" alt="Ananthakrishnan CN">
+						</div>
+						<h3>Ananthakrishnan CN</h3>
+						<span class="team-role">Head, Growth & Advisory</span>
+						<p>Ananth brings over 15 years of competitive experience across TN and Mumbai, plus 1st Division
+							County cricket in the UK. He ensures a transparent, confidence-driven selection journey for
+							every player.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SIGNATURE PROFILES SECTION -->
+	<section class="content-section" id="profiles">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center" data-aos="fade-up">
+					<h2>Choose Your Shape</h2>
+					<p style="color: var(--text-muted);">We customize every gram, but these are our player favorites.
+					</p>
+					<div class="thin-sep"></div>
+				</div>
+			</div>
+
+			<div class="row flex-row" style="margin-top: 40px;">
+				<!-- Profile 1: The Punisher -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="100">
+					<div class="profile-card" id="card-punisher">
+						<div class="profile-clickable" data-toggle="collapse" data-target="#details-punisher"
+							aria-expanded="false" aria-controls="details-punisher">
+							<div class="profile-img">
+								<img src="https://images.unsplash.com/photo-1607734834519-d8576ae60ea6?w=800&q=80"
+									alt="Duckbill Profile">
+								<div class="profile-badge">Power Hitter</div>
+								<div class="click-hint"><i class="fa fa-plus-circle"></i> Tap for Details</div>
+							</div>
+							<div class="profile-body">
+								<h3>The Punisher (Duckbill)</h3>
+								<p class="summary"><strong>Sweet Spot:</strong> Low-to-Mid</p>
+								<p class="desc">Designed for front-foot dominance. The duckbill toe removes weight from
+									the bottom to allow for massive edges without compromising pickup.</p>
+
+								<!-- Hidden Details -->
+								<div class="collapse profile-details" id="details-punisher">
+									<hr class="divider">
+									<ul class="spec-list">
+										<li><strong>Grains:</strong> 8-12 Straight Grains</li>
+										<li><strong>Handle:</strong> Semi-Oval / Round</li>
+										<li><strong>Best For:</strong> Drives & Lofted Shots</li>
+										<li><strong>Weight:</strong> 1160g - 1210g</li>
+									</ul>
+									<a href="https://wa.me/919445778177?text=Hi,%20I'm%20interested%20in%20The%20Punisher%20profile."
+										class="btn-profile-action">Get This Shape <i class="fa fa-arrow-right"></i></a>
+								</div>
+
+								<div class="specs">
+									<span><i class="fa fa-bolt"></i> Massive Edges</span>
+									<span><i class="fa fa-balance-scale"></i> Light Pickup</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Profile 2: The Maestro -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="200">
+					<div class="profile-card" id="card-maestro">
+						<div class="profile-clickable" data-toggle="collapse" data-target="#details-maestro"
+							aria-expanded="false" aria-controls="details-maestro">
+							<div class="profile-img">
+								<img src="https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=800&q=80"
+									alt="Full Profile">
+								<div class="profile-badge">Classic</div>
+								<div class="click-hint"><i class="fa fa-plus-circle"></i> Tap for Details</div>
+							</div>
+							<div class="profile-body">
+								<h3>The Maestro (Full)</h3>
+								<p class="summary"><strong>Sweet Spot:</strong> Mid</p>
+								<p class="desc">No concaving. Just pure wood. A traditional shape used by Kohli and
+									Williamson for all-round stroke play and consistency.</p>
+
+								<!-- Hidden Details -->
+								<div class="collapse profile-details" id="details-maestro">
+									<hr class="divider">
+									<ul class="spec-list">
+										<li><strong>Grains:</strong> 10+ Premium Grains</li>
+										<li><strong>Handle:</strong> Round Standard</li>
+										<li><strong>Best For:</strong> All-Round Play</li>
+										<li><strong>Weight:</strong> 1180g - 1230g</li>
+									</ul>
+									<a href="https://wa.me/919445778177?text=Hi,%20I'm%20interested%20in%20The%20Maestro%20profile."
+										class="btn-profile-action">Get This Shape <i class="fa fa-arrow-right"></i></a>
+								</div>
+
+								<div class="specs">
+									<span><i class="fa fa-circle"></i> Huge Spine</span>
+									<span><i class="fa fa-magic"></i> Extended Swell</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Profile 3: The Finisher -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="300">
+					<div class="profile-card" id="card-finisher">
+						<div class="profile-clickable" data-toggle="collapse" data-target="#details-finisher"
+							aria-expanded="false" aria-controls="details-finisher">
+							<div class="profile-img">
+								<img src="https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=800&q=80"
+									alt="High Spine Profile">
+								<div class="profile-badge">Aggressor</div>
+								<div class="click-hint"><i class="fa fa-plus-circle"></i> Tap for Details</div>
+							</div>
+							<div class="profile-body">
+								<h3>The Finisher (High Spine)</h3>
+								<p class="summary"><strong>Sweet Spot:</strong> Mid-to-High</p>
+								<p class="desc">For the back-foot cutters and pullers. A steeper spine allows for an
+									incredibly light pickup, making 1200g feel like 1160g.</p>
+
+								<!-- Hidden Details -->
+								<div class="collapse profile-details" id="details-finisher">
+									<hr class="divider">
+									<ul class="spec-list">
+										<li><strong>Grains:</strong> 7-10 Clean Grains</li>
+										<li><strong>Handle:</strong> Oval for Bottom Hand</li>
+										<li><strong>Best For:</strong> Pulls & Cuts</li>
+										<li><strong>Weight:</strong> 1140g - 1190g</li>
+									</ul>
+									<a href="https://wa.me/919445778177?text=Hi,%20I'm%20interested%20in%20The%20Finisher%20profile."
+										class="btn-profile-action">Get This Shape <i class="fa fa-arrow-right"></i></a>
+								</div>
+
+								<div class="specs">
+									<span><i class="fa fa-feather"></i> Air-Light</span>
+									<span><i class="fa fa-rocket"></i> Fast Hands</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		/* Updated Profile Card Styles */
+		.profile-card {
+			background: var(--bg-card);
+			border: 1px solid var(--border-color);
+			border-radius: 12px;
+			overflow: hidden;
+			height: auto;
+			/* Allow growth */
+			display: flex;
+			flex-direction: column;
+			transition: all 0.3s ease;
+			position: relative;
+		}
+
+		.profile-clickable {
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.profile-clickable:hover {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.profile-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+			border-color: var(--accent);
+		}
+
+		.profile-img {
+			height: 220px;
+			width: 100%;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.profile-img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.5s ease;
+		}
+
+		.click-hint {
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			right: 0;
+			text-align: center;
+			color: #fff;
+			font-size: 12px;
+			font-weight: 600;
+			text-transform: uppercase;
+			opacity: 0;
+			transform: translateY(10px);
+			transition: all 0.3s ease;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+		}
+
+		.profile-card:hover .click-hint {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.profile-card:hover .profile-img img {
+			transform: scale(1.05);
+			filter: brightness(0.8);
+			/* Darken slightly to show hint text */
+		}
+
+		.profile-badge {
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			background: var(--accent);
+			color: #fff;
+			padding: 4px 12px;
+			font-size: 11px;
+			font-weight: 700;
+			text-transform: uppercase;
+			border-radius: 4px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			z-index: 2;
+		}
+
+		.profile-body {
+			padding: 25px;
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.profile-body h3 {
+			font-size: 20px;
+			margin-top: 0;
+			margin-bottom: 5px;
+			color: var(--text-main);
+		}
+
+		.profile-body p.summary {
+			font-size: 14px;
+			color: var(--accent);
+			margin-bottom: 10px;
+			font-weight: 600;
+		}
+
+		.profile-body p.desc {
+			font-size: 14px;
+			color: var(--text-muted);
+			margin-bottom: 15px;
+			line-height: 1.6;
+		}
+
+		/* Specs Footer */
+		.specs {
+			margin-top: auto;
+			padding-top: 15px;
+			border-top: 1px solid var(--border-color);
+			display: flex;
+			justify-content: space-between;
+			font-size: 12px;
+			font-weight: 600;
+			color: var(--text-muted);
+			text-transform: uppercase;
+		}
+
+		/* EXPANDED DETAILS STYLING */
+		.profile-details {
+			background: var(--bg-alt);
+			margin: 0 -25px 15px -25px;
+			/* Bleed to edges */
+			padding: 15px 25px;
+			border-top: 1px solid var(--border-color);
+			border-bottom: 1px solid var(--border-color);
+		}
+
+		.divider {
+			margin: 0;
+			border-top: 1px solid transparent;
+			/* Hidden but keeps spacing if needed */
+		}
+
+		.spec-list {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 15px 0;
+			font-size: 13px;
+			color: var(--text-main);
+		}
+
+		.spec-list li {
+			margin-bottom: 8px;
+			padding-left: 15px;
+			position: relative;
+		}
+
+		.spec-list li::before {
+			content: "•";
+			color: var(--accent);
+			position: absolute;
+			left: 0;
+			font-weight: bold;
+		}
+
+		.btn-profile-action {
+			display: block;
+			width: 100%;
+			padding: 10px 0;
+			text-align: center;
+			background: transparent;
+			border: 1px solid var(--accent);
+			color: var(--accent);
+			font-weight: 700;
+			font-size: 13px;
+			text-transform: uppercase;
+			border-radius: 4px;
+			transition: all 0.3s;
+			text-decoration: none;
+		}
+
+		.btn-profile-action:hover {
+			background: var(--accent);
+			color: #fff;
+			text-decoration: none;
+		}
+	</style>
+
+
+	<style>
+		/* Profile Card Styles */
+		.profile-card {
+			background: var(--bg-card);
+			border: 1px solid var(--border-color);
+			border-radius: 12px;
+			overflow: hidden;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.profile-card:hover {
+			transform: translateY(-8px);
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+			border-color: var(--accent);
+		}
+
+		.profile-img {
+			height: 220px;
+			width: 100%;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.profile-img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.5s ease;
+		}
+
+		.profile-card:hover .profile-img img {
+			transform: scale(1.1);
+		}
+
+		.profile-badge {
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			background: var(--accent);
+			color: #fff;
+			padding: 4px 12px;
+			font-size: 11px;
+			font-weight: 700;
+			text-transform: uppercase;
+			border-radius: 4px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+		}
+
+		.profile-body {
+			padding: 25px;
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.profile-body h3 {
+			font-size: 20px;
+			margin-top: 0;
+			margin-bottom: 5px;
+			color: var(--text-main);
+		}
+
+		.profile-body p {
+			font-size: 14px;
+			color: var(--text-muted);
+			margin-bottom: 15px;
+			line-height: 1.6;
+		}
+
+		.specs {
+			margin-top: auto;
+			padding-top: 15px;
+			border-top: 1px solid var(--border-color);
+			display: flex;
+			justify-content: space-between;
+			font-size: 12px;
+			font-weight: 600;
+			color: var(--accent);
+			text-transform: uppercase;
+		}
+	</style>
+
+
+	<!-- PRICING -->
+	<section class="content-section alt" id="pricing">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center" data-aos="zoom-in">
+					<h2>Why We Are 35% Cheaper</h2>
+					<p>We believe you should pay for <strong>Willow</strong>, not <strong>Marketing</strong>.</p>
+					<div class="thin-sep"></div>
+
+					<table class="table pricing-table">
+						<thead>
+							<tr>
+								<th>Cost Component</th>
+								<th>Traditional Retail Brand</th>
+								<th>FYI - For Your Innings</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Manufacturing Cost</td>
+								<td>₹8,000</td>
+								<td>₹8,000</td>
+							</tr>
+							<tr>
+								<td>Brand & Retail Markup</td>
+								<td>₹7,360 <span
+										style="display:block; font-size:11px; opacity:0.7; margin-top:2px;">(Middlemen &
+										Ads)</span></td>
+								<td>₹0 <span
+										style="display:block; font-size:11px; color:var(--accent); margin-top:2px;">(Direct
+										Sourcing)</span></td>
+							</tr>
+							<tr>
+								<td>
+									<strong>Founder's Selection Fee</strong>
+									<br><span style="font-size: 12px; font-weight: normal; opacity:0.7;">(Consultation,
+										Travel to Meerut, & QC)</span>
+								</td>
+								<td>₹0</td>
+								<td>₹2,000</td>
+							</tr>
+							<tr>
+								<td><strong>FINAL PRICE</strong></td>
+								<td style="text-decoration: line-through; opacity:0.6;">₹15,360</td>
+								<td class="highlight">₹10,000</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="quote-box text-left">
+						<p style="margin-bottom: 0;">
+							"<strong>Why only ₹2,000?</strong> Retailers charge a 40% markup just to put a bat on a
+							shelf. I charge a small fee to personally travel to the factory, test the willow, and ensure
+							your bat is perfect. I do this because I want every player to experience a pro-grade bat,
+							not because I want to get rich."
+							<br><span
+								style="display:block; margin-top:15px; font-weight:600; color:var(--accent); font-style:normal;">—
+								Hari</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- PROCESS -->
+	<section class="process-section" id="process">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center" data-aos="fade-up">
+					<h2>How It Works</h2>
+					<div class="thin-sep" style="background: #fff; opacity: 0.5;"></div>
+
+					<ul class="process-list"
+						style="list-style: none; padding: 0; text-align: left; margin-top: 40px; display: inline-block;">
+						<li><strong>Consultation:</strong> We discuss your game, format, and role.</li>
+						<li><strong>Education:</strong> Clear guidance on profiles, grades, and grains.</li>
+						<li><strong>Specs:</strong> Weight, handle, and profile finalized to the gram.</li>
+						<li><strong>Handpicking:</strong> Supervised manufacturing with strict QC.</li>
+						<li><strong>Approval:</strong> Photos & videos shared before dispatch.</li>
+					</ul>
+
+					<p style="margin-top: 40px; font-size: 18px; opacity: 0.9;">
+						<i class="fa fa-clock-o"></i> <em>Typical timeline: 2–4 weeks</em>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		.gallery-item {
+			position: relative;
+			overflow: hidden;
+			border-radius: 10px;
+			box-shadow: var(--shadow);
+			cursor: pointer;
+		}
+
+		.gallery-item img {
+			width: 100%;
+			height: 300px;
+			/* Fixed height for uniformity */
+			object-fit: cover;
+			transition: transform 0.5s ease;
+		}
+
+		.gallery-item:hover img {
+			transform: scale(1.1);
+		}
+
+		.overlay {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba(0, 0, 0, 0.7);
+			overflow: hidden;
+			width: 100%;
+			height: 0;
+			transition: .5s ease;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.gallery-item:hover .overlay {
+			height: 100%;
+		}
+
+		.text {
+			color: white;
+			font-size: 20px;
+			font-weight: 700;
+			font-family: 'Montserrat', sans-serif;
+			text-transform: uppercase;
+		}
+	</style>
+
+	<!-- FAQ SECTION -->
+	<section class="content-section" id="faq">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center" data-aos="fade-up">
+					<h2>Common Questions</h2>
+					<div class="thin-sep"></div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 30px;">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel-group" id="accordion">
+						<!-- Q1 -->
+						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="100">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+										Do you ship internationally? <span class="pull-right"><i
+												class="fa fa-plus"></i></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapse1" class="panel-collapse collapse in">
+								<div class="panel-body">Yes! We have shipped bats to the UK, Australia, USA, and UAE.
+									Shipping costs vary by location, but we ensure secure, damage-proof packaging.</div>
+							</div>
+						</div>
+						<!-- Q2 -->
+						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="200">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+										Can I customize the handle shape? <span class="pull-right"><i
+												class="fa fa-plus"></i></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapse2" class="panel-collapse collapse">
+								<div class="panel-body">Absolutely. Whether you prefer Oval, Round, or Semi-Oval, we
+									customize the handle to fit your grip perfectly.</div>
+							</div>
+						</div>
+						<!-- Q3 -->
+						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="300">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+										What is the warranty? <span class="pull-right"><i class="fa fa-plus"></i></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapse3" class="panel-collapse collapse">
+								<div class="panel-body">We offer a warranty on the handle for 6 months. While willow is
+									a natural product and minor cracks are normal, we stand by the quality of our
+									pressing and construction.</div>
+							</div>
+						</div>
+						<!-- Q4 -->
+						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="400">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+										How long does delivery take? <span class="pull-right"><i
+												class="fa fa-plus"></i></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapse4" class="panel-collapse collapse">
+								<div class="panel-body">For custom orders, the entire process from consultation to
+									delivery typically takes 2-4 weeks. Ready-to-ship stock can be dispatched within 48
+									hours.</div>
+							</div>
+						</div>
+						<!-- Q5 -->
+						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="500">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+										Do you offer knocking-in services? <span class="pull-right"><i
+												class="fa fa-plus"></i></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapse5" class="panel-collapse collapse">
+								<div class="panel-body">Yes, every FYI bat comes with optional professional knocking-in
+									and oiling so it's ready for the nets straight out of the box.</div>
+							</div>
+						</div>
+						<!-- Q6 -->
+						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="600">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+										What if I don't like the bat? <span class="pull-right"><i
+												class="fa fa-plus"></i></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapse6" class="panel-collapse collapse">
+								<div class="panel-body">We share detailed photos and videos of your specific bat for
+									approval before dispatch. If there is a genuine manufacturing defect upon arrival,
+									we will replace it.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<style>
+		/* FAQ Custom Styles for Dark Theme */
+		.panel-default {
+			border-color: var(--border-color);
+			background-color: var(--bg-card);
+			margin-bottom: 15px;
+		}
+
+		.panel-default>.panel-heading {
+			background-color: var(--bg-alt);
+			border-color: var(--border-color);
+			color: var(--text-main);
+			padding: 15px 20px;
+		}
+
+		.panel-title a {
+			text-decoration: none;
+			display: block;
+			font-weight: 600;
+			font-size: 15px;
+		}
+
+		.panel-body {
+			border-top: 1px solid var(--border-color) !important;
+			color: var(--text-muted);
+		}
+	</style>
+
+
+	<!-- TESTIMONIALS (With improved spacing) -->
+	<section class="content-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center" data-aos="fade-up">
+					<h2>What Players Say</h2>
+					<div class="thin-sep"></div>
+				</div>
+			</div>
+
+			<div class="row flex-row" style="margin-top: 50px;">
+				<!-- Review 1 -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="100">
+					<div class="testimonial-card">
+						<h4>Vaibhav V.</h4>
+						<small>Corporate Cricketer</small>
+						<p>"Best investment I've made. I was skeptical about buying online, but Hari's consultation was
+							detailed. The pickup is incredible for a 1220g bat. Scored my first century with it!"</p>
+					</div>
+				</div>
+				<!-- Review 2 -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="200">
+					<div class="testimonial-card">
+						<h4>Vivek B.</h4>
+						<small>Club Cricketer</small>
+						<p>"Unbelievable value. Compared this with a branded bat costing Rs 18,000. The FYI bat feels
+							superior, the grains are cleaner, and I saved huge money."</p>
+					</div>
+				</div>
+				<!-- Review 3 -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="300">
+					<div class="testimonial-card">
+						<h4>Vimal K.</h4>
+						<small>State-Level Player</small>
+						<p>"I've bought 5 bats in my career, and this was by far the best buying experience. The
+							consultation felt like talking to a teammate who genuinely cares."</p>
+					</div>
+				</div>
+				<!-- Review 4 -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="400">
+					<div class="testimonial-card">
+						<h4>Priya S.</h4>
+						<small>Parent</small>
+						<p>"As a parent, I had no idea how to pick a bat for my 14-year-old. Hari patiently explained
+							everything, asked about my son’s playing style, and delivered a bat that fits him
+							perfectly."</p>
+					</div>
+				</div>
+				<!-- Review 5 -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="500">
+					<div class="testimonial-card">
+						<h4>Siddhar M.</h4>
+						<small>NRI Cricketer (UK)</small>
+						<p>"Living in London, I was worried about buying a bat from India. But Hari made it seamless.
+							Video calls, detailed updates, and the bat arrived perfectly packed."</p>
+					</div>
+				</div>
+				<!-- Review 6 -->
+				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="600">
+					<div class="testimonial-card">
+						<h4>Tiwari</h4>
+						<small>Student</small>
+						<p>"I struggled with heavy bats for years at school until I found FYI. Hari recommended a
+							specific profile with a lighter pickup but a massive sweet spot. The balance is unreal."</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="discover">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center" data-aos="zoom-in">
+					<h2 style="color: #fff; margin-bottom: 25px; font-weight: 700;">Ready to Find Your Perfect Bat?</h2>
+					<p style="font-size: 18px; margin-bottom: 40px; color: rgba(255,255,255,0.9);">
+						Stop adjusting your game to the bat. Get a bat built for your game.
+					</p>
+					<a href="https://wa.me/919445778177" class="shop-btn">Start Your Consultation</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FOOTER -->
+	<footer id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div style="margin-bottom: 25px;">
+						<img src="img/bussiness-logo-1.png" alt="FYI"
+							style="height: 60px; width: auto; opacity: 0.9; border-radius: 4px;">
+					</div>
+					<p style="line-height: 1.6; color: #777;">
+						<strong>FYI - For Your Innings</strong><br>
+						Handpicked by Hari<br>
+						Chennai, Tamil Nadu, India
+					</p>
+					<p style="margin-top: 20px;"><a href="#" data-toggle="modal" data-target="#termsModal"
+							style="font-size: 12px; text-decoration: underline;">Terms & Conditions</a></p>
+				</div>
+				<div class="col-md-4">
+					<h3>Contact Us</h3>
+					<p style="margin-bottom: 15px;">
+						<strong style="color: #ddd;">Hariharan Ravi:</strong><br>
+						+91 94457 78177<br>
+						<a href="mailto:hariharanravi168@gmail.com">hariharanravi168@gmail.com</a>
+					</p>
+					<p>
+						<strong style="color: #ddd;">Ananthakrishnan CN:</strong><br>
+						+91 98849 02618<br>
+						<a href="mailto:ananthnara1@gmail.com">ananthnara1@gmail.com</a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h3>Follow Us</h3>
+					<div class="social-icons">
+						<a href="https://instagram.com/fyi.innings" target="_blank" title="Instagram"><i
+								class="fa fa-instagram"></i></a>
+						<a href="https://wa.me/919445778177" target="_blank" title="WhatsApp"><i
+								class="fa fa-whatsapp"></i></a>
+						<a href="https://x.com/FyiInnings" target="_blank" title="Twitter"><i
+								class="fa fa-twitter"></i></a>
+						<a href="https://www.facebook.com/share/17nPZbUDDF/?mibextid=wwXIfr" target="_blank"
+							title="Facebook"><i class="fa fa-facebook"></i></a>
+						<a href="https://youtube.com/@fyi.innings?si=qkhJlee0MDqS7EwU" target="_blank"
+							title="YouTube"><i class="fa fa-youtube-play"></i></a>
+					</div>
+					<div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+						<p style="font-size: 12px; color: #555;">Copyright &copy; 2026 FYI.<br>Designed for Cricketers,
+							by Cricketers.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- TERMS MODAL -->
+	<div class="modal fade" id="termsModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">FYI - Terms & Conditions</h4>
+				</div>
+				<div class="modal-body">
+					<p><strong>By placing an order with FYI – For Your Innings, the customer agrees to the
+							following:</strong></p>
+					<ul class="terms-list">
+						<li>All cricket bats supplied by FYI are custom-made and/or handpicked based on specifications
+							approved by the customer.</li>
+						<li>English willow is a natural material; variations in grain structure, colour tone, minor
+							blemishes are natural characteristics.</li>
+						<li>Due to natural willow properties, a weight variation of approximately ±25–50 grams is
+							considered normal.</li>
+						<li>All specifications (weight, profile, grade, handle) are final and binding once approved by
+							the customer.</li>
+						<li>Any approvals via WhatsApp, email, or messages shall be considered valid and binding.</li>
+						<li>A 50% advance payment is required to confirm an order. The remaining 50% must be paid prior
+							to delivery.</li>
+						<li>Once willow selection has commenced, the advance payment becomes non-refundable.</li>
+						<li>Due to the customised nature of the product, returns and exchanges are not permitted.</li>
+						<li>FYI shall not be liable for delays caused by circumstances beyond its control (weather,
+							logistics).</li>
+						<li>Upon delivery, the customer must inspect the bat within 24–48 hours and report defects
+							immediately.</li>
+						<li>Once the bat is used, it shall be deemed accepted by the customer.</li>
+						<li>FYI does not provide warranty coverage for damage arising from:
+							- Improper knocking-in
+							- Lack of oiling or maintenance
+							- Use on hard or unsuitable surfaces
+							- Use with tennis balls or taped balls
+							- Impact-related cracks, edge damage, toe damage, or general wear and tear
+						</li>
+						<li>If the customer opts for self-knocking, any damage occurring during this process is not
+							covered under warranty or claim.</li>
+						<li>The customer is solely responsible for proper bat care, including oiling, knocking-in (if
+							required), appropriate storage, and avoiding extreme heat or moisture.</li>
+						The customer is solely responsible for proper bat care, including oiling, knocking-in (if
+						required), appropriate storage, and avoiding extreme heat or moisture.
+						<li>Bat feel, pickup, balance, and performance are subjective and vary by individual playing
+							style; dissatisfaction based on subjective expectations shall not be grounds for refund or
+							replacement. </li>
+						<li>FYI shall not be liable for indirect, incidental, or consequential losses, including
+							performance outcomes, match results, or form-related expectations.
+						</li>
+						<li>Customers may be invited to provide honest feedback or reviews; referral incentives, if
+							offered, are discretionary and subject to separate terms.
+						</li>
+						<li>Any disputes shall first be attempted to be resolved through mutual discussion in good faith
+							before pursuing formal legal remedies</li>
+						<li>The customer confirms that all information provided during consultation and order placement
+							is accurate to the best of their knowledge.</li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						style="color: #333;">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- SCRIPTS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+		// Initialize Animation
+		AOS.init({ once: true, offset: 100, duration: 800 });
+
+		// Mobile Menu Toggle
+		$(document).ready(function () {
+			$('#pull').on('click', function (e) {
+				e.preventDefault();
+				$('.mobile-nav').slideToggle();
+			});
+		});
+
+		// --- Theme Toggle Logic ---
+		const themeBtns = document.querySelectorAll('.theme-btn');
+		const body = document.body;
+		const iconSun = 'fa-sun-o';
+		const iconMoon = 'fa-moon-o';
+
+		// Check LocalStorage
+		const savedTheme = localStorage.getItem('fyi-theme');
+		if (savedTheme === 'light') {
+			body.classList.add('light-mode');
+			updateIcons(true);
+		}
+
+		themeBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				body.classList.toggle('light-mode');
+				const isLight = body.classList.contains('light-mode');
+				localStorage.setItem('fyi-theme', isLight ? 'light' : 'dark');
+				updateIcons(isLight);
+			});
+		});
+
+		function updateIcons(isLight) {
+			themeBtns.forEach(btn => {
+				const icon = btn.querySelector('i');
+				if (isLight) {
+					icon.classList.remove(iconSun);
+					icon.classList.add(iconMoon);
+					btn.title = "Switch to Dark Mode";
+				} else {
+					icon.classList.remove(iconMoon);
+					icon.classList.add(iconSun);
+					btn.title = "Switch to Light Mode";
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>
