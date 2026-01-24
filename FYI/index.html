@@ -35,6 +35,7 @@
 			<!-- The Logo -->
 			<div class="logo-wrapper">
 				<img src="img/bussiness-logo-1.png" alt="FYI" class="cinema-logo">
+
 				<div class="logo-shimmer"></div>
 			</div>
 
@@ -53,45 +54,51 @@
 
 	<!-- HEADER -->
 	<header>
-		<div class="container">
+		<!-- usage of container-fluid ensures it goes to the edges, 
+         change to 'container' if you want it aligned with page content -->
+		<div class="container-fluid" style="padding-left: 30px; padding-right: 30px;">
 			<div class="header-flex">
 
+				<!-- LOGO & BRAND NAME (Left Aligned) -->
 				<div class="logo-container">
 					<a href="#" class="brand-link">
+						<!-- Logo Image -->
 						<img src="img/bussiness-logo-1.png" alt="FYI" class="brand-logo-img">
 
-						<div class="brand-text-wrapper">
-							<span class="brand-name">FYI</span>
-							<span class="brand-tagline">For Your Innings</span>
-						</div>
+						<!-- New Single Line Text -->
+						<span class="brand-full-text">FOR YOUR INNINGS</span>
 					</a>
 				</div>
 
+				<!-- Mobile Toggle -->
 				<button class="mobile-toggle" aria-label="Toggle Navigation">
 					<i class="fa fa-bars"></i>
 				</button>
 
-				<div class="visible-xs visible-sm pull-right">
-					<button id="theme-btn-mobile" class="theme-btn" style="margin-right: 10px;"><i
-							class="fa fa-sun-o"></i></button>
+				<!-- Theme Button Mobile -->
+				<div class="visible-xs visible-sm pull-right" style="margin-right: 15px;">
+					<button id="theme-btn-mobile" class="theme-btn"><i class="fa fa-sun-o"></i></button>
 				</div>
 
+				<!-- DESKTOP NAV (Right Aligned) -->
 				<div class="nav-container hidden-xs hidden-sm">
 					<nav>
-						<ul>
+						<ul style="margin: 0;">
 							<li><a href="#about">About</a></li>
 							<li><a href="#team">Team</a></li>
 							<li><a href="#pricing">Pricing</a></li>
 							<li><a href="#process">Process</a></li>
 							<li><a href="#contact">Contact</a></li>
 						</ul>
-						<button id="theme-btn-desktop" class="theme-btn" title="Toggle Light/Dark Mode">
+						<button id="theme-btn-desktop" class="theme-btn" title="Toggle Light/Dark Mode"
+							style="margin-left: 20px;">
 							<i class="fa fa-sun-o"></i>
 						</button>
 					</nav>
 				</div>
 			</div>
 
+			<!-- Mobile Nav Dropdown -->
 			<div class="mobile-nav" style="padding-top: 20px;">
 				<nav>
 					<ul style="display: block; text-align: center;">
@@ -105,11 +112,6 @@
 			</div>
 		</div>
 	</header>
-
-	<!-- HERO -->
-	<div class="hero">
-		<!-- Optional Overlay Content -->
-	</div>
 
 	<!-- MISSION / INTRO -->
 	<div class="intro" id="about">
@@ -647,8 +649,9 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div style="margin-bottom: 25px;">
-						<img src="img/bussiness-logo-1.png" alt="FYI"
-							style="height: 60px; width: auto; opacity: 0.9; border-radius: 4px;">
+						<img src="img/bussiness-logo-1.png" alt="FYI" class="footer-logo-premium">
+
+
 					</div>
 					<p style="line-height: 1.6; color: #777;">
 						<strong>FYI - For Your Innings</strong><br>

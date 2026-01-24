@@ -92,10 +92,11 @@
 }
 
 .cinema-logo {
-    height: 100px;
-    width: auto;
-    display: block;
+    width: 180px !important;
+    /* Bigger intro logo */
+    filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
 }
+
 
 .logo-shimmer {
     position: absolute;
@@ -186,23 +187,21 @@
 
 /* ---------- 2) THEME VARIABLES ---------- */
 :root {
+    /* Default to Dark Theme */
     --bg-body: #121212;
     --bg-card: #1e1e1e;
     --bg-alt: #181818;
-
     --text-main: #e0e0e0;
     --text-muted: #a0a0a0;
-
     --nav-bg: rgba(18, 18, 18, 0.95);
     --border-color: rgba(255, 255, 255, 0.05);
-
     --accent: #d9534f;
-
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     --quote-color: rgba(255, 255, 255, 0.05);
-
-    --header-height: 80px;
+    --brand-gold: #c5a059;
+    --brand-gradient: linear-gradient(135deg, #d4af37 0%, #aa8428 100%);
 }
+
 
 body.light-mode {
     --bg-body: #ffffff;
@@ -230,10 +229,11 @@ body.light-mode {
 body {
     font-family: "Open Sans", sans-serif;
     color: var(--text-main);
-    background-color: var(--bg-body);
+    background-color: var(--bg-body) !important;
     line-height: 1.8;
     overflow-x: hidden;
     padding-top: var(--header-height);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1,
@@ -259,31 +259,80 @@ header {
     backdrop-filter: blur(10px);
 }
 
+/* HEADER LAYOUT FIXES */
 .header-flex {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    position: relative;
-    /* needed for absolute-positioned hamburger on mobile */
+    justify-content: space-between;
+    /* Pushes nav to right, logo to left */
+    width: 100%;
+    height: 80px;
 }
 
-/* Branding */
+/* Logo Container: Force alignment to the start */
 .logo-container {
-    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    /* Do not expand */
+    margin-left: 0;
+    /* Ensure no left margin pushes it in */
+    padding-left: 0;
 }
 
 .brand-link {
     display: flex;
     align-items: center;
     text-decoration: none !important;
-    gap: 15px;
 }
 
+
 .brand-logo-img {
-    height: 55px;
+    height: 95px !important;
+    /* Slightly smaller for elegance */
     width: auto;
-    border-radius: 4px;
-    object-fit: contain;
+    transform: scale(1.5);
+    /* Zoom to crop padding */
+    margin-right: -35px;
+    /* Tighter to text */
+    margin-left: -30px;
+
+    /* FIX: Subtle, High-Class Luster (Not Radioactive) */
+    /* brightness 1.1 = just a bit of polish */
+    /* drop-shadow 5px = soft ambient reflection, not a light source */
+    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
+
+    transition: all 0.4s ease;
+}
+
+
+.brand-full-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    /* Extra Bold for the gradient to show */
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-left: 15px;
+
+    /* GOLD GRADIENT TEXT FILL */
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: var(--brand-gold);
+    /* Fallback */
+
+    /* OPTIONAL: Subtle shadow to lift it off the cream/dark background */
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+
+    position: relative;
+    top: 2px;
+}
+
+/* Hover: Slight brighten, no size jump */
+.brand-link:hover .brand-logo-img {
+    filter: brightness(1.2) contrast(1.15) drop-shadow(0 0 8px rgba(218, 165, 32, 0.6));
 }
 
 .brand-text-wrapper {
@@ -1087,4 +1136,195 @@ footer a:hover {
     table {
         min-width: 600px;
     }
+}
+
+/* =========================================
+   MOBILE HEADER FIX (No Overlap)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* 1. Keep Flexbox active on mobile */
+    .header-flex {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        /* Aligns toggle/theme btn to right */
+        padding: 0 20px;
+        height: 70px;
+    }
+
+    /* 2. Logo stays on the left */
+    .logo-container {
+        margin-right: auto;
+        /* Pushes everything else to the far right */
+        order: 1;
+        text-align: left;
+        display: block;
+        float: none;
+        /* Reset float if any */
+    }
+
+    /* 3. Theme Button (Mobile) */
+    /* Target the Bootstrap class container */
+    .header-flex .visible-xs {
+        order: 2;
+        display: block !important;
+        /* Ensure visibility */
+        margin-right: 15px;
+        /* Space between theme btn and hamburger */
+        float: none !important;
+        /* Disable bootstrap pulls */
+    }
+
+    /* Reset button styles inside just in case */
+    .header-flex .visible-xs .theme-btn {
+        margin-right: 0 !important;
+        /* Remove inline margin if present */
+    }
+
+    /* 4. Hamburger Icon */
+    .mobile-toggle {
+        display: block;
+        position: relative;
+        /* Sit naturally in the flex flow */
+        right: auto;
+        top: auto;
+        transform: none;
+        order: 3;
+        line-height: 1;
+    }
+
+    /* 5. Mobile Menu Positioning */
+    .mobile-nav {
+        top: 70px;
+        /* Match header height */
+    }
+}
+
+/* =========================================
+   RESPONSIVE PRICING TABLE (Mobile Cards)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* Hide the desktop header */
+    .pricing-table thead {
+        display: none;
+    }
+
+    .pricing-table,
+    .pricing-table tbody,
+    .pricing-table tr,
+    .pricing-table td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Make each row a "Card" */
+    .pricing-table tr {
+        margin-bottom: 25px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    /* 1st Cell: The Cost Component Name (Header of the card) */
+    .pricing-table td:nth-of-type(1) {
+        background: var(--bg-alt);
+        color: var(--text-main);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* 2nd & 3rd Cells: The Prices */
+    .pricing-table td:nth-of-type(2),
+    .pricing-table td:nth-of-type(3) {
+        text-align: right;
+        padding: 15px 20px;
+        position: relative;
+        padding-left: 50%;
+        /* Make room for label */
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Remove border from last item */
+    .pricing-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* Add Labels via CSS (Pseudo-elements) */
+    .pricing-table td:nth-of-type(2)::before {
+        content: "Retail Brand";
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-muted);
+    }
+
+    .pricing-table td:nth-of-type(3)::before {
+        content: "FYI Price";
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--accent);
+    }
+
+    /* Highlight the FYI price specifically */
+    .pricing-table .highlight {
+        background: transparent;
+        border-left: none;
+        color: var(--accent);
+        font-size: 20px;
+        /* Pop the price */
+    }
+}
+
+/* --- FOOTER LAYOUT FIX --- */
+.footer-brand-wrapper {
+    display: flex;
+    /* Puts logo and text side-by-side */
+    flex-direction: row;
+    /* Ensures horizontal layout */
+    align-items: center;
+    /* Vertically centers them */
+    margin-bottom: 20px;
+    /* Spacing below this block */
+}
+
+.footer-logo-premium {
+    /* Large height to make the shield visible */
+    height: 140px !important;
+    width: auto;
+
+    /* Crop the empty space by zooming */
+    transform: scale(1.6);
+
+    /* Pull it closer to the text by removing margin */
+    margin-right: -100px;
+    /* Pull text closer to the logo */
+    margin-left: -50px;
+    /* Pull logo left to align with column */
+
+    /* Premium Glow */
+    filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 10px rgba(218, 165, 32, 0.4));
+}
+
+.footer-text-block {
+    padding-left: 0;
+    /* Remove extra padding */
+    line-height: 1.6;
+    color: #777;
+    margin-left: 10px;
+    /* Small gap between logo and text */
 }
