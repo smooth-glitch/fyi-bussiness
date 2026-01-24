@@ -62,6 +62,7 @@
 			background-color: var(--bg-body);
 			line-height: 1.8;
 			overflow-x: hidden;
+			padding-top: 80px;
 		}
 
 		h1,
@@ -835,26 +836,29 @@
 	</style>
 
 	<script>
+		// Replace your window.addEventListener('load'...) with this:
 		window.addEventListener('load', function () {
 			const loader = document.getElementById('cinematic-loader');
-			const content = document.querySelector('.loader-content');
 
-			// Total Animation Time: 3 seconds
-			setTimeout(function () {
-				// 1. Fade out the logo/text first
-				content.classList.add('content-fade-out');
-
-				// 2. Open the Curtains shortly after
+			// Check if user has already seen the intro in this session
+			if (sessionStorage.getItem('introShown')) {
+				loader.style.display = 'none'; // Hide immediately
+				AOS.refresh(); // Start animations immediately
+			} else {
+				// Run your existing animation logic here
+				const content = document.querySelector('.loader-content');
 				setTimeout(function () {
-					loader.classList.add('curtains-open');
-
-					// 3. Start AOS Animations on the main site
-					AOS.refresh();
-
-				}, 500); // Wait for content fade
-
-			}, 2500); // Main wait time
+					content.classList.add('content-fade-out');
+					setTimeout(function () {
+						loader.classList.add('curtains-open');
+						AOS.refresh();
+						// Mark as shown so it doesn't run again on refresh
+						sessionStorage.setItem('introShown', 'true');
+					}, 500);
+				}, 2500);
+			}
 		});
+
 	</script>
 
 
@@ -989,6 +993,81 @@
 				background-color: transparent;
 			}
 		}
+
+		/* Mobile Toggle Button - Hidden on Desktop */
+		.mobile-toggle {
+			display: none;
+			background: transparent;
+			border: none;
+			color: var(--text-main);
+			font-size: 24px;
+			cursor: pointer;
+			z-index: 1001;
+		}
+
+		/* Mobile Media Query (Max-width: 768px) */
+		@media (max-width: 768px) {
+			.header-flex {
+				padding: 0 20px;
+				/* Add breathing room */
+			}
+
+			/* Show the toggle button */
+			.mobile-toggle {
+				display: block;
+				position: absolute;
+				right: 20px;
+				top: 20px;
+			}
+
+			/* Hide nav by default, show when active */
+			.nav-container {
+				display: none;
+				/* Default hidden */
+				position: fixed;
+				top: 60px;
+				/* Below header */
+				left: 0;
+				width: 100%;
+				background: var(--nav-bg);
+				border-bottom: 1px solid var(--border-color);
+				padding: 20px 0;
+				text-align: center;
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+			}
+
+			.nav-container.active {
+				display: block;
+				animation: slideDown 0.3s ease-out;
+			}
+
+			/* Stack list items vertically */
+			nav ul li {
+				display: block;
+				margin: 15px 0;
+			}
+
+			/* Larger touch targets for mobile */
+			nav ul li a {
+				font-size: 16px;
+				/* Bigger text */
+				padding: 10px 20px;
+				/* Easy to tap */
+				display: block;
+			}
+		}
+
+		@keyframes slideDown {
+			from {
+				opacity: 0;
+				transform: translateY(-10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
 	</style>
 
 	<script>
@@ -1016,6 +1095,10 @@
 	<header>
 		<div class="container">
 			<div class="header-flex">
+				<button class="mobile-toggle" aria-label="Toggle Navigation">
+					<i class="fa fa-bars"></i>
+				</button>
+
 				<div class="logo-container">
 					<a href="#" class="brand-link">
 						<img src="img/bussiness-logo-1.png" alt="FYI" class="brand-logo-img">
@@ -2130,6 +2213,26 @@
 				}
 			});
 		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const toggleBtn = document.querySelector('.mobile-toggle');
+			const navContainer = document.querySelector('.nav-container');
+			const icon = toggleBtn.querySelector('i');
+
+			toggleBtn.addEventListener('click', () => {
+				navContainer.classList.toggle('active');
+
+				// Toggle icon between bars and times (X)
+				if (navContainer.classList.contains('active')) {
+					icon.classList.remove('fa-bars');
+					icon.classList.add('fa-times');
+				} else {
+					icon.classList.remove('fa-times');
+					icon.classList.add('fa-bars');
+				}
+			});
+		});
+
 	</script>
 </body>
 
