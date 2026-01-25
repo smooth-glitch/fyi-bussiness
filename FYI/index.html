@@ -54,9 +54,8 @@
 
 	<!-- HEADER -->
 	<header>
-		<!-- usage of container-fluid ensures it goes to the edges, 
-         change to 'container' if you want it aligned with page content -->
-		<div class="container-fluid" style="padding-left: 30px; padding-right: 30px;">
+		<!-- usage of container-fluid ensures it goes to the edges -->
+		<div class="container-fluid header-container">
 			<div class="header-flex">
 
 				<!-- LOGO & BRAND NAME (Left Aligned) -->
@@ -366,47 +365,49 @@
 					<h2>Why We Are 35% Cheaper</h2>
 					<p>We believe you should pay for <strong>Willow</strong>, not <strong>Marketing</strong>.</p>
 					<div class="thin-sep"></div>
-
-					<table class="table pricing-table">
-						<thead>
-							<tr>
-								<th>Cost Component</th>
-								<th>Traditional Retail Brand</th>
-								<th>FYI - For Your Innings</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Manufacturing Cost</td>
-								<td>₹8,000</td>
-								<td>₹8,000</td>
-							</tr>
-							<tr>
-								<td>Brand & Retail Markup</td>
-								<td>₹7,360 <span
-										style="display:block; font-size:11px; opacity:0.7; margin-top:2px;">(Middlemen &
-										Ads)</span></td>
-								<td>₹0 <span
-										style="display:block; font-size:11px; color:var(--accent); margin-top:2px;">(Direct
-										Sourcing)</span></td>
-							</tr>
-							<tr>
-								<td>
-									<strong>Founder's Selection Fee</strong>
-									<br><span style="font-size: 12px; font-weight: normal; opacity:0.7;">(Consultation,
-										Travel to Meerut, & QC)</span>
-								</td>
-								<td>₹0</td>
-								<td>₹2,000</td>
-							</tr>
-							<tr>
-								<td><strong>FINAL PRICE</strong></td>
-								<td style="text-decoration: line-through; opacity:0.6;">₹15,360</td>
-								<td class="highlight">₹10,000</td>
-							</tr>
-						</tbody>
-					</table>
-
+					<div class="table-scroll-container">
+						<table class="table pricing-table">
+							<thead>
+								<tr>
+									<th>Cost Component</th>
+									<th>Traditional Retail Brand</th>
+									<th>FYI - For Your Innings</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Manufacturing Cost</td>
+									<td>₹8,000</td>
+									<td>₹8,000</td>
+								</tr>
+								<tr>
+									<td>Brand & Retail Markup</td>
+									<td>₹7,360 <span
+											style="display:block; font-size:11px; opacity:0.7; margin-top:2px;">(Middlemen
+											&
+											Ads)</span></td>
+									<td>₹0 <span
+											style="display:block; font-size:11px; color:var(--accent); margin-top:2px;">(Direct
+											Sourcing)</span></td>
+								</tr>
+								<tr>
+									<td>
+										<strong>Founder's Selection Fee</strong>
+										<br><span
+											style="font-size: 12px; font-weight: normal; opacity:0.7;">(Consultation,
+											Travel to Meerut, & QC)</span>
+									</td>
+									<td>₹0</td>
+									<td>₹2,000</td>
+								</tr>
+								<tr>
+									<td><strong>FINAL PRICE</strong></td>
+									<td style="text-decoration: line-through; opacity:0.6;">₹15,360</td>
+									<td class="highlight">₹10,000</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 					<div class="quote-box text-left">
 						<p style="margin-bottom: 0;">
 							"<strong>Why only ₹2,000?</strong> Retailers charge a 40% markup just to put a bat on a
@@ -448,115 +449,121 @@
 		</div>
 	</section>
 
-	<!-- FAQ SECTION -->
-	<section class="content-section" id="faq">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center" data-aos="fade-up">
-					<h2>Common Questions</h2>
-					<div class="thin-sep"></div>
-				</div>
+	<!-- REAL WORLD FAQ SECTION -->
+	<div class="panel-group" id="accordion">
+
+		<!-- QUESTION 1: The biggest fear - Buying without feeling -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+						<i class="fa fa-eye"></i> How can I buy a bat without holding it first?
+					</a>
+				</h4>
 			</div>
-			<div class="row" style="margin-top: 30px;">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="panel-group" id="accordion">
-						<!-- Q1 -->
-						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="100">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-										Do you ship internationally? <span class="pull-right"><i
-												class="fa fa-plus"></i></span>
-									</a>
-								</h4>
-							</div>
-							<div id="collapse1" class="panel-collapse collapse in">
-								<div class="panel-body">Yes! We have shipped bats to the UK, Australia, USA, and UAE.
-									Shipping costs vary by location, but we ensure secure, damage-proof packaging.</div>
-							</div>
-						</div>
-						<!-- Q2 -->
-						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="200">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-										Can I customize the handle shape? <span class="pull-right"><i
-												class="fa fa-plus"></i></span>
-									</a>
-								</h4>
-							</div>
-							<div id="collapse2" class="panel-collapse collapse">
-								<div class="panel-body">Absolutely. Whether you prefer Oval, Round, or Semi-Oval, we
-									customize the handle to fit your grip perfectly.</div>
-							</div>
-						</div>
-						<!-- Q3 -->
-						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="300">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-										What is the warranty? <span class="pull-right"><i class="fa fa-plus"></i></span>
-									</a>
-								</h4>
-							</div>
-							<div id="collapse3" class="panel-collapse collapse">
-								<div class="panel-body">We offer a warranty on the handle for 6 months. While willow is
-									a natural product and minor cracks are normal, we stand by the quality of our
-									pressing and construction.</div>
-							</div>
-						</div>
-						<!-- Q4 -->
-						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="400">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-										How long does delivery take? <span class="pull-right"><i
-												class="fa fa-plus"></i></span>
-									</a>
-								</h4>
-							</div>
-							<div id="collapse4" class="panel-collapse collapse">
-								<div class="panel-body">For custom orders, the entire process from consultation to
-									delivery typically takes 2-4 weeks. Ready-to-ship stock can be dispatched within 48
-									hours.</div>
-							</div>
-						</div>
-						<!-- Q5 -->
-						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="500">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-										Do you offer knocking-in services? <span class="pull-right"><i
-												class="fa fa-plus"></i></span>
-									</a>
-								</h4>
-							</div>
-							<div id="collapse5" class="panel-collapse collapse">
-								<div class="panel-body">Yes, every FYI bat comes with optional professional knocking-in
-									and oiling so it's ready for the nets straight out of the box.</div>
-							</div>
-						</div>
-						<!-- Q6 -->
-						<div class="panel panel-default" data-aos="fade-up" data-aos-delay="600">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-										What if I don't like the bat? <span class="pull-right"><i
-												class="fa fa-plus"></i></span>
-									</a>
-								</h4>
-							</div>
-							<div id="collapse6" class="panel-collapse collapse">
-								<div class="panel-body">We share detailed photos and videos of your specific bat for
-									approval before dispatch. If there is a genuine manufacturing defect upon arrival,
-									we will replace it.</div>
-							</div>
-						</div>
-					</div>
+			<div id="collapse1" class="panel-collapse collapse in"> <!-- "in" makes this open by default -->
+				<div class="panel-body">
+					<p>This is the #1 worry for every cricketer. We bridge this gap in two ways:</p>
+					<ul>
+						<li><strong>Video Analysis:</strong> We don't just send photos. We send you a video of the ping
+							test and the balance check on a scale so you can see the pickup.</li>
+						<li><strong>The "Pickup" Guarantee:</strong> A 1180g bat can feel like 1250g if the balance is
+							wrong. We specifically source willow with a higher spine and lighter toe to ensure the
+							"pickup weight" is always lighter than the scale weight.</li>
+					</ul>
 				</div>
 			</div>
 		</div>
-	</section>
+
+		<!-- QUESTION 2: The Trust Issue -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+						<i class="fa fa-shield"></i> Is this genuine English Willow? There are many fakes online.
+					</a>
+				</h4>
+			</div>
+			<div id="collapse2" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p>Absolutely. We source directly from manufacturers in Meerut who supply to international brands.
+						We don't just "dropship"—Hari personally visits the factory to hand-select clefts.</p>
+					<p><strong>The Proof:</strong> Genuine English Willow is lighter and has a distinct grain structure
+						compared to Kashmir Willow or "fake" willow. We encourage you to show our bat to any
+						professional coach or seasoned player; if they can prove it's not genuine English Willow, we
+						will refund 2x your money.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- QUESTION 3: Performance vs. Durability -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+						<i class="fa fa-balance-scale"></i> Will a Grade 1 bat last longer than a Grade 3?
+					</a>
+				</h4>
+			</div>
+			<div id="collapse3" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p><strong>Actually, it's often the opposite.</strong></p>
+					<p>Grade 1 willow is soft, pure, and performs instantly (high ping), but because it is softer, it
+						can be more fragile. Grade 3 is harder and might take longer to open up, but it is often more
+						durable.</p>
+					<p>We recommend Grade 1/Player Grade for match use only, and Grade 2/3 for players who want a
+						"workhorse" bat for nets and matches combined.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- QUESTION 4: Warranty Realities -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+						<i class="fa fa-gavel"></i> What if my bat breaks? (The Handle vs. Toe Reality)
+					</a>
+				</h4>
+			</div>
+			<div id="collapse4" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p>Cricket bats are wood, not steel. If a 140kph ball hits the toe or edge at a bad angle, any bat
+						can crack.</p>
+					<ul>
+						<li><strong>Handle Breaks:</strong> Covered. We will replace the handle for free within 3
+							months.</li>
+						<li><strong>Surface Cracks/Edge Damage:</strong> This is normal wear and tear. We advise on how
+							to fix minor damage with glue/tape.</li>
+						<li><strong>Storm/Moisture Damage:</strong> Not covered. (Don't leave your bat in the car
+							trunk!)</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- QUESTION 5: Customization -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+						<i class="fa fa-pencil-square-o"></i> Can I copy a specific player's profile (e.g.,
+						Kohli/Dhoni)?
+					</a>
+				</h4>
+			</div>
+			<div id="collapse5" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p>Yes. We can replicate profiles. However, remember that international players use extremely dense
+						wood that might be too heavy for the average club player.</p>
+					<p>If you want a "Dhoni profile" (heavy bottom), we will adjust the spine height so you get that
+						<em>shape</em> but at a weight (e.g., 1190g) that you can actually swing fast.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
 
 	<!-- TESTIMONIALS (With improved spacing) -->
 	<section class="content-section">
@@ -643,6 +650,7 @@
 		</div>
 	</section>
 
+	
 	<!-- FOOTER -->
 	<footer id="contact">
 		<div class="container">

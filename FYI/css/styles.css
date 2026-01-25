@@ -1052,30 +1052,81 @@ footer a:hover {
 }
 
 /* ---------- 16) FAQ (Bootstrap panels) ---------- */
+/* ---------- 16) FAQ (Bootstrap panels) - REFINED ---------- */
+.panel-group .panel {
+    border-radius: 8px;
+    overflow: hidden;
+    border: none;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for depth */
+}
+
 .panel-default {
     border-color: var(--border-color);
     background-color: var(--bg-card);
-    margin-bottom: 15px;
 }
 
 .panel-default>.panel-heading {
     background-color: var(--bg-alt);
-    border-color: var(--border-color);
+    border: none;
     color: var(--text-main);
-    padding: 15px 20px;
+    padding: 18px 25px;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect on the question bar */
+.panel-default>.panel-heading:hover {
+    background-color: rgba(217, 83, 79, 0.1);
+    /* Subtle red tint on hover */
+    cursor: pointer;
 }
 
 .panel-title a {
     text-decoration: none;
     display: block;
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: 700;
+    /* Bolder questions */
+    font-size: 16px;
+    color: var(--text-main);
+    display: flex;
+    /* Aligns icon and text */
+    align-items: center;
+}
+
+.panel-title i {
+    margin-right: 15px;
+    color: var(--accent);
+    /* Red icons */
+    font-size: 18px;
+    width: 20px;
+    /* Fixed width for alignment */
+    text-align: center;
 }
 
 .panel-body {
     border-top: 1px solid var(--border-color) !important;
     color: var(--text-muted);
+    padding: 25px;
+    line-height: 1.8;
+    background-color: var(--bg-card);
 }
+
+/* Style the lists inside FAQ answers */
+.panel-body ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.panel-body li {
+    margin-bottom: 8px;
+}
+
+.panel-body strong {
+    color: var(--text-main);
+    /* Highlights important words */
+}
+
 
 /* ---------- 17) RESPONSIVE ---------- */
 @media (max-width: 768px) {
@@ -1288,6 +1339,76 @@ footer a:hover {
         font-size: 20px;
         /* Pop the price */
     }
+
+    /* 1. Fix Header Padding */
+    .header-container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    /* 2. Fix Header Layout */
+    .header-flex {
+        height: 60px;
+        /* Reduce height for mobile */
+    }
+
+    /* 3. Resize Logo Text & Image for Mobile */
+    .brand-logo-img {
+        height: 35px !important;
+        /* Smaller logo */
+        margin-right: -10px;
+        /* Adjust spacing */
+    }
+
+    .brand-full-text {
+        font-size: 14px;
+        /* Smaller text */
+        letter-spacing: 0.5px;
+    }
+
+    /* 4. Position Hamburger Menu Correctly */
+    .mobile-toggle {
+        display: block;
+        font-size: 24px;
+        color: var(--text-main);
+        background: none;
+        border: none;
+        padding: 0;
+        margin-left: auto;
+        /* Pushes button to far right */
+    }
+
+    /* Footer Column Stacking */
+    footer .col-md-4 {
+        width: 100%;
+        display: block;
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 0 15px;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        /* Center icons horizontally */
+        gap: 15px;
+        /* Space between icons */
+        width: 100%;
+    }
+
+    .footer-logo-premium {
+        height: 40px !important;
+        /* Matches Mobile Header Height */
+        margin-left: auto;
+        margin-right: auto;
+
+        /* Keep the zoom but adjust margins for mobile */
+        transform: scale(1.5);
+        margin-bottom: 30px;
+        /* Space for the zoom overlap */
+        margin-top: 10px;
+    }
+
 }
 
 /* --- FOOTER LAYOUT FIX --- */
@@ -1302,23 +1423,28 @@ footer a:hover {
     /* Spacing below this block */
 }
 
+/* Add this anywhere in your CSS (e.g., under the FOOTER section) */
+/* Footer Logo - Matching Header Size & Style */
 .footer-logo-premium {
-    /* Large height to make the shield visible */
-    height: 140px !important;
+    height: 95px;
+    /* Matches Header Height */
     width: auto;
+    display: block;
+    transform: scale(1.5);
+    /* Matches Header Zoom */
+    transform-origin: center;
 
-    /* Crop the empty space by zooming */
-    transform: scale(1.6);
+    /* Matches Header "Luster" Effect */
+    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
 
-    /* Pull it closer to the text by removing margin */
-    margin-right: -100px;
-    /* Pull text closer to the logo */
-    margin-left: -50px;
-    /* Pull logo left to align with column */
-
-    /* Premium Glow */
-    filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 10px rgba(218, 165, 32, 0.4));
+    /* Compensation for the Scale(1.5) so it doesn't overlap text */
+    margin-bottom: 40px;
+    /* Increased from 20px to handle the zoom overlap */
+    margin-top: 10px;
+    /* Give it a bit of room top */
 }
+
+
 
 .footer-text-block {
     padding-left: 0;
@@ -1328,3 +1454,143 @@ footer a:hover {
     margin-left: 10px;
     /* Small gap between logo and text */
 }
+
+/* Table Scrolling for Mobile */
+.table-scroll-container {
+    width: 100%;
+    overflow-x: auto;
+    /* Enables horizontal scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Optional frame */
+    border-radius: 8px;
+}
+
+/* Ensure the table keeps its shape inside the scroll */
+.pricing-table {
+    min-width: 600px;
+    /* Forces table to be wide enough to read */
+    margin-bottom: 0;
+}
+
+/* ---------- TERMS MODAL STYLING ---------- */
+.modal-content {
+    background-color: var(--bg-card);
+    /* Adapts to light/dark mode */
+    color: var(--text-main);
+    /* Adapts text color */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-alt);
+    /* Slightly different header background */
+    border-radius: 8px 8px 0 0;
+    padding: 20px;
+}
+
+.modal-title {
+    color: var(--accent);
+    /* Highlight title */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+/* Close button (X) styling */
+.modal-header .close {
+    color: var(--text-main);
+    text-shadow: none;
+    opacity: 0.7;
+    font-size: 24px;
+    margin-top: -2px;
+}
+
+.modal-header .close:hover {
+    color: var(--accent);
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 30px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+/* Scrollable body for long terms */
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* List Styling */
+.terms-list {
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+.terms-list li {
+    margin-bottom: 10px;
+    position: relative;
+    list-style: none;
+    /* Remove default bullets */
+}
+
+/* Custom Bullet Points */
+.terms-list li::before {
+    content: "•";
+    color: var(--accent);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-alt);
+    border-radius: 0 0 8px 8px;
+    padding: 15px 20px;
+}
+
+/* Close Button in Footer */
+.modal-footer .btn-default {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main) !important;
+    /* Force theme color */
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    padding: 8px 20px;
+}
+
+.modal-footer .btn-default:hover {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #fff !important;
+}
+
+/* Scrollbar styling for the modal body */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: var(--bg-body);
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
