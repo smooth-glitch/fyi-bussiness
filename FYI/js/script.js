@@ -1,22 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Page fade-in (optional polish)
+    document.body.classList.add("preload");
+    requestAnimationFrame(() => {
+        document.body.classList.remove("preload");
+        document.body.classList.add("loaded");
+    });
+
     // AOS
     if (window.AOS) {
         AOS.init({ once: true, offset: 100, duration: 800 });
     }
 
+
+
     // Theme toggle
     const themeBtns = document.querySelectorAll('.theme-btn');
     const body = document.body;
-    const iconSun = 'fa-sun-o';
-    const iconMoon = 'fa-moon-o';
 
     function updateIcons(isLight) {
         themeBtns.forEach((btn) => {
-            const icon = btn.querySelector('i');
-            if (!icon) return;
-
-            icon.classList.toggle(iconMoon, isLight);
-            icon.classList.toggle(iconSun, !isLight);
             btn.title = isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode';
         });
     }
@@ -34,74 +36,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mobile hamburger -> mobile nav
+    // Mobile hamburger -> mobile nav (IMPORTANT: don’t return early)
     const toggleBtn = document.querySelector('.mobile-toggle');
     const mobileNav = document.querySelector('.mobile-nav');
     const icon = toggleBtn ? toggleBtn.querySelector('i') : null;
 
-    console.log('[FYI] DOMContentLoaded fired');
-    console.log('[FYI] toggleBtn:', toggleBtn);
-    console.log('[FYI] mobileNav:', mobileNav);
-
-    if (!toggleBtn || !mobileNav) return;
-
-    toggleBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const isOpen = mobileNav.classList.toggle('open');
-
-        // Optional: if you accidentally leave inline display none in HTML, this still forces visibility.
-        mobileNav.style.display = isOpen ? 'block' : 'none';
-
-        if (icon) {
-            icon.classList.toggle('fa-bars', !isOpen);
-            icon.classList.toggle('fa-times', isOpen);
-        }
-
-        console.log('[FYI] hamburger click -> open:', isOpen);
-        console.log('[FYI] mobileNav class:', mobileNav.className);
-        console.log('[FYI] mobileNav computed display:', getComputedStyle(mobileNav).display);
-    });
-
-    // Close menu when a link is clicked
-    mobileNav.querySelectorAll('a').forEach((a) => {
-        a.addEventListener('click', () => {
-            mobileNav.classList.remove('open');
-            mobileNav.style.display = 'none';
+    if (toggleBtn && mobileNav) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isOpen = mobileNav.classList.toggle('open');
+            mobileNav.style.display = isOpen ? 'block' : 'none';
 
             if (icon) {
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
+                icon.classList.toggle('fa-bars', !isOpen);
+                icon.classList.toggle('fa-times', isOpen);
             }
         });
+
+        mobileNav.querySelectorAll('a').forEach((a) => {
+            a.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                mobileNav.style.display = 'none';
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            });
+        });
+    }
+
+    // Mobile scroll arrows (profiles + testimonials)
+    document.querySelectorAll("#testimonials .scroll-controls").forEach((controls) => {
+        const container = controls.parentElement.querySelector(".scroll-row");
+        if (!container) return;
+
+        controls.querySelectorAll(".scroll-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const isLeft = btn.classList.contains("left");
+                const scrollAmount = Math.min(container.clientWidth * 0.85, 420);
+                container.scrollBy({ left: isLeft ? -scrollAmount : scrollAmount, behavior: "smooth" });
+            });
+        });
     });
+
 });
 
-// Cinematic loader (only once per session)
-window.addEventListener('load', () => {
-    const loader = document.getElementById('cinematic-loader');
+
+// Cinematic loader only once per session (premium timing)
+window.addEventListener("load", () => {
+    const loader = document.getElementById("cinematic-loader");
     if (!loader) return;
 
-    const content = loader.querySelector('.loader-content');
+    const content = loader.querySelector(".loader-content");
 
-    if (sessionStorage.getItem('introShown') === 'true') {
-        loader.style.display = 'none';
+    if (sessionStorage.getItem("introShown") === "true") {
+        loader.style.display = "none";
         if (window.AOS) AOS.refresh();
         return;
     }
 
-    setTimeout(() => {
-        if (content) content.classList.add('content-fade-out');
+    const MIN_SHOW_MS = 900;
+    const CURTAIN_MS = 1050;
+    const start = performance.now();
+
+    const runExit = () => {
+        if (content) content.classList.add("content-fade-out");
+        setTimeout(() => loader.classList.add("curtains-open"), 180);
 
         setTimeout(() => {
-            loader.classList.add('curtains-open');
-            sessionStorage.setItem('introShown', 'true');
+            loader.style.display = "none";
+            sessionStorage.setItem("introShown", "true");
+            if (window.AOS) AOS.refresh();
+        }, CURTAIN_MS + 250);
+    };
 
-            // Fully hide after the curtain transition ends (prevents any layout/paint weirdness)
-            setTimeout(() => {
-                loader.style.display = 'none';
-                if (window.AOS) AOS.refresh();
-            }, 900);
-        }, 500);
-    }, 2500);
+    const elapsed = performance.now() - start;
+    const delay = Math.max(0, MIN_SHOW_MS - elapsed);
+    setTimeout(runExit, delay);
 });

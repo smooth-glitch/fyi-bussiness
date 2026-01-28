@@ -76,7 +76,44 @@
 
 				<!-- Theme Button Mobile -->
 				<div class="visible-xs visible-sm pull-right" style="margin-right: 15px;">
-					<button id="theme-btn-mobile" class="theme-btn"><i class="fa fa-sun-o"></i></button>
+					<button id="theme-btn-mobile" class="theme-btn theme-ball-btn" title="Toggle theme"
+						aria-label="Toggle theme">
+						<svg class="theme-ball-svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+							<!-- Ball -->
+							<circle class="ball-fill" cx="256" cy="256" r="200"></circle>
+							<g class="seam-group">
+								<!-- Middle strip (was #C62828) -->
+								<rect class="seam-fill" x="241.255" y="49.366" width="29.49" height="413.494">
+								</rect>
+
+								<!-- Stitch lines (were #FFECB3 strokes) -->
+								<g class="stitches">
+									<line x1="293.5" y1="64" x2="293.5" y2="75"></line>
+									<line x1="293.5" y1="87" x2="293.5" y2="431" stroke-dasharray="23 12"></line>
+									<line x1="293.5" y1="437" x2="293.5" y2="448"></line>
+
+									<line x1="307.5" y1="64" x2="307.5" y2="75"></line>
+									<line x1="307.5" y1="87" x2="307.5" y2="431" stroke-dasharray="23 12"></line>
+									<line x1="307.5" y1="437" x2="307.5" y2="448"></line>
+
+									<line x1="204.5" y1="64" x2="204.5" y2="75"></line>
+									<line x1="204.5" y1="87" x2="204.5" y2="431" stroke-dasharray="23 12"></line>
+									<line x1="204.5" y1="437" x2="204.5" y2="448"></line>
+
+									<line x1="218.5" y1="64" x2="218.5" y2="75"></line>
+									<line x1="218.5" y1="87" x2="218.5" y2="431" stroke-dasharray="23 12"></line>
+									<line x1="218.5" y1="437" x2="218.5" y2="448"></line>
+								</g>
+
+								<!-- Outer ring (was #424242) -->
+								<path class="ring-stroke" d="M256,70c49.683,0,96.391,19.347,131.522,54.478S442,206.317,442,256
+								s-19.347,96.391-54.478,131.522S305.683,442,256,442s-96.391-19.347-131.522-54.478S70,305.683,70,256
+								s19.347-96.391,54.478-131.522S206.317,70,256,70 M256,56C145.543,56,56,145.543,56,256s89.543,200,200,200s200-89.543,200-200
+								S366.457,56,256,56L256,56z">
+								</path>
+							</g>
+						</svg>
+					</button>
 				</div>
 
 				<!-- DESKTOP NAV (Right Aligned) -->
@@ -89,10 +126,48 @@
 							<li><a href="#process">Process</a></li>
 							<li><a href="#contact">Contact</a></li>
 						</ul>
-						<button id="theme-btn-desktop" class="theme-btn" title="Toggle Light/Dark Mode"
-							style="margin-left: 20px;">
-							<i class="fa fa-sun-o"></i>
+						<button id="theme-btn-desktop" class="theme-btn theme-ball-btn" title="Toggle theme"
+							aria-label="Toggle theme">
+							<svg class="theme-ball-svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+								<!-- Ball -->
+								<circle class="ball-fill" cx="256" cy="256" r="200"></circle>
+								<g class="seam-group">
+									<!-- Middle strip (was #C62828) -->
+									<rect class="seam-fill" x="241.255" y="49.366" width="29.49" height="413.494">
+									</rect>
+
+									<!-- Stitch lines (were #FFECB3 strokes) -->
+									<g class="stitches">
+										<line x1="293.5" y1="64" x2="293.5" y2="75"></line>
+										<line x1="293.5" y1="87" x2="293.5" y2="431" stroke-dasharray="23 12"></line>
+										<line x1="293.5" y1="437" x2="293.5" y2="448"></line>
+
+										<line x1="307.5" y1="64" x2="307.5" y2="75"></line>
+										<line x1="307.5" y1="87" x2="307.5" y2="431" stroke-dasharray="23 12"></line>
+										<line x1="307.5" y1="437" x2="307.5" y2="448"></line>
+
+										<line x1="204.5" y1="64" x2="204.5" y2="75"></line>
+										<line x1="204.5" y1="87" x2="204.5" y2="431" stroke-dasharray="23 12"></line>
+										<line x1="204.5" y1="437" x2="204.5" y2="448"></line>
+
+										<line x1="218.5" y1="64" x2="218.5" y2="75"></line>
+										<line x1="218.5" y1="87" x2="218.5" y2="431" stroke-dasharray="23 12"></line>
+										<line x1="218.5" y1="437" x2="218.5" y2="448"></line>
+									</g>
+
+									<!-- Outer ring (was #424242) -->
+									<path class="ring-stroke" d="M256,70c49.683,0,96.391,19.347,131.522,54.478S442,206.317,442,256
+								s-19.347,96.391-54.478,131.522S305.683,442,256,442s-96.391-19.347-131.522-54.478S70,305.683,70,256
+								s19.347-96.391,54.478-131.522S206.317,70,256,70 M256,56C145.543,56,56,145.543,56,256s89.543,200,200,200s200-89.543,200-200
+								S366.457,56,256,56L256,56z">
+									</path>
+								</g>
+							</svg>
 						</button>
+
+
+
+
 					</nav>
 				</div>
 			</div>
@@ -228,10 +303,12 @@
 	<!-- SIGNATURE PROFILES SECTION -->
 	<section class="content-section" id="profiles">
 		<div class="container">
+			<!-- The row follows immediately below -->
 			<div class="row">
 				<div class="col-md-12 text-center" data-aos="fade-up">
 					<h2>Choose Your Shape</h2>
-					<p style="color: var(--text-muted);">We customize every gram, but these are our player favorites.
+					<p style="color: var(--text-muted);">We customize every gram, but these are our player
+						favorites.
 					</p>
 					<div class="thin-sep"></div>
 				</div>
@@ -252,7 +329,8 @@
 							<div class="profile-body">
 								<h3>The Punisher (Duckbill)</h3>
 								<p class="summary"><strong>Sweet Spot:</strong> Low-to-Mid</p>
-								<p class="desc">Designed for front-foot dominance. The duckbill toe removes weight from
+								<p class="desc">Designed for front-foot dominance. The duckbill toe removes weight
+									from
 									the bottom to allow for massive edges without compromising pickup.</p>
 
 								<!-- Hidden Details -->
@@ -355,59 +433,50 @@
 					</div>
 				</div>
 			</div>
-		</div>
+
 	</section>
 	<!-- PRICING -->
 	<section class="content-section alt" id="pricing">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center" data-aos="zoom-in">
+				<div class="col-md-10 col-md-offset-1 text-center" data-aos="zoom-in">
 					<h2>Why We Are 35% Cheaper</h2>
 					<p>We believe you should pay for <strong>Willow</strong>, not <strong>Marketing</strong>.</p>
 					<div class="thin-sep"></div>
-					<div class="table-scroll-container">
-						<table class="table pricing-table">
-							<thead>
-								<tr>
-									<th>Cost Component</th>
-									<th>Traditional Retail Brand</th>
-									<th>FYI - For Your Innings</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Manufacturing Cost</td>
-									<td>₹8,000</td>
-									<td>₹8,000</td>
-								</tr>
-								<tr>
-									<td>Brand & Retail Markup</td>
-									<td>₹7,360 <span
-											style="display:block; font-size:11px; opacity:0.7; margin-top:2px;">(Middlemen
-											&
-											Ads)</span></td>
-									<td>₹0 <span
-											style="display:block; font-size:11px; color:var(--accent); margin-top:2px;">(Direct
-											Sourcing)</span></td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Founder's Selection Fee</strong>
-										<br><span
-											style="font-size: 12px; font-weight: normal; opacity:0.7;">(Consultation,
-											Travel to Meerut, & QC)</span>
-									</td>
-									<td>₹0</td>
-									<td>₹2,000</td>
-								</tr>
-								<tr>
-									<td><strong>FINAL PRICE</strong></td>
-									<td style="text-decoration: line-through; opacity:0.6;">₹15,360</td>
-									<td class="highlight">₹10,000</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+					<table class="table pricing-table pricing-table--pro" data-aos="fade-up" data-aos-delay="150">
+						<thead>
+							<tr>
+								<th>Cost Component</th>
+								<th>Traditional Retail Brand</th>
+								<th>FYI - For Your Innings</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Manufacturing Cost</td>
+								<td>52%</td>
+								<td>80%</td>
+							</tr>
+							<tr>
+								<td>Brand & Retail Markup</td>
+								<td>48% (Middlemen & Ads)</td>
+								<td>0% (Direct Sourcing)</td>
+							</tr>
+							<tr>
+								<td>Founder's Selection Fee (Consultation, Travel to Meerut, & QC)</td>
+								<td>0%</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>FINAL PRICE</td>
+								<td>100% (₹15,360)</td>
+								<td>100% (₹10,000)</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+
 					<!-- WHY 2000 
 					<div class="quote-box text-left">
 						<p style="margin-bottom: 0;">
@@ -569,8 +638,21 @@
 
 
 	<!-- TESTIMONIALS (With improved spacing) -->
-	<section class="content-section">
+	<section class="content-section" id="testimonials">
 		<div class="container">
+
+			<!-- Mobile Scroll Controls -->
+			<div class="scroll-controls mobile-only">
+				<button class="scroll-btn left" aria-label="Scroll left">
+					<i class="fa fa-chevron-left"></i>
+				</button>
+
+				<button class="scroll-btn right" aria-label="Scroll right">
+					<i class="fa fa-chevron-right"></i>
+				</button>
+			</div>
+
+			<!-- Section heading (NOT inside scroll row) -->
 			<div class="row">
 				<div class="col-md-12 text-center" data-aos="fade-up">
 					<h2>What Players Say</h2>
@@ -578,7 +660,9 @@
 				</div>
 			</div>
 
-			<div class="row flex-row" style="margin-top: 50px;">
+			<!-- THIS row scrolls on mobile -->
+			<div class="row scroll-row" style="margin-top: 50px;">
+
 				<!-- Review 1 -->
 				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="100">
 					<div class="testimonial-card">
@@ -588,6 +672,7 @@
 							detailed. The pickup is incredible for a 1220g bat. Scored my first century with it!"</p>
 					</div>
 				</div>
+
 				<!-- Review 2 -->
 				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="200">
 					<div class="testimonial-card">
@@ -597,6 +682,7 @@
 							superior, the grains are cleaner, and I saved huge money."</p>
 					</div>
 				</div>
+
 				<!-- Review 3 -->
 				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="300">
 					<div class="testimonial-card">
@@ -606,6 +692,7 @@
 							consultation felt like talking to a teammate who genuinely cares."</p>
 					</div>
 				</div>
+
 				<!-- Review 4 -->
 				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="400">
 					<div class="testimonial-card">
@@ -616,6 +703,7 @@
 							perfectly."</p>
 					</div>
 				</div>
+
 				<!-- Review 5 -->
 				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="500">
 					<div class="testimonial-card">
@@ -625,6 +713,7 @@
 							Video calls, detailed updates, and the bat arrived perfectly packed."</p>
 					</div>
 				</div>
+
 				<!-- Review 6 -->
 				<div class="col-md-4 col-sm-6 flex-col" data-aos="fade-up" data-aos-delay="600">
 					<div class="testimonial-card">
@@ -634,9 +723,11 @@
 							specific profile with a lighter pickup but a massive sweet spot. The balance is unreal."</p>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>
+
 
 	<!-- CTA -->
 	<section class="discover">
@@ -677,12 +768,12 @@
 					<p style="margin-bottom: 15px;">
 						<strong style="color: #ddd;">Hariharan Ravi:</strong><br>
 						+91 94457 78177<br>
-						<a href="mailto:hariharanravi168@gmail.com">hariharanravi168@gmail.com</a>
+						<a href="mailto:foryourinnings@gmail.com">foryourinnings@gmail.com</a>
 					</p>
 					<p>
 						<strong style="color: #ddd;">Ananthakrishnan CN:</strong><br>
 						+91 98849 02618<br>
-						<a href="mailto:ananthnara1@gmail.com">ananthnara1@gmail.com</a>
+						<a href="mailto:foryourinnings@gmail.com">foryourinnings@gmail.com</a>
 					</p>
 				</div>
 				<div class="col-md-4">
