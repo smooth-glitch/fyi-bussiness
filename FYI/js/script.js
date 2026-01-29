@@ -102,10 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
             // Close mobile nav if it's open (optional nicety)
-            const mobileNav = document.querySelector(".mobile-nav");
-            if (mobileNav && mobileNav.classList.contains("open")) {
-                mobileNav.classList.remove("open");
-                mobileNav.style.display = "none";
+            const mNav = document.querySelector(".mobile-nav");
+            if (mNav && mNav.classList.contains("open")) {
+                mNav.classList.remove("open");
+                mNav.style.display = "none";
+                if (icon) {
+                    icon.classList.add("fa-bars");
+                    icon.classList.remove("fa-times");
+                }
             }
 
             // Smooth scroll to footer
@@ -139,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!contactSubmitBtn) return;
         contactSubmitBtn.disabled = false;
         contactSubmitBtn.classList.remove("is-sending", "is-success");
-        // If your button uses inner spans, keep the label as-is; no text rewrite needed
     };
 
     document.querySelectorAll(".contact-open-btn").forEach((btn) => {
@@ -186,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 setStatus("Sending...", "");
 
+                // 1) Save to Firestore (primary)
                 await db.collection("inquiries").add({
                     name,
                     contact,
@@ -196,8 +200,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 });
 
-                // Send email via Cloudflare Worker (token stays server-side)
+                // 2) Send email via Cloudflare Worker (secondary; non-fatal if fails)
                 const FYI_WORKER_ENDPOINT = "https://fyiinnings.arjunsridhar445.workers.dev/api/contact";
+                let emailOk = true;
 
                 try {
                     const payload = {
@@ -214,17 +219,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         body: JSON.stringify(payload),
                     });
 
-                    // Optional: if you want to treat email failure as non-fatal, keep this as a soft error
                     if (!res.ok) {
-                        throw new Error(await res.text());
+                        emailOk = false;
                     }
-
-                } catch (err) {
-                    setStatus(`Failed to send: ${err.message}`, "is-error");
-                    resetSubmitBtn();
+                } catch {
+                    emailOk = false;
                 }
 
-                setStatus("Sent successfully.", "is-success");
+                if (emailOk) {
+                    setStatus("Sent successfully.", "is-success");
+                } else {
+                    setStatus("Saved inquiry. Email send failed (we'll still contact you).", "is-error");
+                }
 
                 // Trigger tick state (CSS anim) and close modal
                 if (contactSubmitBtn) {
@@ -244,6 +250,233 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // ---------------------------------------------------------
+    // Currency picker (searchable dropdown + auto + live FX INR)
+    // Expects:
+    //   - spans: .money[data-inr="10000"]
+    //   - UI ids: currency-picker, currency-trigger, currency-popover,
+    //             currency-search, currency-options, currency-selected-label,
+    //             currency-auto, currency-status
+    // ---------------------------------------------------------
+    const CURRENCY_STORAGE_KEY = "fyi-currency";
+    const FX_STORAGE_KEY = "fyi-fx-INR";
+
+    const moneyEls = document.querySelectorAll(".money[data-inr]");
+
+    const picker = document.getElementById("currency-picker");
+    const trigger = document.getElementById("currency-trigger");
+    const popover = document.getElementById("currency-popover");
+    const searchInput = document.getElementById("currency-search");
+    const optionsEl = document.getElementById("currency-options");
+    const selectedLabelEl = document.getElementById("currency-selected-label");
+    const autoBtn = document.getElementById("currency-auto");
+    const statusEl = document.getElementById("currency-status");
+
+    function getSupportedCurrencies() {
+        if (typeof Intl.supportedValuesOf === "function") return Intl.supportedValuesOf("currency");
+        return ["INR", "USD", "EUR", "GBP", "AUD", "CAD", "SGD", "AED"];
+    }
+
+    const displayNames =
+        typeof Intl.DisplayNames === "function"
+            ? new Intl.DisplayNames([navigator.language], { type: "currency" })
+            : null;
+
+    function getCurrencyName(code) {
+        try {
+            return displayNames ? displayNames.of(code) : code;
+        } catch {
+            return code;
+        }
+    }
+
+    function formatMoney(amount, currency) {
+        return new Intl.NumberFormat(navigator.language, {
+            style: "currency",
+            currency,
+            maximumFractionDigits: 0,
+        }).format(amount);
+    }
+
+    async function detectCurrencyByIP() {
+        try {
+            const res = await fetch("https://ipapi.co/json/");
+            if (!res.ok) return null;
+            const data = await res.json();
+            return data && data.currency ? String(data.currency).toUpperCase() : null;
+        } catch {
+            return null;
+        }
+    }
+
+    async function getFxRatesFromINR() {
+        // cache 12h
+        try {
+            const cached = JSON.parse(localStorage.getItem(FX_STORAGE_KEY) || "null");
+            if (cached && cached.rates && cached.savedAt && Date.now() - cached.savedAt < 12 * 60 * 60 * 1000) {
+                return cached.rates;
+            }
+        } catch { }
+
+        const res = await fetch("https://open.er-api.com/v6/latest/INR");
+        const data = await res.json();
+        if (!data || data.result !== "success" || !data.rates) throw new Error("FX fetch failed");
+
+        localStorage.setItem(FX_STORAGE_KEY, JSON.stringify({ savedAt: Date.now(), rates: data.rates }));
+        return data.rates;
+    }
+
+    function applyCurrency(code, rates) {
+        if (!moneyEls.length) return;
+
+        const wanted = String(code || "").trim().toUpperCase();
+        const effective = wanted && rates && rates[wanted] ? wanted : "INR";
+
+        moneyEls.forEach((el) => {
+            const inr = Number(el.dataset.inr || "0");
+            const converted = effective === "INR" ? inr : Math.round(inr * rates[effective]);
+            el.textContent = formatMoney(converted, effective);
+        });
+
+        if (statusEl) statusEl.textContent = effective === "INR" ? "(INR)" : `(~${effective})`;
+        if (selectedLabelEl) selectedLabelEl.textContent = `${effective} — ${getCurrencyName(effective)}`;
+    }
+
+    function openPopover() {
+        if (!popover || !trigger) return;
+        popover.hidden = false;
+        trigger.setAttribute("aria-expanded", "true");
+        if (searchInput) {
+            searchInput.value = "";
+            renderOptions("");
+            setTimeout(() => searchInput.focus(), 0);
+        }
+    }
+
+    function closePopover() {
+        if (!popover || !trigger) return;
+        popover.hidden = true;
+        trigger.setAttribute("aria-expanded", "false");
+    }
+
+    function buildCurrencyList() {
+        const codes = getSupportedCurrencies();
+        const items = codes.map((code) => ({ code, name: getCurrencyName(code) }));
+        items.sort((a, b) => (a.name || a.code).localeCompare(b.name || b.code));
+        return items;
+    }
+
+    const ALL_CURRENCIES = buildCurrencyList();
+    let activeIndex = -1;
+
+    function renderOptions(query) {
+        if (!optionsEl) return;
+
+        const q = (query || "").trim().toLowerCase();
+        const filtered = !q
+            ? ALL_CURRENCIES
+            : ALL_CURRENCIES.filter(({ code, name }) => {
+                return code.toLowerCase().includes(q) || String(name).toLowerCase().includes(q);
+            });
+
+        optionsEl.innerHTML = "";
+        activeIndex = filtered.length ? 0 : -1;
+
+        // Limit DOM for perf; typing + scroll still works fine
+        filtered.slice(0, 250).forEach((item, idx) => {
+            const li = document.createElement("li");
+            li.dataset.code = item.code;
+            if (idx === activeIndex) li.classList.add("is-active");
+
+            li.innerHTML = `
+          <span class="currency-code">${item.code}</span>
+          <span class="currency-name">${item.name}</span>
+        `;
+
+            li.addEventListener("click", () => selectCurrency(item.code, "manual"));
+            optionsEl.appendChild(li);
+        });
+    }
+
+    async function selectCurrency(code, mode) {
+        const picked = String(code || "").trim().toUpperCase();
+        if (!picked) return;
+
+        if (mode === "manual") localStorage.setItem(CURRENCY_STORAGE_KEY, picked);
+
+        try {
+            const rates = await getFxRatesFromINR();
+            applyCurrency(picked, rates);
+        } catch {
+            applyCurrency("INR", { INR: 1 });
+        }
+
+        closePopover();
+    }
+
+    async function initCurrencyPicker() {
+        if (!picker || !trigger || !popover || !searchInput || !optionsEl || !moneyEls.length) return;
+
+        // initial choice: saved -> IP -> INR
+        const saved = (localStorage.getItem(CURRENCY_STORAGE_KEY) || "").toUpperCase();
+        let initial = saved;
+
+        if (!initial) {
+            initial = (await detectCurrencyByIP()) || "INR";
+        }
+
+        let rates;
+        try {
+            rates = await getFxRatesFromINR();
+        } catch {
+            rates = { INR: 1 };
+        }
+
+        applyCurrency(initial, rates);
+
+        trigger.addEventListener("click", () => {
+            if (!popover.hidden) closePopover();
+            else openPopover();
+        });
+
+        autoBtn?.addEventListener("click", async () => {
+            localStorage.removeItem(CURRENCY_STORAGE_KEY);
+            let detected = (await detectCurrencyByIP()) || "INR";
+
+            try {
+                const r = await getFxRatesFromINR();
+                applyCurrency(detected, r);
+            } catch {
+                applyCurrency("INR", { INR: 1 });
+            }
+        });
+
+        searchInput.addEventListener("input", () => renderOptions(searchInput.value));
+
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closePopover();
+
+            if (e.key === "Enter") {
+                e.preventDefault();
+                const typed = String(searchInput.value || "").trim().toUpperCase();
+                const exists = ALL_CURRENCIES.some((x) => x.code === typed);
+                if (exists) selectCurrency(typed, "manual");
+            }
+        });
+
+        // Click outside closes
+        document.addEventListener("click", (e) => {
+            if (popover.hidden) return;
+            const target = e.target;
+            if (!(target instanceof Node)) return;
+            if (!picker.contains(target)) closePopover();
+        });
+    }
+
+    initCurrencyPicker().catch(() => {
+        if (statusEl) statusEl.textContent = "(INR)";
+    });
 });
 
 // Cinematic loader only once per session (premium timing)

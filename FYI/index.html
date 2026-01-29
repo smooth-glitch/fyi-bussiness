@@ -446,6 +446,28 @@
 					<h2>Why We Are 35% Cheaper</h2>
 					<p>We believe you should pay for <strong>Willow</strong>, not <strong>Marketing</strong>.</p>
 					<div class="thin-sep"></div>
+					<div class="currency-picker" id="currency-picker">
+						<span class="currency-label">Currency</span>
+
+						<button type="button" id="currency-trigger" class="currency-trigger" aria-haspopup="dialog"
+							aria-expanded="false">
+							<span id="currency-selected-label">Auto</span>
+							<i class="fa fa-chevron-down" aria-hidden="true"></i>
+						</button>
+
+						<button type="button" id="currency-auto" class="currency-auto-btn">Auto</button>
+						<span id="currency-status" class="currency-note"></span>
+
+						<div id="currency-popover" class="currency-popover" role="dialog" aria-label="Choose currency"
+							hidden>
+							<input id="currency-search" class="currency-search" type="text"
+								placeholder="Search (USD, Euro, INR)…" autocomplete="off" />
+							<ul id="currency-options" class="currency-options" role="listbox"></ul>
+						</div>
+					</div>
+
+
+
 					<table class="table pricing-table pricing-table--pro" data-aos="fade-up" data-aos-delay="150">
 						<thead>
 							<tr>
@@ -475,9 +497,16 @@
 
 							<tr>
 								<td>FINAL PRICE</td>
-								<td>100% (₹15,360)</td>
-								<td>100% (₹10,000)</td>
+								<td>
+									<span class="pct">100%</span>
+									<span class="money" data-inr="15360">₹15,360</span>
+								</td>
+								<td>
+									<span class="pct">100%</span>
+									<span class="money" data-inr="10000">₹10,000</span>
+								</td>
 							</tr>
+
 						</tbody>
 
 					</table>
