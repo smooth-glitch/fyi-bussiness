@@ -124,7 +124,7 @@
 							<li><a href="#team">Team</a></li>
 							<li><a href="#pricing">Pricing</a></li>
 							<li><a href="#process">Process</a></li>
-							<li><a href="#contact">Contact</a></li>
+							<li><a href="#contact" class="send-message-link">Contact</a></li>
 						</ul>
 						<button id="theme-btn-desktop" class="theme-btn theme-ball-btn" title="Toggle theme"
 							aria-label="Toggle theme">
@@ -180,7 +180,8 @@
 						<li><a href="#team">Team</a></li>
 						<li><a href="#pricing">Pricing</a></li>
 						<li><a href="#process">Process</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><a href="#contact" class="send-message-link">Contact</a></li>
+
 					</ul>
 				</nav>
 			</div>
@@ -765,16 +766,26 @@
 				</div>
 				<div class="col-md-4">
 					<h3>Contact Us</h3>
+
+					<button type="button" class="footer-inquiry-btn contact-open-btn" data-toggle="modal"
+						data-target="#contactModal" data-recipient="FYI Team">
+						Send a message
+					</button>
+
 					<p style="margin-bottom: 15px;">
 						<strong style="color: #ddd;">Hariharan Ravi:</strong><br>
 						+91 94457 78177<br>
-						<a href="mailto:foryourinnings@gmail.com">foryourinnings@gmail.com</a>
 					</p>
 					<p>
 						<strong style="color: #ddd;">Ananthakrishnan CN:</strong><br>
 						+91 98849 02618<br>
-						<a href="mailto:foryourinnings@gmail.com">foryourinnings@gmail.com</a>
 					</p>
+
+					<!-- Optional: show email as plain text (not clickable) -->
+					<div style="font-size:13px;color:#aaa;margin-top:6px;">
+						foryourinningsfyi@gmail.com
+					</div>
+
 				</div>
 				<div class="col-md-4">
 					<h3>Follow Us</h3>
@@ -863,10 +874,68 @@
 		</div>
 	</div>
 
+	<!-- CONTACT MODAL -->
+	<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalTitle">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content contact-modal">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="contactModalTitle">Send a Message</h4>
+				</div>
+
+				<div class="modal-body">
+					<p class="contact-subtext">Share your requirement and we’ll get back quickly.</p>
+
+					<form id="contactForm" novalidate>
+						<input type="text" name="company" id="company" autocomplete="off" tabindex="-1"
+							class="hp-field">
+
+						<div class="form-group">
+							<label for="contactName">Name</label>
+							<input type="text" class="form-control" id="contactName" placeholder="Your name" required>
+						</div>
+
+						<div class="form-group">
+							<label for="contactEmail">Email / WhatsApp number</label>
+							<input type="text" class="form-control" id="contactEmail"
+								placeholder="example@email.com or +91..." required>
+						</div>
+
+						<div class="form-group">
+							<label for="contactMessage">Message</label>
+							<textarea class="form-control" id="contactMessage" rows="5"
+								placeholder="Tell us your playing style, weight preference, budget, etc."
+								required></textarea>
+						</div>
+
+						<input type="hidden" id="contactRecipient" value="FYI Team">
+
+						<div class="contact-status" id="contactStatus" aria-live="polite"></div>
+
+						<button type="submit" class="btn btn-primary contact-submit-btn" id="contactSubmitBtn">
+							<span class="btn-label">Send Message</span>
+							<span class="btn-check" aria-hidden="true">
+								<svg viewBox="0 0 52 52" class="check-svg">
+									<path d="M14 27 L22 35 L38 18" class="check-path"></path>
+								</svg>
+							</span>
+						</button>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- SCRIPTS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 	<script src="js/script.js"></script>
 </body>
 
