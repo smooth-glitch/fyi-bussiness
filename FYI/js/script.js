@@ -196,28 +196,32 @@ document.addEventListener("DOMContentLoaded", () => {
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 });
 
-                // Send email via Apps Script (free)
-                const FYI_MAILER_URL = "https://script.google.com/macros/s/AKfycbznX2zsKtBvdQkv9NX62J6ojWTcCGCo8K3-puujOn7gJBQUrd_dsM_sBApNO6FRJt0V/exec";
-                const FYI_TOKEN = "fyi_8n3K1pQxV2";
+                // Send email via Cloudflare Worker (token stays server-side)
+                const FYI_WORKER_ENDPOINT = "https://fyiinnings.arjunsridhar445.workers.dev/api/contact";
 
                 try {
-                    const params = new URLSearchParams({
-                        token: FYI_TOKEN,
+                    const payload = {
                         name,
-                        contact,
+                        email: contact,
                         message,
                         recipient: contactRecipient?.value || "FYI Team",
                         pageUrl: window.location.href,
+                    };
+
+                    const res = await fetch(FYI_WORKER_ENDPOINT, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload),
                     });
 
-                    // no-cors so the browser doesn't block; we don't need to read the response
-                    fetch(FYI_MAILER_URL, {
-                        method: "POST",
-                        mode: "no-cors",
-                        body: params,
-                    });
-                } catch (e) {
-                    // ignore; Firestore already saved the inquiry
+                    // Optional: if you want to treat email failure as non-fatal, keep this as a soft error
+                    if (!res.ok) {
+                        throw new Error(await res.text());
+                    }
+
+                } catch (err) {
+                    setStatus(`Failed to send: ${err.message}`, "is-error");
+                    resetSubmitBtn();
                 }
 
                 setStatus("Sent successfully.", "is-success");
