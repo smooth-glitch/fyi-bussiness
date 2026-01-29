@@ -2832,3 +2832,106 @@ body.light-mode #contact .footer-inquiry-btn:focus {
   color: #fff;
   border-color: #111;
 }
+
+@media (max-width: 768px) {
+  .footer-logo-premium {
+    height: 60px !important;
+    /* bump this up/down */
+    width: auto;
+  }
+}
+
+/* Premium animated gold outline wrapper */
+.logo-frame {
+  position: relative;
+  display: inline-block;
+  border-radius: 12px;
+  /* adjust if you want sharper corners */
+  padding: 6px;
+  /* space for the outline */
+  line-height: 0;
+  /* removes tiny inline-gap */
+}
+
+/* Keep images above the animated ring */
+.logo-frame>img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  border-radius: 10px;
+  /* should be <= wrapper radius */
+}
+
+/* The animated outline */
+.logo-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  /* thickness of the outline */
+  background: conic-gradient(from 0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(212, 175, 55, 0.95) 18%,
+      rgba(197, 160, 89, 0.95) 28%,
+      rgba(0, 0, 0, 0) 45%,
+      rgba(212, 175, 55, 0.95) 62%,
+      rgba(0, 0, 0, 0) 100%);
+
+  /* Mask out the center so only the border stays (best-looking method) */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.30));
+  animation: gold-outline-spin 3.2s linear infinite;
+  z-index: 1;
+}
+
+/* Slightly different spacing in footer if you want */
+.logo-frame--footer {
+  padding: 7px;
+}
+
+@keyframes gold-outline-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Respect accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .logo-frame::before {
+    animation: none !important;
+  }
+}
+
+/* PRICING TABLE: force header row to true black in both themes */
+@media (min-width: 769px) {
+  .pricing-table.pricing-table--pro thead th {
+    background: #000 !important;
+    color: #fff !important;
+    border-bottom: 1px solid #111 !important;
+  }
+}
+
+/* Fix: "How It Works" heading should stay white even in light theme */
+.process-section h2 {
+  color: #fff !important;
+}
+
+.process-section p,
+.process-section em {
+  color: #fff;
+}
+
+/* Footer social icons: keep glyph visible on red hover */
+footer .social-icons a,
+footer .social-icons a i {
+  color: #fff !important;
+}
+
+footer .social-icons a:hover,
+footer .social-icons a:hover i {
+  color: #fff !important;
+}
