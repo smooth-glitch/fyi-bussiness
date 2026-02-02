@@ -32,20 +32,24 @@ document.addEventListener("DOMContentLoaded", () => {
         var imgs = wrap.querySelectorAll("img");
         if (!imgs || imgs.length < 2) return;
 
+        var dots = wrap.querySelectorAll(".img-dot"); // if present
         var interval = parseInt(wrap.getAttribute("data-interval") || "2500", 10);
         var index = 0;
 
-        // Ensure first is active
-        imgs.forEach(function (img, i) {
-            img.classList.toggle("is-active", i === 0);
-        });
+        imgs.forEach((img, i) => img.classList.toggle("is-active", i === 0));
+        if (dots && dots[0]) dots[0].classList.add("is-active");
 
         setInterval(function () {
             imgs[index].classList.remove("is-active");
+            if (dots && dots[index]) dots[index].classList.remove("is-active");
+
             index = (index + 1) % imgs.length;
+
             imgs[index].classList.add("is-active");
+            if (dots && dots[index]) dots[index].classList.add("is-active");
         }, interval);
     });
+
 
     // Theme toggle
     const themeBtns = document.querySelectorAll(".theme-btn");
@@ -436,18 +440,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         closePopover();
     }
-
-    setInterval(function () {
-        imgs[index].classList.remove("is-active");
-
-        var dots = wrap.querySelectorAll(".img-dot");
-        if (dots && dots[index]) dots[index].classList.remove("is-active");
-
-        index = (index + 1) % imgs.length;
-
-        imgs[index].classList.add("is-active");
-        if (dots && dots[index]) dots[index].classList.add("is-active");
-    }, interval);
 
     async function initCurrencyPicker() {
         if (!picker || !trigger || !popover || !searchInput || !optionsEl || !moneyEls.length) return;
