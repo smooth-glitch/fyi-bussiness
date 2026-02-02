@@ -3120,3 +3120,68 @@ footer .social-icons a:hover i {
   color: var(--text-muted);
   font-size: 13px;
 }
+
+/* Rotating images inside a single profile image container */
+.profile-img.js-rotate-images {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Make images overlap */
+.profile-img.js-rotate-images img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* keeps it neat; remove if you prefer full image without cropping */
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+/* Ensure container has height (so absolutely-positioned imgs show up) */
+.profile-img.js-rotate-images {
+  height: 220px;
+  /* tweak if your cards use a different image height */
+}
+
+/* The visible image */
+.profile-img.js-rotate-images img.is-active {
+  opacity: 1;
+}
+
+/* Keep your badge above the images */
+.profile-img .profile-badge {
+  position: absolute;
+  z-index: 3;
+}
+
+/* Dots indicator for rotating images */
+.profile-img .img-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 4;
+  /* above images */
+  pointer-events: none;
+}
+
+.profile-img .img-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(180, 180, 180, 0.55);
+  /* semi-transparent grey */
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: background 250ms ease, transform 250ms ease;
+}
+
+.profile-img .img-dot.is-active {
+  background: rgba(200, 200, 200, 0.95);
+  transform: scale(1.1);
+}

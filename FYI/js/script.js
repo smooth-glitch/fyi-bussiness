@@ -25,6 +25,28 @@ document.addEventListener("DOMContentLoaded", () => {
         AOS.init({ once: true, offset: 100, duration: 800 });
     }
 
+
+    var rotators = document.querySelectorAll(".js-rotate-images");
+
+    rotators.forEach(function (wrap) {
+        var imgs = wrap.querySelectorAll("img");
+        if (!imgs || imgs.length < 2) return;
+
+        var interval = parseInt(wrap.getAttribute("data-interval") || "2500", 10);
+        var index = 0;
+
+        // Ensure first is active
+        imgs.forEach(function (img, i) {
+            img.classList.toggle("is-active", i === 0);
+        });
+
+        setInterval(function () {
+            imgs[index].classList.remove("is-active");
+            index = (index + 1) % imgs.length;
+            imgs[index].classList.add("is-active");
+        }, interval);
+    });
+
     // Theme toggle
     const themeBtns = document.querySelectorAll(".theme-btn");
     const body = document.body;
@@ -414,6 +436,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         closePopover();
     }
+
+    setInterval(function () {
+        imgs[index].classList.remove("is-active");
+
+        var dots = wrap.querySelectorAll(".img-dot");
+        if (dots && dots[index]) dots[index].classList.remove("is-active");
+
+        index = (index + 1) % imgs.length;
+
+        imgs[index].classList.add("is-active");
+        if (dots && dots[index]) dots[index].classList.add("is-active");
+    }, interval);
 
     async function initCurrencyPicker() {
         if (!picker || !trigger || !popover || !searchInput || !optionsEl || !moneyEls.length) return;
