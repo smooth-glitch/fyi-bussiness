@@ -103,12 +103,10 @@
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: skewX(-25deg);
   animation: shimmer 1.5s infinite;
   animation-delay: 1s;
@@ -299,8 +297,7 @@ header {
   /* FIX: Subtle, High-Class Luster (Not Radioactive) */
   /* brightness 1.1 = just a bit of polish */
   /* drop-shadow 5px = soft ambient reflection, not a light source */
-  filter: brightness(1.1) contrast(1.1)
-    drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
+  filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
 
   transition: all 0.4s ease;
 }
@@ -331,8 +328,7 @@ header {
 
 /* Hover: Slight brighten, no size jump */
 .brand-link:hover .brand-logo-img {
-  filter: brightness(1.2) contrast(1.15)
-    drop-shadow(0 0 8px rgba(218, 165, 32, 0.6));
+  filter: brightness(1.2) contrast(1.15) drop-shadow(0 0 8px rgba(218, 165, 32, 0.6));
 }
 
 .brand-text-wrapper {
@@ -487,8 +483,7 @@ nav ul li a:hover::after {
 /* ---------- 6) HERO ---------- */
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600")
-      center center;
+    url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600") center center;
   background-size: cover;
   background-attachment: fixed;
   height: 80vh;
@@ -698,8 +693,7 @@ nav ul li a:hover::after {
 .process-section {
   padding: 100px 0;
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-    url("https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1600")
-      center/cover;
+    url("https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1600") center/cover;
   background-attachment: fixed;
   color: #fff;
 }
@@ -1069,7 +1063,7 @@ footer a:hover {
   background-color: var(--bg-card);
 }
 
-.panel-default > .panel-heading {
+.panel-default>.panel-heading {
   background-color: var(--bg-alt);
   border: none;
   color: var(--text-main);
@@ -1078,7 +1072,7 @@ footer a:hover {
 }
 
 /* Hover effect on the question bar */
-.panel-default > .panel-heading:hover {
+.panel-default>.panel-heading:hover {
   background-color: rgba(217, 83, 79, 0.1);
   /* Subtle red tint on hover */
   cursor: pointer;
@@ -1137,7 +1131,8 @@ footer a:hover {
 
   .intro {
     background-attachment: scroll;
-    min-height: auto; /* optional */
+    min-height: auto;
+    /* optional */
   }
 
   .hero {
@@ -1200,6 +1195,7 @@ footer a:hover {
    ========================================= */
 
 @media (max-width: 768px) {
+
   /* 1. Keep Flexbox active on mobile */
   .header-flex {
     display: flex;
@@ -1263,6 +1259,7 @@ footer a:hover {
    ========================================= */
 
 @media (max-width: 768px) {
+
   /* Hide the desktop header */
   .pricing-table thead {
     display: none;
@@ -1438,8 +1435,7 @@ footer a:hover {
   transform-origin: center;
 
   /* Matches Header "Luster" Effect */
-  filter: brightness(1.1) contrast(1.1)
-    drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
+  filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
 
   /* Compensation for the Scale(1.5) so it doesn't overlap text */
   margin-bottom: 40px;
@@ -1641,7 +1637,7 @@ footer a:hover {
 }
 
 /* Card Sizing for Scroll (Mobile) */
-.scroll-row > .col-md-4 {
+.scroll-row>.col-md-4 {
   flex: 0 0 85%;
   /* Shows 85% of card to encourage scrolling */
   max-width: 85%;
@@ -1654,7 +1650,7 @@ footer a:hover {
     overflow-x: visible;
   }
 
-  .scroll-row > .col-md-4 {
+  .scroll-row>.col-md-4 {
     flex: 0 0 33.333%;
     max-width: 33.333%;
   }
@@ -1737,6 +1733,7 @@ footer a:hover {
 }
 
 @media (min-width: 769px) {
+
   /* Slightly better rhythm */
   .pricing-table.pricing-table--pro thead th {
     letter-spacing: 1.6px;
@@ -1783,12 +1780,10 @@ footer a:hover {
     left: -120%;
     width: 80%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%);
     transform: skewX(-18deg);
     opacity: 0;
     pointer-events: none;
@@ -1812,6 +1807,7 @@ footer a:hover {
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .pricing-table.pricing-table--pro tbody tr,
   .pricing-table.pricing-table--pro td:nth-child(3)::after {
     transition: none !important;
@@ -1873,11 +1869,9 @@ footer a:hover {
 }
 
 body.light-mode .pricing-table.pricing-table--pro thead th {
-  background: linear-gradient(
-    180deg,
-    var(--bg-alt) 0%,
-    rgba(255, 255, 255, 0) 140%
-  );
+  background: linear-gradient(180deg,
+      var(--bg-alt) 0%,
+      rgba(255, 255, 255, 0) 140%);
 }
 
 /* Subtle row striping that adapts to theme */
@@ -1886,16 +1880,13 @@ body.light-mode .pricing-table.pricing-table--pro thead th {
 }
 
 @supports not (color-mix(in srgb, #000 50%, #fff 50%)) {
+
   /* Fallback for older browsers */
   .pricing-table.pricing-table--pro tbody tr:nth-child(even) td {
     background: rgba(255, 255, 255, 0.02);
   }
 
-  body.light-mode
-    .pricing-table.pricing-table--pro
-    tbody
-    tr:nth-child(even)
-    td {
+  body.light-mode .pricing-table.pricing-table--pro tbody tr:nth-child(even) td {
     background: rgba(0, 0, 0, 0.03);
   }
 }
@@ -1903,24 +1894,20 @@ body.light-mode .pricing-table.pricing-table--pro thead th {
 /* FYI column: accent + premium gold hint (matches your brand gradient system) */
 .pricing-table.pricing-table--pro th:nth-child(3),
 .pricing-table.pricing-table--pro td:nth-child(3) {
-  background: linear-gradient(
-    135deg,
-    rgba(217, 83, 79, 0.16) 0%,
-    rgba(197, 160, 89, 0.08) 65%,
-    rgba(0, 0, 0, 0) 140%
-  );
+  background: linear-gradient(135deg,
+      rgba(217, 83, 79, 0.16) 0%,
+      rgba(197, 160, 89, 0.08) 65%,
+      rgba(0, 0, 0, 0) 140%);
   border-left: 3px solid var(--accent);
   color: var(--text-main);
 }
 
 body.light-mode .pricing-table.pricing-table--pro th:nth-child(3),
 body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
-  background: linear-gradient(
-    135deg,
-    rgba(217, 83, 79, 0.1) 0%,
-    rgba(197, 160, 89, 0.06) 65%,
-    rgba(255, 255, 255, 0) 140%
-  );
+  background: linear-gradient(135deg,
+      rgba(217, 83, 79, 0.1) 0%,
+      rgba(197, 160, 89, 0.06) 65%,
+      rgba(255, 255, 255, 0) 140%);
 }
 
 /* Text colors for other columns */
@@ -1943,6 +1930,7 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
 
 /* ===== PRICING TABLE: hierarchy polish ===== */
 @media (min-width: 769px) {
+
   /* Crisp grid and better typography */
   .pricing-table.pricing-table--pro {
     border-radius: 6px;
@@ -1968,6 +1956,7 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
 
 /* ===== FYI column premium treatment ===== */
 @media (min-width: 769px) {
+
   .pricing-table.pricing-table--pro th:nth-child(3),
   .pricing-table.pricing-table--pro td:nth-child(3) {
     position: relative;
@@ -1978,12 +1967,10 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(197, 160, 89, 0.1) 0%,
-      rgba(217, 83, 79, 0.08) 45%,
-      rgba(0, 0, 0, 0) 120%
-    );
+    background: linear-gradient(180deg,
+        rgba(197, 160, 89, 0.1) 0%,
+        rgba(217, 83, 79, 0.08) 45%,
+        rgba(0, 0, 0, 0) 120%);
     pointer-events: none;
     opacity: 0.85;
   }
@@ -2016,29 +2003,23 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
   right: 0;
   top: 0;
   height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent),
-    var(--brand-gold),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      var(--accent),
+      var(--brand-gold),
+      transparent);
   opacity: 0.85;
 }
 
 /* ===== PREMIUM ENTRY LOADER POLISH ===== */
 #cinematic-loader {
   /* Slight dim + vignette instead of “flat black shutters only” */
-  background: radial-gradient(
-      circle at 50% 45%,
+  background: radial-gradient(circle at 50% 45%,
       rgba(255, 255, 255, 0.06),
-      rgba(0, 0, 0, 0) 55%
-    ),
-    radial-gradient(
-      circle at 50% 60%,
+      rgba(0, 0, 0, 0) 55%),
+    radial-gradient(circle at 50% 60%,
       rgba(217, 83, 79, 0.08),
-      rgba(0, 0, 0, 0) 60%
-    );
+      rgba(0, 0, 0, 0) 60%);
 }
 
 /* Softer, premium curtain easing */
@@ -2109,6 +2090,7 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
 
 /* Respect accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   .shutter-top,
   .shutter-bottom,
   .logo-wrapper,
@@ -2381,7 +2363,7 @@ body.light-mode .theme-ball-svg .ring-stroke {
   }
 
   /* 3 cards per row */
-  #testimonials .scroll-row > .col-md-4 {
+  #testimonials .scroll-row>.col-md-4 {
     flex: 0 0 33.333% !important;
     max-width: 33.333% !important;
 
@@ -2404,7 +2386,7 @@ body.light-mode .theme-ball-svg .ring-stroke {
     margin-right: 0 !important;
   }
 
-  #testimonials .scroll-row > .col-md-4 {
+  #testimonials .scroll-row>.col-md-4 {
     flex: 0 0 85% !important;
     max-width: 85% !important;
     padding-left: 0 !important;
@@ -2874,7 +2856,7 @@ body.light-mode #contact .footer-inquiry-btn:focus {
 }
 
 /* Keep images above the animated ring */
-.logo-frame > img {
+.logo-frame>img {
   position: relative;
   z-index: 2;
   display: block;
@@ -2890,15 +2872,13 @@ body.light-mode #contact .footer-inquiry-btn:focus {
   border-radius: inherit;
   padding: 2px;
   /* thickness of the outline */
-  background: conic-gradient(
-    from 0deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(212, 175, 55, 0.95) 18%,
-    rgba(197, 160, 89, 0.95) 28%,
-    rgba(0, 0, 0, 0) 45%,
-    rgba(212, 175, 55, 0.95) 62%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: conic-gradient(from 0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(212, 175, 55, 0.95) 18%,
+      rgba(197, 160, 89, 0.95) 28%,
+      rgba(0, 0, 0, 0) 45%,
+      rgba(212, 175, 55, 0.95) 62%,
+      rgba(0, 0, 0, 0) 100%);
 
   /* Mask out the center so only the border stays (best-looking method) */
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -3228,17 +3208,15 @@ footer .social-icons a:hover i {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.55) 45%,
-    rgba(0, 0, 0, 0.72) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.55) 45%,
+      rgba(0, 0, 0, 0.72) 100%);
   pointer-events: none;
 }
 
 /* keep content above overlay */
-.intro > .container {
+.intro>.container {
   position: relative;
   z-index: 1;
 }
@@ -3256,12 +3234,10 @@ footer .social-icons a:hover i {
 
 /* Stronger overlay for contrast */
 .intro::before {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.82) 0%,
-    rgba(0, 0, 0, 0.62) 45%,
-    rgba(0, 0, 0, 0.82) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.62) 45%,
+      rgba(0, 0, 0, 0.82) 100%);
 }
 
 /* Optional: subtle text lift */
@@ -3299,17 +3275,24 @@ body.light-mode .launch-offer-pill {
 }
 
 
-body.light-mode{
+body.light-mode {
   /* Softer, low-glare light theme (warm ivory) */
-  --bg-body: #F3F0EA;      /* was #ffffff */
-  --bg-card: #FBF8F3;      /* was #ffffff */
-  --bg-alt:  #EEE8DE;      /* was #f4f4f4 */
+  --bg-body: #F3F0EA;
+  /* was #ffffff */
+  --bg-card: #FBF8F3;
+  /* was #ffffff */
+  --bg-alt: #EEE8DE;
+  /* was #f4f4f4 */
 
-  --text-main: #1F2328;    /* deeper than #333 for clarity */
-  --text-muted: #4B5563;   /* calmer muted text */
+  --text-main: #1F2328;
+  /* deeper than #333 for clarity */
+  --text-muted: #4B5563;
+  /* calmer muted text */
 
-  --nav-bg: rgba(251, 248, 243, 0.92);  /* not stark white */
-  --border-color: rgba(17, 17, 17, 0.08); /* slightly stronger border */
+  --nav-bg: rgba(251, 248, 243, 0.92);
+  /* not stark white */
+  --border-color: rgba(17, 17, 17, 0.08);
+  /* slightly stronger border */
 
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
   --quote-color: rgba(0, 0, 0, 0.04);
