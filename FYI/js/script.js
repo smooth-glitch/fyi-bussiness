@@ -12,6 +12,24 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+function track(eventName, params = {}) {
+    if (typeof window.gtag === "function") window.gtag("event", eventName, params);
+}
+
+document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest("a");
+    if (!a) return;
+
+    const href = a.getAttribute("href") || "";
+    if (href.includes("wa.me/")) {
+        track("whatsapp_click", {
+            link_url: href,
+            link_text: (a.textContent || "").trim().slice(0, 80),
+            page: window.location.pathname
+        });
+    }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     // Page fade-in (optional polish)
     document.body.classList.add("preload");
@@ -25,6 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
         AOS.init({ once: true, offset: 100, duration: 800 });
     }
 
+    // Track profile expands (Bootstrap collapse)
+    if (window.jQuery) {
+        window.jQuery(".profile-details").on("shown.bs.collapse", function () {
+            track("profile_expand", {
+                profile_id: this.id,
+                page: window.location.pathname
+            });
+        });
+    }
 
     var rotators = document.querySelectorAll(".js-rotate-images");
 
@@ -49,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (dots && dots[index]) dots[index].classList.add("is-active");
         }, interval);
     });
-
 
     // Theme toggle
     const themeBtns = document.querySelectorAll(".theme-btn");
@@ -225,6 +251,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     userAgent: navigator.userAgent,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 });
+
+                track("generate_lead", { method: "contact_modal" });
 
                 // 2) Send email via Cloudflare Worker (secondary; non-fatal if fails)
                 const FYI_WORKER_ENDPOINT = "https://fyiinnings.arjunsridhar445.workers.dev/api/contact";
