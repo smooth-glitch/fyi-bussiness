@@ -547,12 +547,223 @@ document.addEventListener("DOMContentLoaded", () => {
     initCurrencyPicker().catch(() => {
         if (statusEl) statusEl.textContent = "(INR)";
     });
+
+    // Bat Finder -> WhatsApp prefill (robust: click + submit)
+    (() => {
+        const form = document.getElementById("batFinderForm");
+        const btn = document.getElementById("batFinderBtn");
+        if (!form || !btn) return;
+
+        const num = "919445778177";
+
+        const getVal = (id) => String(document.getElementById(id)?.value || "").trim();
+
+        function buildWa() {
+            const quick = [];
+            const game = [];
+            const bat = [];
+            const delivery = [];
+            const notes = [];
+
+            const preferredCommunication = getVal("bfPreferredCommunication");
+            const contact = getVal("bfContact");
+            const battingHand = getVal("bfBattingHand");
+            const ageGroup = getVal("bfAgeGroup");
+
+            const battingPosition = getVal("bfBattingPosition");
+            const playingStyle = getVal("bfPlayingStyle");
+            const primaryFormat = getVal("bfFormat");
+
+            const preferredWeight = getVal("bfWeight");
+            const budget = getVal("bfBudget");
+
+            const ballType = getVal("bfBallType");
+            const pitch = getVal("bfPitchConditions");
+            const frequency = getVal("bfFrequency");
+            const weightPriority = getVal("bfWeightPriority");
+
+            const batProfile = getVal("bfBatProfile");
+            const edgeThickness = getVal("bfEdgeThickness");
+            const batSize = getVal("bfBatSize");
+            const handleType = getVal("bfHandleType");
+            const grip = getVal("bfGripPreference");
+            const toe = getVal("bfBatToe");
+
+            const grain = getVal("bfGrainPreference");
+            const pressing = getVal("bfWillowPressing");
+            const sweetSpot = getVal("bfSweetSpot");
+            const perfPriority = getVal("bfPerformancePriority");
+
+            const location = getVal("bfDeliveryLocation");
+            const timeline = getVal("bfDeliveryTimeline");
+            const deliveryPref = getVal("bfDeliveryPreference");
+            const oiling = getVal("bfOilingService");
+            const knocking = getVal("bfKnockingService");
+
+            const usedBat = getVal("bfUsedBatBefore");
+            const prevWeight = getVal("bfPreviousBatWeight");
+            const freeNotes = getVal("bfNotes");
+
+            const add = (arr, label, value) => {
+                if (!value) return;
+                arr.push(`- ${label}: ${value}`);
+            };
+
+            add(quick, "Preferred communication", preferredCommunication);
+            add(quick, "Contact", contact);
+            add(quick, "Batting hand", battingHand);
+            add(quick, "Age group", ageGroup);
+
+            add(game, "Batting position", battingPosition);
+            add(game, "Playing style", playingStyle);
+            add(game, "Primary format", primaryFormat);
+            add(game, "Ball type", ballType);
+            add(game, "Pitch conditions", pitch);
+            add(game, "Playing frequency", frequency);
+
+            add(bat, "Preferred weight / pick-up", preferredWeight);
+            add(bat, "Weight priority", weightPriority);
+            add(bat, "Bat profile (shape)", batProfile);
+            add(bat, "Edge thickness", edgeThickness);
+            add(bat, "Bat size", batSize);
+            add(bat, "Handle type", handleType);
+            add(bat, "Grip preference", grip);
+            add(bat, "Bat toe", toe);
+            add(bat, "Grain preference", grain);
+            add(bat, "Willow pressing", pressing);
+            add(bat, "Sweet spot size", sweetSpot);
+            add(bat, "Performance priority", perfPriority);
+
+            add(delivery, "Budget", budget);
+            add(delivery, "Delivery location", location);
+            add(delivery, "Delivery timeline", timeline);
+            add(delivery, "Delivery preference", deliveryPref);
+            add(delivery, "Oiling service", oiling);
+            add(delivery, "Knocking-in service", knocking);
+
+            add(notes, "Used a bat before?", usedBat);
+            add(notes, "Previous bat weight", prevWeight);
+            if (freeNotes) notes.push(`- Notes: ${freeNotes}`);
+
+            const lines = [];
+            lines.push("Hi FYI Team, I want a bat recommendation.");
+
+            if (quick.length) lines.push("", "Quick essentials:", ...quick);
+            if (game.length) lines.push("", "Game:", ...game);
+            if (bat.length) lines.push("", "Bat preferences:", ...bat);
+            if (delivery.length) lines.push("", "Budget & delivery:", ...delivery);
+            if (notes.length) lines.push("", "Other:", ...notes);
+
+            lines.push("", `Page: ${window.location.href}`);
+
+            const msg = lines.join("\n");
+
+            return {
+                url: `https://wa.me/${num}?text=${encodeURIComponent(msg)}`,
+                primaryFormat,
+                battingPosition,
+                playingStyle,
+                budget,
+                preferredWeight,
+            };
+        }
+
+        function goWhatsApp(e) {
+            if (e) e.preventDefault();
+            const wa = buildWa();
+            try {
+                track("bat_finder_whatsapp", {
+                    format: wa.primaryFormat,
+                    role: wa.battingPosition || wa.playingStyle,
+                    budget: wa.budget,
+                    has_weight: !!wa.preferredWeight,
+                    page: window.location.pathname
+                });
+            } catch { }
+            window.location.href = wa.url;
+        }
+
+        btn.addEventListener("click", goWhatsApp);
+        form.addEventListener("submit", goWhatsApp);
+    })();
+
+    // Profiles -> Smart Contact Modal ("Get This Shape")
+    (() => {
+        const MODAL_SEL = "#contactModal";
+
+        function openContactModalWithProfile(profileName) {
+            const msgEl = document.getElementById("contactMessage");
+            const statusEl = document.getElementById("contactStatus");
+            const submitBtn = document.getElementById("contactSubmitBtn");
+            const recipientEl = document.getElementById("contactRecipient");
+            const nameEl = document.getElementById("contactName");
+
+            // Reset modal UI state (since we open it programmatically, not via .contact-open-btn)
+            if (statusEl) {
+                statusEl.textContent = "";
+                statusEl.className = "contact-status";
+            }
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove("is-sending", "is-success");
+            }
+            if (recipientEl && !recipientEl.value) {
+                recipientEl.value = "FYI Team";
+            }
+
+            // Prefill message (don’t overwrite if user already typed something)
+            if (msgEl) {
+                const preset =
+                    `Hi FYI Team, I'm interested in the "${profileName}" shape.\n\n` +
+                    `My details:\n- Format:\n- Role / style:\n- Current bat weight / pick-up:\n- Budget:\n`;
+                const existing = (msgEl.value || "").trim();
+                msgEl.value = existing ? (existing + "\n\n" + preset) : preset;
+            }
+
+            // Open Bootstrap modal + focus
+            if (window.jQuery && window.jQuery(MODAL_SEL).length) {
+                window.jQuery(MODAL_SEL).modal("show");
+                window.jQuery(MODAL_SEL).one("shown.bs.modal", function () {
+                    (nameEl || msgEl)?.focus?.();
+                });
+            } else {
+                (nameEl || msgEl)?.focus?.();
+            }
+        }
+
+        document.addEventListener(
+            "click",
+            (e) => {
+                const link = e.target.closest && e.target.closest(".btn-profile-action");
+                if (!link) return;
+
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+
+                const profileName =
+                    link.getAttribute("data-profile") ||
+                    link.closest(".profile-card")?.querySelector(".profile-body h3")?.textContent?.trim() ||
+                    "a profile";
+
+                try {
+                    track("profile_get_shape_click", { profile: profileName, page: window.location.pathname });
+                } catch { }
+
+                openContactModalWithProfile(profileName);
+            },
+            true // capture phase so it beats default link navigation
+        );
+    })();
 });
 
 // Cinematic loader only once per session (premium timing)
 window.addEventListener("load", () => {
     const loader = document.getElementById("cinematic-loader");
-    if (!loader) return;
+    if (!loader) {
+        if (window.AOS) AOS.refresh();
+        return;
+    }
 
     const content = loader.querySelector(".loader-content");
 
