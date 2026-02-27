@@ -199,6 +199,7 @@
   --quote-color: rgba(255, 255, 255, 0.05);
   --brand-gold: #c5a059;
   --brand-gradient: linear-gradient(135deg, #d4af37 0%, #aa8428 100%);
+  --header-height: 80px;
 }
 
 body.light-mode {
@@ -253,7 +254,8 @@ header {
   width: 100%;
   top: 0;
   z-index: 1000;
-  padding: 10px 0;
+  padding: 0;
+  height: var(--header-height);
   backdrop-filter: blur(10px);
 }
 
@@ -264,7 +266,7 @@ header {
   justify-content: space-between;
   /* Pushes nav to right, logo to left */
   width: 100%;
-  height: 80px;
+  height: var(--header-height);
 }
 
 /* Logo Container: Force alignment to the start */
@@ -1126,7 +1128,7 @@ footer a:hover {
 /* ---------- 17) RESPONSIVE ---------- */
 @media (max-width: 768px) {
   :root {
-    --header-height: 70px;
+    --header-height: 60px;
   }
 
   .intro {
@@ -1203,7 +1205,7 @@ footer a:hover {
     justify-content: flex-end;
     /* Aligns toggle/theme btn to right */
     padding: 0 20px;
-    height: 70px;
+    height: var(--header-height);
   }
 
   /* 2. Logo stays on the left */
@@ -1249,7 +1251,7 @@ footer a:hover {
 
   /* 5. Mobile Menu Positioning */
   .mobile-nav {
-    top: 70px;
+    top: var(--header-height);
     /* Match header height */
   }
 }
@@ -1350,7 +1352,7 @@ footer a:hover {
   /* 2. Fix Header Layout */
   .header-flex {
     height: 60px;
-    /* Reduce height for mobile */
+    /* Reduce height for mobile (keep in sync with --header-height) */
   }
 
   /* 3. Resize Logo Text & Image for Mobile */
