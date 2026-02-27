@@ -3344,3 +3344,149 @@ body.light-mode {
 .theme-btn.theme-ball-btn:active .theme-ball-svg {
   transform: translateZ(0) !important;
 }
+
+/* Mobile sticky WhatsApp CTA */
+.mobile-wa-cta {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 2200;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 10px;
+
+  padding: 10px;
+  border-radius: 16px;
+
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@supports not (color-mix(in srgb, #000 50%, #fff 50%)) {
+  .mobile-wa-cta {
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  body.light-mode .mobile-wa-cta {
+    background: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.mobile-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 999px;
+
+  text-decoration: none !important;
+  font-family: Montserrat, sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.mobile-wa-btn--primary {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+}
+
+.mobile-wa-btn--secondary {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.mobile-wa-btn:active {
+  transform: scale(0.98);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mobile-wa-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+  }
+}
+
+/* Prevent the bar from covering your last section/CTA on mobile */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 92px;
+  }
+}
+
+/* Mobile WhatsApp CTA - compact pill */
+.mobile-wa-fab {
+  position: fixed;
+  right: 14px;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 2200;
+}
+
+.wa-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  height: 44px;
+  padding: 0 14px;
+
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  box-shadow: var(--shadow);
+
+  font-family: Montserrat, sans-serif;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: var(--text-main);
+  text-decoration: none !important;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.wa-pill i {
+  font-size: 18px;
+  color: #25D366;
+  /* WhatsApp green */
+}
+
+.wa-pill:active {
+  transform: scale(0.98);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wa-pill:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+  }
+}
+
+/* On very small phones: hide text, keep icon-only */
+@media (max-width: 360px) {
+  .wa-pill span {
+    display: none;
+  }
+
+  .wa-pill {
+    width: 48px;
+    padding: 0;
+    justify-content: center;
+  }
+}
