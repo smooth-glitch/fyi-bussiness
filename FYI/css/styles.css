@@ -3297,3 +3297,50 @@ body.light-mode {
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
   --quote-color: rgba(0, 0, 0, 0.04);
 }
+
+/* --- Theme switch icon: stop hover glitch (paste at END) --- */
+.theme-btn.theme-ball-btn {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-btn.theme-ball-btn::before,
+.theme-btn.theme-ball-btn::after {
+  content: none !important;
+  display: none !important;
+}
+
+.theme-btn.theme-ball-btn .theme-ball-svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  overflow: visible;
+
+  /* Stabilize SVG compositing */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+
+.theme-btn.theme-ball-btn .theme-ball-svg .seam-group {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* Only rotate the seam on hover (desktop pointer devices) */
+@media (hover: hover) and (pointer: fine) {
+  .theme-btn.theme-ball-btn:hover .theme-ball-svg .seam-group {
+    transform: rotate(90deg);
+  }
+}
+
+/* Kill any other hover/active transforms on the whole SVG */
+.theme-btn.theme-ball-btn:hover .theme-ball-svg,
+.theme-btn.theme-ball-btn:active .theme-ball-svg {
+  transform: translateZ(0) !important;
+}
