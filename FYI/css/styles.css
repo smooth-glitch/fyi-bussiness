@@ -3470,7 +3470,9 @@ body.light-mode {
 /* Prevent the bar from covering your last section/CTA on mobile */
 @media (max-width: 768px) {
   body {
-    padding-bottom: 92px;
+    /* We use a floating pill (mobile-wa-fab), so no extra page padding is needed.
+       Keep only iOS safe-area inset so content doesn't touch the very edge. */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }
 
