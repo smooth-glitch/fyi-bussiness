@@ -216,6 +216,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (contactForm) {
+        console.log("contactForm found:", !!contactForm);
+        contactForm.addEventListener("submit", () => console.log("CONTACT SUBMIT FIRED"));
+
         contactForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
@@ -247,10 +250,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     contact,
                     message,
                     recipient: contactRecipient?.value || "FYI Team",
-                    pageUrl: window.location.href,
+                    source: "contact_modal",
+                    createdAtIso: new Date().toISOString(),
+                    pagePath: window.location.pathname,
+                    referrer: document.referrer || "",
                     userAgent: navigator.userAgent,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    utm: (() => {
+                        const p = new URLSearchParams(location.search);
+                        const utm = {};
+                        ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(k => {
+                            const v = p.get(k);
+                            if (v) utm[k] = v;
+                        });
+                        return utm;
+                    })()
                 });
+
 
                 track("generate_lead", { method: "contact_modal" });
 
@@ -296,7 +311,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (window.jQuery) window.jQuery("#contactModal").modal("hide");
                 }, 900);
             } catch (err) {
-                setStatus("Failed to send. Please try again or use WhatsApp.", "is-error");
+                console.error("CONTACT SUBMIT ERROR:", err);
+                setStatus(`Failed: ${err?.message || err}`, "is-error");
                 if (contactSubmitBtn) {
                     contactSubmitBtn.disabled = false;
                     contactSubmitBtn.classList.remove("is-sending");
