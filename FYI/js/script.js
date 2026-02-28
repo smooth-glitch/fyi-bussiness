@@ -10,6 +10,12 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+const appCheck = firebase.appCheck();
+appCheck.activate(
+  "YOUR_RECAPTCHA_V3_SITE_KEY", // public site key
+  true // isTokenAutoRefreshEnabled
+);
+
 const db = firebase.firestore();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -120,14 +126,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Header CTA: scroll to footer + open inquiry modal (Bootstrap 3)
-    const INQUIRY_MODAL_SELECTOR = "#contactModal"; // <-- change if your modal id is different
+
+    // Header CTA: open inquiry modal (Bootstrap 3)
+    const INQUIRY_MODAL_SELECTOR = "#contactModal";
+
+    function openInquiryModal(recipient = "FYI Team") {
+        if (contactRecipient) contactRecipient.value = recipient;
+        setStatus("", "");
+        resetSubmitBtn();
+
+        if (window.jQuery && window.jQuery(INQUIRY_MODAL_SELECTOR).length) {
+            window.jQuery(INQUIRY_MODAL_SELECTOR).modal("show");
+        }
+    }
 
     document.querySelectorAll(".send-message-link").forEach((link) => {
         link.addEventListener("click", (e) => {
             e.preventDefault();
 
-            // Close mobile nav if it's open (optional nicety)
+            // Close mobile nav if it's open
             const mNav = document.querySelector(".mobile-nav");
             if (mNav && mNav.classList.contains("open")) {
                 mNav.classList.remove("open");
@@ -138,18 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // Smooth scroll to footer
-            const contact = document.getElementById("contact");
-            if (contact) contact.scrollIntoView({ behavior: "smooth", block: "start" });
-
-            // Open modal after a short delay so the scroll starts first
-            setTimeout(() => {
-                if (window.jQuery && window.jQuery(INQUIRY_MODAL_SELECTOR).length) {
-                    window.jQuery(INQUIRY_MODAL_SELECTOR).modal("show");
-                }
-            }, 450);
+            openInquiryModal("FYI Team");
         });
     });
+
+    if (window.jQuery) {
+        window.jQuery("#contactModal").on("shown.bs.modal", function () {
+            document.getElementById("contactName")?.focus();
+        });
+    }
 
     // ---------------------------
     // Contact modal + Firestore
@@ -503,6 +517,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initCurrencyPicker().catch(() => {
         if (statusEl) statusEl.textContent = "(INR)";
     });
+
+    
 });
 
 // Cinematic loader only once per session (premium timing)
@@ -525,7 +541,7 @@ window.addEventListener("load", () => {
     const runExit = () => {
         if (content) content.classList.add("content-fade-out");
         setTimeout(() => loader.classList.add("curtains-open"), 180);
-
+       
         setTimeout(() => {
             loader.style.display = "none";
             sessionStorage.setItem("introShown", "true");
