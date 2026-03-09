@@ -190,12 +190,12 @@
 :root {
   /* Default to Dark Theme */
   --bg-body: #0d1117;
-  --bg-card: #161b22;
+  --bg-card: rgba(22, 27, 34, 0.4);
   --bg-alt: #0f1419;
   --text-main: #e0e0e0;
   --text-muted: #a0a0a0;
-  --nav-bg: rgba(13, 17, 23, 0.95);
-  --border-color: rgba(255, 255, 255, 0.05);
+  --nav-bg: rgba(13, 17, 23, 0.5);
+  --border-color: rgba(255, 255, 255, 0.08);
   --accent: #d9534f;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   --quote-color: rgba(255, 255, 255, 0.05);
@@ -206,14 +206,14 @@
 
 body.light-mode {
   --bg-body: #f3f0ea;
-  --bg-card: #fbf8f3;
+  --bg-card: rgba(251, 248, 243, 0.5);
   --bg-alt: #eee8de;
 
   --text-main: #1f2328;
   --text-muted: #4b5563;
 
-  --nav-bg: rgba(251, 248, 243, 0.92);
-  --border-color: rgba(17, 17, 17, 0.08);
+  --nav-bg: rgba(251, 248, 243, 0.65);
+  --border-color: rgba(17, 17, 17, 0.1);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   --quote-color: rgba(0, 0, 0, 0.04);
 }
@@ -227,7 +227,7 @@ body.light-mode {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--text-main);
   background-color: var(--bg-body) !important;
   line-height: 1.8;
@@ -242,7 +242,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", sans-serif;
   color: var(--text-main);
   letter-spacing: -0.5px;
 }
@@ -307,7 +307,7 @@ header {
 }
 
 .brand-full-text {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 800;
   /* Extra Bold for the gradient to show */
   font-size: 20px;
@@ -566,10 +566,12 @@ nav ul li a:hover::after {
 .team-card,
 .testimonial-card {
   background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 40px 30px;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -587,9 +589,9 @@ nav ul li a:hover::after {
 
 .team-card:hover,
 .testimonial-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  border-color: var(--accent);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  border-color: var(--brand-gold);
 }
 
 .testimonial-card::before {
@@ -760,24 +762,58 @@ nav ul li a:hover::after {
 
 .shop-btn {
   display: inline-block;
-  background: #fff;
-  color: var(--accent);
+  background: var(--accent);
+  color: #fff;
   padding: 18px 50px;
   border-radius: 50px;
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(217, 83, 79, 0.4);
   margin-top: 30px;
+  border: 1px solid var(--accent);
 }
 
 .shop-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-  background: var(--bg-body);
-  color: var(--text-main);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(217, 83, 79, 0.6);
+  background: #fff;
+  color: var(--accent);
   text-decoration: none;
+}
+
+.intro-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  margin: 10px;
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.intro-cta-btn--primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 10px 20px rgba(217, 83, 79, 0.4);
+}
+
+.intro-cta-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(217, 83, 79, 0.5);
+  color: #fff;
+  border-color: var(--accent);
 }
 
 /* ---------- 13) FOOTER ---------- */
@@ -876,20 +912,35 @@ footer a:hover {
   filter: brightness(0.8);
 }
 
+.profile-img::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0; top: 0;
+  background: linear-gradient(to top, rgba(13,17,23,0.95) 0%, rgba(13,17,23,0) 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.profile-card:hover .profile-img::after {
+  opacity: 1;
+}
+
 .click-hint {
   position: absolute;
-  bottom: 10px;
+  bottom: 25px;
   left: 0;
   right: 0;
   text-align: center;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--brand-gold);
+  font-size: 13px;
+  font-weight: 700;
   text-transform: uppercase;
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 2;
+  letter-spacing: 1px;
 }
 
 .profile-card:hover .click-hint {
@@ -901,14 +952,17 @@ footer a:hover {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: var(--accent);
+  background: rgba(13, 17, 23, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #fff;
-  padding: 4px 12px;
+  padding: 6px 14px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   z-index: 2;
 }
 
