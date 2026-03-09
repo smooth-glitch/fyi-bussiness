@@ -189,12 +189,12 @@
 /* ---------- 2) THEME VARIABLES ---------- */
 :root {
   /* Default to Dark Theme */
-  --bg-body: #121212;
-  --bg-card: #1e1e1e;
-  --bg-alt: #181818;
+  --bg-body: #0d1117;
+  --bg-card: #161b22;
+  --bg-alt: #0f1419;
   --text-main: #e0e0e0;
   --text-muted: #a0a0a0;
-  --nav-bg: rgba(18, 18, 18, 0.95);
+  --nav-bg: rgba(13, 17, 23, 0.95);
   --border-color: rgba(255, 255, 255, 0.05);
   --accent: #d9534f;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -314,6 +314,7 @@ header {
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-left: 15px;
+  white-space: nowrap;
 
   /* GOLD GRADIENT TEXT FILL */
   background: var(--brand-gradient);
@@ -394,6 +395,7 @@ nav ul li a {
   padding-bottom: 5px;
   transition: color 0.3s;
   opacity: 0.9;
+  white-space: nowrap;
 }
 
 nav ul li a::after {
