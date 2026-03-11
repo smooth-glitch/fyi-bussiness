@@ -2454,6 +2454,88 @@
       resumeVisiblePreviews();
     });
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var intro = document.querySelector('.intro');
+      var glass = document.querySelector('.intro-glass');
+
+      if (!intro || !glass) return;
+
+      var allowTilt =
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!allowTilt) return;
+
+      var layers = [
+        { el: glass.querySelector('.chain'), z: 42, factor: 2.2 },
+        { el: glass.querySelector('.thin-sep'), z: 34, factor: 1.6 },
+        { el: glass.querySelector('.text-intro'), z: 24, factor: 1.2 },
+        { el: glass.querySelector('.text-center'), z: 24, factor: 1.2 },
+        { el: glass.querySelector('.launch-offer-pill'), z: 50, factor: 2.6 },
+        { el: glass.querySelector('.intro-cta-row'), z: 50, factor: 2.8 }
+      ].filter(function (item) {
+        return item.el;
+      });
+
+      var currentX = 0;
+      var currentY = 0;
+      var targetX = 0;
+      var targetY = 0;
+      var rafId = null;
+
+      function applyTransforms() {
+        currentX += (targetX - currentX) * 0.14;
+        currentY += (targetY - currentY) * 0.14;
+
+        glass.style.setProperty('--tilt-x', currentX.toFixed(2) + 'deg');
+        glass.style.setProperty('--tilt-y', currentY.toFixed(2) + 'deg');
+
+        layers.forEach(function (layer) {
+          var moveX = currentY * layer.factor;
+          var moveY = currentX * layer.factor * -1;
+          layer.el.style.transform =
+            'translateZ(' + layer.z + 'px) translateX(' + moveX.toFixed(2) + 'px) translateY(' + moveY.toFixed(2) + 'px)';
+        });
+
+        if (
+          Math.abs(targetX - currentX) > 0.01 ||
+          Math.abs(targetY - currentY) > 0.01
+        ) {
+          rafId = requestAnimationFrame(applyTransforms);
+        } else {
+          rafId = null;
+        }
+      }
+
+      function startAnimation() {
+        if (!rafId) {
+          rafId = requestAnimationFrame(applyTransforms);
+        }
+      }
+
+      function handleMove(event) {
+        var rect = intro.getBoundingClientRect();
+        var px = (event.clientX - rect.left) / rect.width;
+        var py = (event.clientY - rect.top) / rect.height;
+
+        targetX = (0.5 - py) * 8;
+        targetY = (px - 0.5) * 10;
+
+        startAnimation();
+      }
+
+      function resetTilt() {
+        targetX = 0;
+        targetY = 0;
+        startAnimation();
+      }
+
+      intro.addEventListener('mousemove', handleMove);
+      intro.addEventListener('mouseleave', resetTilt);
+    });
+  </script>
+
 </body>
 
 </html>
