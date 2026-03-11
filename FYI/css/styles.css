@@ -488,8 +488,7 @@ nav ul li a:hover::after {
 /* ---------- 6) HERO ---------- */
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600")
-      center center;
+    url("../img/hero-bat.png") center center;
   background-size: cover;
   background-attachment: fixed;
   height: 80vh;
@@ -3213,7 +3212,7 @@ footer .social-icons a:hover i {
 /* MISSION / INTRO hero background */
 .intro {
   position: relative;
-  background: url("../img/web-image.png") center center no-repeat;
+  background: url("../img/hero-bat.png") center center no-repeat;
   background-size: cover;
 
   /* the “window” / fixed background effect */
