@@ -501,10 +501,16 @@
           <div class="profile-card" id="card-full-profile">
             <div class="profile-clickable" data-toggle="collapse" data-target="#details-full-profile"
               aria-expanded="false" aria-controls="details-full-profile">
-              <div class="profile-img">
+              <div class="profile-img js-rotate-images">
                 <img src="img/profiles/full-profile.png" class="img-responsive" alt="Full Profile cricket bat"
                   loading="lazy" />
+                <img src="img/profiles/Full2.png" class="img-responsive" alt="Full Profile cricket bat"
+                  loading="lazy" />
                 <div class="profile-badge">Power & stability</div>
+                <div class="img-dots">
+                  <span class="img-dot is-active"></span>
+                  <span class="img-dot"></span>
+                </div>
               </div>
 
               <div class="click-hint">
@@ -603,9 +609,14 @@
           <div class="profile-card" id="card-srt">
             <div class="profile-clickable" data-toggle="collapse" data-target="#details-srt" aria-expanded="false"
               aria-controls="details-srt">
-              <div class="profile-img">
+              <div class="profile-img js-rotate-images">
                 <img src="img/profiles/SRT.png" class="img-responsive" alt="SRT profile cricket bat" loading="lazy" />
+                <img src="img/profiles/SRT2.png" class="img-responsive" alt="SRT profile cricket bat" loading="lazy" />
                 <div class="profile-badge">Low sweet spot</div>
+                <div class="img-dots">
+                  <span class="img-dot is-active"></span>
+                  <span class="img-dot"></span>
+                </div>
               </div>
 
               <div class="click-hint">
@@ -655,10 +666,16 @@
           <div class="profile-card" id="card-hitter">
             <div class="profile-clickable" data-toggle="collapse" data-target="#details-hitter" aria-expanded="false"
               aria-controls="details-hitter">
-              <div class="profile-img">
+              <div class="profile-img js-rotate-images">
                 <img src="img/profiles/power-profile.png" class="img-responsive" alt="Hitter profile cricket bat"
                   loading="lazy" />
+                <img src="img/profiles/power2.png" class="img-responsive" alt="Hitter profile cricket bat"
+                  loading="lazy" />
                 <div class="profile-badge">Maximum power</div>
+                <div class="img-dots">
+                  <span class="img-dot is-active"></span>
+                  <span class="img-dot"></span>
+                </div>
               </div>
 
               <div class="click-hint">
@@ -696,58 +713,6 @@
                 <div class="specs">
                   <span><i class="fa fa-rocket"></i> Power</span>
                   <span><i class="fa fa-square"></i> Thick edges</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 Semi Duckbill -->
-        <div class="col-xs-12 col-sm-6 col-md-4 flex-col" data-aos="fade-up" data-aos-delay="300">
-          <div class="profile-card" id="card-semi-duckbill">
-            <div class="profile-clickable" data-toggle="collapse" data-target="#details-semi-duckbill"
-              aria-expanded="false" aria-controls="details-semi-duckbill">
-              <div class="profile-img">
-                <img src="img/profiles/semi-duckbill.png" class="img-responsive" alt="Semi duckbill profile cricket bat"
-                  loading="lazy" />
-                <div class="profile-badge">Balanced hybrid</div>
-              </div>
-
-              <div class="click-hint">
-                <i class="fa fa-plus-circle"></i> Tap for Details
-              </div>
-
-              <div class="profile-body">
-                <h3>Semi Duckbill</h3>
-                <p class="summary">
-                  <strong>Sweet Spot:</strong> Balanced mid-low
-                </p>
-                <p class="desc">
-                  A hybrid between a full profile and a duckbill, giving
-                  easier pickup than a full shape while retaining more toe
-                  presence than a pure duckbill.
-                </p>
-
-                <div class="collapse profile-details" id="details-semi-duckbill">
-                  <hr class="divider" />
-                  <ul class="spec-list">
-                    <li>
-                      <strong>Why it matters:</strong> It offers a strong
-                      compromise between maneuverability, forgiveness, and
-                      clean punch.
-                    </li>
-                    <li>
-                      <strong>Best for:</strong> Players who want modern
-                      pickup without going fully toe-tapered.
-                    </li>
-                  </ul>
-                  <a href="#contact" class="btn-profile-action" data-profile="Semi Duckbill">Get This Shape <i
-                      class="fa fa-arrow-right"></i></a>
-                </div>
-
-                <div class="specs">
-                  <span><i class="fa fa-balance-scale"></i> Balanced</span>
-                  <span><i class="fa fa-magic"></i> Hybrid feel</span>
                 </div>
               </div>
             </div>
@@ -1484,9 +1449,8 @@
                           </option>
                           <option value="Full Profile">Full Profile</option>
                           <option value="Duckbill">Duckbill</option>
-                          <option value="Camel">Semi Duckbill</option>
                           <option value="Traditional / Balanced">
-                            Traditional / Balanced
+                            SRT
                           </option>
                           <option value="Not sure">Not sure</option>
                         </select>
@@ -2533,6 +2497,54 @@
 
       intro.addEventListener('mousemove', handleMove);
       intro.addEventListener('mouseleave', resetTilt);
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var containers = document.querySelectorAll('.profile-img.js-rotate-images');
+      if (!containers.length) return;
+
+      var reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduceMotion) return;
+
+      containers.forEach(function (wrap, index) {
+        var imgs = wrap.querySelectorAll('img');
+        if (imgs.length < 2) return;
+
+        var dotsWrap = wrap.querySelector('.img-dots');
+        var dots = dotsWrap ? dotsWrap.querySelectorAll('.img-dot') : null;
+        var current = 0;
+        var delay = 3800 + (index * 400); // small stagger per card
+
+        function show(next) {
+          imgs[current].classList.remove('is-active');
+          if (dots && dots[current]) dots[current].classList.remove('is-active');
+
+          current = next;
+
+          imgs[current].classList.add('is-active');
+          if (dots && dots[current]) dots[current].classList.add('is-active');
+        }
+
+        imgs.forEach(function (img, i) {
+          img.style.transition = 'opacity 480ms ease';
+          if (i !== 0) img.classList.remove('is-active');
+        });
+
+        if (dots && dots.length) {
+          dots[0].classList.add('is-active');
+        }
+
+        setTimeout(function startCycle() {
+          show(1);
+          setInterval(function () {
+            var next = (current + 1) % imgs.length;
+            show(next);
+          }, 4200);
+        }, delay);
+      });
     });
   </script>
 
