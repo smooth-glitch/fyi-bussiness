@@ -6565,23 +6565,3 @@ body.light-mode .loader-text {
     margin-top: 32px;
   }
 }
-
-.testimonials-viewport {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-snap-type: x mandatory;
-}
-
-.testimonials-viewport::-webkit-scrollbar {
-  display: none;
-}
-
-.testimonials-track {
-  display: flex;
-  gap: 24px;
-  width: max-content;
-  overflow: visible;
-}
