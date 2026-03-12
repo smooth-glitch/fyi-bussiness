@@ -2570,6 +2570,31 @@
       });
 
       resumeVisiblePreviews();
+
+      if (viewport) {
+        viewport.setAttribute('tabindex', '0');
+        viewport.setAttribute('role', 'region');
+        viewport.setAttribute('aria-label', 'Testimonials carousel');
+
+        viewport.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            viewport.scrollBy({
+              left: -getScrollStep() / 2,
+              behavior: 'smooth'
+            });
+          }
+
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            viewport.scrollBy({
+              left: getScrollStep() / 2,
+              behavior: 'smooth'
+            });
+          }
+        });
+      }
+
     });
   </script>
   <script>
