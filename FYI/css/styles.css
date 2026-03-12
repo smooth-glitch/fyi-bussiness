@@ -103,12 +103,10 @@
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: skewX(-25deg);
   animation: shimmer 1.5s infinite;
   animation-delay: 1s;
@@ -304,8 +302,7 @@ header {
   /* FIX: Subtle, High-Class Luster (Not Radioactive) */
   /* brightness 1.1 = just a bit of polish */
   /* drop-shadow 5px = soft ambient reflection, not a light source */
-  filter: brightness(1.1) contrast(1.1)
-    drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
+  filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
 
   transition: all 0.4s ease;
 }
@@ -337,8 +334,7 @@ header {
 
 /* Hover: Slight brighten, no size jump */
 .brand-link:hover .brand-logo-img {
-  filter: brightness(1.2) contrast(1.15)
-    drop-shadow(0 0 8px rgba(218, 165, 32, 0.6));
+  filter: brightness(1.2) contrast(1.15) drop-shadow(0 0 8px rgba(218, 165, 32, 0.6));
 }
 
 .brand-text-wrapper {
@@ -495,8 +491,7 @@ nav ul li a:hover::after {
 .hero {
   background:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600")
-      center center;
+    url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600") center center;
   background-size: cover;
   background-attachment: fixed;
   height: 80vh;
@@ -712,8 +707,7 @@ nav ul li a:hover::after {
   padding: 100px 0;
   background:
     linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-    url("https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1600")
-      center/cover;
+    url("https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1600") center/cover;
   background-attachment: fixed;
   color: #fff;
 }
@@ -930,11 +924,9 @@ footer a:hover {
   left: 0;
   right: 0;
   top: 0;
-  background: linear-gradient(
-    to top,
-    rgba(13, 17, 23, 0.95) 0%,
-    rgba(13, 17, 23, 0) 60%
-  );
+  background: linear-gradient(to top,
+      rgba(13, 17, 23, 0.95) 0%,
+      rgba(13, 17, 23, 0) 60%);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 1;
@@ -1144,7 +1136,7 @@ footer a:hover {
   background-color: var(--bg-card);
 }
 
-.panel-default > .panel-heading {
+.panel-default>.panel-heading {
   background-color: var(--bg-alt);
   border: none;
   color: var(--text-main);
@@ -1153,7 +1145,7 @@ footer a:hover {
 }
 
 /* Hover effect on the question bar */
-.panel-default > .panel-heading:hover {
+.panel-default>.panel-heading:hover {
   background-color: rgba(217, 83, 79, 0.1);
   /* Subtle red tint on hover */
   cursor: pointer;
@@ -1276,6 +1268,7 @@ footer a:hover {
    ========================================= */
 
 @media (max-width: 768px) {
+
   /* 1. Keep Flexbox active on mobile */
   .header-flex {
     display: flex;
@@ -1339,6 +1332,7 @@ footer a:hover {
    ========================================= */
 
 @media (max-width: 768px) {
+
   /* Hide the desktop header */
   .pricing-table thead {
     display: none;
@@ -1514,8 +1508,7 @@ footer a:hover {
   transform-origin: center;
 
   /* Matches Header "Luster" Effect */
-  filter: brightness(1.1) contrast(1.1)
-    drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
+  filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 5px rgba(218, 165, 32, 0.4));
 
   /* Compensation for the Scale(1.5) so it doesn't overlap text */
   margin-bottom: 40px;
@@ -1717,7 +1710,7 @@ footer a:hover {
 }
 
 /* Card Sizing for Scroll (Mobile) */
-.scroll-row > .col-md-4 {
+.scroll-row>.col-md-4 {
   flex: 0 0 85%;
   /* Shows 85% of card to encourage scrolling */
   max-width: 85%;
@@ -1730,7 +1723,7 @@ footer a:hover {
     overflow-x: visible;
   }
 
-  .scroll-row > .col-md-4 {
+  .scroll-row>.col-md-4 {
     flex: 0 0 33.333%;
     max-width: 33.333%;
   }
@@ -1815,6 +1808,7 @@ footer a:hover {
 }
 
 @media (min-width: 769px) {
+
   /* Slightly better rhythm */
   .pricing-table.pricing-table--pro thead th {
     letter-spacing: 1.6px;
@@ -1863,12 +1857,10 @@ footer a:hover {
     left: -120%;
     width: 80%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%);
     transform: skewX(-18deg);
     opacity: 0;
     pointer-events: none;
@@ -1892,6 +1884,7 @@ footer a:hover {
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .pricing-table.pricing-table--pro tbody tr,
   .pricing-table.pricing-table--pro td:nth-child(3)::after {
     transition: none !important;
@@ -1953,11 +1946,9 @@ footer a:hover {
 }
 
 body.light-mode .pricing-table.pricing-table--pro thead th {
-  background: linear-gradient(
-    180deg,
-    var(--bg-alt) 0%,
-    rgba(255, 255, 255, 0) 140%
-  );
+  background: linear-gradient(180deg,
+      var(--bg-alt) 0%,
+      rgba(255, 255, 255, 0) 140%);
 }
 
 /* Subtle row striping that adapts to theme */
@@ -1966,16 +1957,13 @@ body.light-mode .pricing-table.pricing-table--pro thead th {
 }
 
 @supports not (color-mix(in srgb, #000 50%, #fff 50%)) {
+
   /* Fallback for older browsers */
   .pricing-table.pricing-table--pro tbody tr:nth-child(even) td {
     background: rgba(255, 255, 255, 0.02);
   }
 
-  body.light-mode
-    .pricing-table.pricing-table--pro
-    tbody
-    tr:nth-child(even)
-    td {
+  body.light-mode .pricing-table.pricing-table--pro tbody tr:nth-child(even) td {
     background: rgba(0, 0, 0, 0.03);
   }
 }
@@ -1983,24 +1971,20 @@ body.light-mode .pricing-table.pricing-table--pro thead th {
 /* FYI column: accent + premium gold hint (matches your brand gradient system) */
 .pricing-table.pricing-table--pro th:nth-child(3),
 .pricing-table.pricing-table--pro td:nth-child(3) {
-  background: linear-gradient(
-    135deg,
-    rgba(217, 83, 79, 0.16) 0%,
-    rgba(197, 160, 89, 0.08) 65%,
-    rgba(0, 0, 0, 0) 140%
-  );
+  background: linear-gradient(135deg,
+      rgba(217, 83, 79, 0.16) 0%,
+      rgba(197, 160, 89, 0.08) 65%,
+      rgba(0, 0, 0, 0) 140%);
   border-left: 3px solid var(--accent);
   color: var(--text-main);
 }
 
 body.light-mode .pricing-table.pricing-table--pro th:nth-child(3),
 body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
-  background: linear-gradient(
-    135deg,
-    rgba(217, 83, 79, 0.1) 0%,
-    rgba(197, 160, 89, 0.06) 65%,
-    rgba(255, 255, 255, 0) 140%
-  );
+  background: linear-gradient(135deg,
+      rgba(217, 83, 79, 0.1) 0%,
+      rgba(197, 160, 89, 0.06) 65%,
+      rgba(255, 255, 255, 0) 140%);
 }
 
 /* Text colors for other columns */
@@ -2023,6 +2007,7 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
 
 /* ===== PRICING TABLE: hierarchy polish ===== */
 @media (min-width: 769px) {
+
   /* Crisp grid and better typography */
   .pricing-table.pricing-table--pro {
     border-radius: 6px;
@@ -2048,6 +2033,7 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
 
 /* ===== FYI column premium treatment ===== */
 @media (min-width: 769px) {
+
   .pricing-table.pricing-table--pro th:nth-child(3),
   .pricing-table.pricing-table--pro td:nth-child(3) {
     position: relative;
@@ -2058,12 +2044,10 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(197, 160, 89, 0.1) 0%,
-      rgba(217, 83, 79, 0.08) 45%,
-      rgba(0, 0, 0, 0) 120%
-    );
+    background: linear-gradient(180deg,
+        rgba(197, 160, 89, 0.1) 0%,
+        rgba(217, 83, 79, 0.08) 45%,
+        rgba(0, 0, 0, 0) 120%);
     pointer-events: none;
     opacity: 0.85;
   }
@@ -2096,13 +2080,11 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
   right: 0;
   top: 0;
   height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent),
-    var(--brand-gold),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      var(--accent),
+      var(--brand-gold),
+      transparent);
   opacity: 0.85;
 }
 
@@ -2110,16 +2092,12 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
 #cinematic-loader {
   /* Slight dim + vignette instead of “flat black shutters only” */
   background:
-    radial-gradient(
-      circle at 50% 45%,
+    radial-gradient(circle at 50% 45%,
       rgba(255, 255, 255, 0.06),
-      rgba(0, 0, 0, 0) 55%
-    ),
-    radial-gradient(
-      circle at 50% 60%,
+      rgba(0, 0, 0, 0) 55%),
+    radial-gradient(circle at 50% 60%,
       rgba(217, 83, 79, 0.08),
-      rgba(0, 0, 0, 0) 60%
-    );
+      rgba(0, 0, 0, 0) 60%);
 }
 
 /* Softer, premium curtain easing */
@@ -2190,6 +2168,7 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
 
 /* Respect accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   .shutter-top,
   .shutter-bottom,
   .logo-wrapper,
@@ -2464,7 +2443,7 @@ body.light-mode .theme-ball-svg .ring-stroke {
   }
 
   /* 3 cards per row */
-  #testimonials .scroll-row > .col-md-4 {
+  #testimonials .scroll-row>.col-md-4 {
     flex: 0 0 33.333% !important;
     max-width: 33.333% !important;
 
@@ -2487,7 +2466,7 @@ body.light-mode .theme-ball-svg .ring-stroke {
     margin-right: 0 !important;
   }
 
-  #testimonials .scroll-row > .col-md-4 {
+  #testimonials .scroll-row>.col-md-4 {
     flex: 0 0 85% !important;
     max-width: 85% !important;
     padding-left: 0 !important;
@@ -2965,7 +2944,7 @@ body.light-mode #contact .footer-inquiry-btn:focus {
 }
 
 /* Keep images above the animated ring */
-.logo-frame > img {
+.logo-frame>img {
   position: relative;
   z-index: 2;
   display: block;
@@ -2981,15 +2960,13 @@ body.light-mode #contact .footer-inquiry-btn:focus {
   border-radius: inherit;
   padding: 2px;
   /* thickness of the outline */
-  background: conic-gradient(
-    from 0deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(212, 175, 55, 0.95) 18%,
-    rgba(197, 160, 89, 0.95) 28%,
-    rgba(0, 0, 0, 0) 45%,
-    rgba(212, 175, 55, 0.95) 62%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: conic-gradient(from 0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(212, 175, 55, 0.95) 18%,
+      rgba(197, 160, 89, 0.95) 28%,
+      rgba(0, 0, 0, 0) 45%,
+      rgba(212, 175, 55, 0.95) 62%,
+      rgba(0, 0, 0, 0) 100%);
 
   /* Mask out the center so only the border stays (best-looking method) */
   -webkit-mask:
@@ -3323,17 +3300,15 @@ footer .social-icons a:hover i {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.55) 45%,
-    rgba(0, 0, 0, 0.72) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.55) 45%,
+      rgba(0, 0, 0, 0.72) 100%);
   pointer-events: none;
 }
 
 /* keep content above overlay */
-.intro > .container {
+.intro>.container {
   position: relative;
   z-index: 1;
 }
@@ -3351,12 +3326,10 @@ footer .social-icons a:hover i {
 
 /* Stronger overlay for contrast */
 .intro::before {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.82) 0%,
-    rgba(0, 0, 0, 0.62) 45%,
-    rgba(0, 0, 0, 0.82) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.62) 45%,
+      rgba(0, 0, 0, 0.82) 100%);
 }
 
 /* Optional: subtle text lift */
@@ -3716,7 +3689,7 @@ body.light-mode .bf-details {
   background: rgba(0, 0, 0, 0.02);
 }
 
-.bf-details > summary {
+.bf-details>summary {
   list-style: none;
   cursor: pointer;
   padding: 14px 14px;
@@ -3731,11 +3704,11 @@ body.light-mode .bf-details {
   gap: 12px;
 }
 
-.bf-details > summary::-webkit-details-marker {
+.bf-details>summary::-webkit-details-marker {
   display: none;
 }
 
-.bf-details > summary::after {
+.bf-details>summary::after {
   content: "+";
   width: 30px;
   height: 30px;
@@ -3748,7 +3721,7 @@ body.light-mode .bf-details {
   flex: 0 0 auto;
 }
 
-.bf-details[open] > summary::after {
+.bf-details[open]>summary::after {
   content: "–";
 }
 
@@ -4046,11 +4019,9 @@ header {
   flex: 0 0 calc((100% - 48px) / 3);
   min-width: calc((100% - 48px) / 3);
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       rgba(255, 255, 255, 0.04),
-      rgba(255, 255, 255, 0.02)
-    ),
+      rgba(255, 255, 255, 0.02)),
     rgba(14, 14, 14, 0.96);
   border: 1px solid rgba(212, 175, 55, 0.14);
   border-radius: 24px;
@@ -4183,11 +4154,9 @@ header {
   margin-top: auto;
   align-self: flex-start;
   border: 1px solid rgba(212, 175, 55, 0.24);
-  background: linear-gradient(
-    180deg,
-    rgba(212, 175, 55, 0.18),
-    rgba(212, 175, 55, 0.1)
-  );
+  background: linear-gradient(180deg,
+      rgba(212, 175, 55, 0.18),
+      rgba(212, 175, 55, 0.1));
   color: #f6e7a8;
   border-radius: 999px;
   padding: 11px 16px;
@@ -4205,11 +4174,9 @@ header {
 .testimonial-watch-btn:focus {
   transform: translateY(-1px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(212, 175, 55, 0.24),
-    rgba(212, 175, 55, 0.14)
-  );
+  background: linear-gradient(180deg,
+      rgba(212, 175, 55, 0.24),
+      rgba(212, 175, 55, 0.14));
 }
 
 .testimonials-nav {
@@ -4337,19 +4304,15 @@ body.light-mode .testimonial-card--rich:hover {
 }
 
 .testimonial-media::after {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.03),
-    rgba(0, 0, 0, 0.16)
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.03),
+      rgba(0, 0, 0, 0.16)) !important;
 }
 
 body.light-mode .testimonial-media::after {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.08)
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.08)) !important;
 }
 
 .testimonial-avatar {
@@ -4475,7 +4438,7 @@ body.light-mode .testimonial-excerpt {
   align-items: stretch;
 }
 
-#testimonials .scroll-row > [class*="col-"] {
+#testimonials .scroll-row>[class*="col-"] {
   display: flex;
 }
 
@@ -4487,6 +4450,7 @@ body.light-mode .testimonial-excerpt {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+
   #testimonials .scroll-row .col-md-4,
   #testimonials .scroll-row .col-sm-6 {
     flex: 0 0 50% !important;
@@ -4567,11 +4531,9 @@ body.light-mode .testimonial-excerpt {
 }
 
 body.light-mode .testimonial-media::after {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.08)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.08));
 }
 
 .testimonial-play {
@@ -4767,7 +4729,7 @@ body.light-mode .testimonial-media::after {
   margin-right: -10px !important;
 }
 
-#testimonials .scroll-row > [class*="col-"] {
+#testimonials .scroll-row>[class*="col-"] {
   padding-left: 10px !important;
   padding-right: 10px !important;
   display: flex;
@@ -4782,6 +4744,7 @@ body.light-mode .testimonial-media::after {
 
 /* Tablet/Desktop fallback */
 @media (min-width: 768px) and (max-width: 1199px) {
+
   #testimonials .scroll-row .col-md-4,
   #testimonials .scroll-row .col-sm-6 {
     width: 33.333% !important;
@@ -4862,13 +4825,11 @@ body.light-mode .testimonial-reel-card {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.06) 0%,
-    rgba(0, 0, 0, 0) 32%,
-    rgba(0, 0, 0, 0.22) 58%,
-    rgba(0, 0, 0, 0.76) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.06) 0%,
+      rgba(0, 0, 0, 0) 32%,
+      rgba(0, 0, 0, 0.22) 58%,
+      rgba(0, 0, 0, 0.76) 100%);
   pointer-events: none;
 }
 
@@ -5134,13 +5095,11 @@ body.light-mode .testimonial-reel-card {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0) 28%,
-    rgba(0, 0, 0, 0.18) 58%,
-    rgba(0, 0, 0, 0.78) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0) 28%,
+      rgba(0, 0, 0, 0.18) 58%,
+      rgba(0, 0, 0, 0.78) 100%);
 }
 
 .testimonial-reel-play {
@@ -5397,11 +5356,9 @@ body.light-mode .testimonial-reel-card {
 .testimonial-reel-card {
   flex: 0 0 calc((100% - 48px) / 3);
   min-width: calc((100% - 48px) / 3);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0.02)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.02));
   border: 1px solid rgba(212, 175, 55, 0.14);
   border-radius: 24px;
   overflow: hidden;
@@ -5447,13 +5404,11 @@ body.light-mode .testimonial-reel-card {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0) 28%,
-    rgba(0, 0, 0, 0.18) 58%,
-    rgba(0, 0, 0, 0.78) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0) 28%,
+      rgba(0, 0, 0, 0.18) 58%,
+      rgba(0, 0, 0, 0.78) 100%);
 }
 
 .testimonial-reel-play {
@@ -5609,6 +5564,7 @@ body.light-mode .testimonial-reel-card {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .testimonial-reel-preview,
   .testimonial-reel-play {
     transition: none;
@@ -5624,17 +5580,13 @@ Append at the very end of styles.css
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(
-      circle at 50% 34%,
+    radial-gradient(circle at 50% 34%,
       rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0) 30%
-    ),
-    linear-gradient(
-      180deg,
+      rgba(255, 255, 255, 0) 30%),
+    linear-gradient(180deg,
       rgba(0, 0, 0, 0.58) 0%,
       rgba(0, 0, 0, 0.46) 38%,
-      rgba(0, 0, 0, 0.7) 100%
-    ),
+      rgba(0, 0, 0, 0.7) 100%),
     url("../img/hero-bat.png") center 42% / 50% auto no-repeat;
   background-attachment: fixed;
   min-height: 70vh;
@@ -5648,13 +5600,11 @@ Append at the very end of styles.css
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.42) 0%,
-    rgba(0, 0, 0, 0.18) 26%,
-    rgba(0, 0, 0, 0.36) 58%,
-    rgba(0, 0, 0, 0.62) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.42) 0%,
+      rgba(0, 0, 0, 0.18) 26%,
+      rgba(0, 0, 0, 0.36) 58%,
+      rgba(0, 0, 0, 0.62) 100%);
   pointer-events: none;
 }
 
@@ -5663,24 +5613,20 @@ Append at the very end of styles.css
   position: absolute;
   inset: -6%;
   background:
-    radial-gradient(
-      circle at 50% 38%,
+    radial-gradient(circle at 50% 38%,
       rgba(255, 255, 255, 0.1) 0%,
       rgba(255, 255, 255, 0.03) 18%,
-      rgba(255, 255, 255, 0) 42%
-    ),
-    radial-gradient(
-      circle at 50% 56%,
+      rgba(255, 255, 255, 0) 42%),
+    radial-gradient(circle at 50% 56%,
       rgba(217, 83, 79, 0.12) 0%,
-      rgba(217, 83, 79, 0) 46%
-    );
+      rgba(217, 83, 79, 0) 46%);
   pointer-events: none;
   mix-blend-mode: screen;
   opacity: 0.65;
   transform: scale(1.03);
 }
 
-.intro > .container {
+.intro>.container {
   position: relative;
   z-index: 2;
 }
@@ -5699,17 +5645,13 @@ Append at the very end of styles.css
 @media (max-width: 768px) {
   .intro {
     background:
-      radial-gradient(
-        circle at 50% 28%,
+      radial-gradient(circle at 50% 28%,
         rgba(255, 255, 255, 0.08) 0%,
-        rgba(255, 255, 255, 0) 28%
-      ),
-      linear-gradient(
-        180deg,
+        rgba(255, 255, 255, 0) 28%),
+      linear-gradient(180deg,
         rgba(0, 0, 0, 0.62) 0%,
         rgba(0, 0, 0, 0.48) 38%,
-        rgba(0, 0, 0, 0.72) 100%
-      ),
+        rgba(0, 0, 0, 0.72) 100%),
       url("../img/hero-bat.png") center 30% / 165% auto no-repeat;
     background-attachment: scroll;
   }
@@ -5725,6 +5667,7 @@ Append at the very end of styles.css
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .intro-glass,
   .intro .chain,
   .intro .thin-sep,
@@ -5753,18 +5696,14 @@ Append at the very end of styles.css
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      circle at 50% 30%,
+    radial-gradient(circle at 50% 30%,
       rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0) 28%
-    ),
-    linear-gradient(
-      180deg,
+      rgba(255, 255, 255, 0) 28%),
+    linear-gradient(180deg,
       rgba(0, 0, 0, 0.2) 0%,
       rgba(0, 0, 0, 0.08) 30%,
       rgba(0, 0, 0, 0.22) 65%,
-      rgba(0, 0, 0, 0.42) 100%
-    );
+      rgba(0, 0, 0, 0.42) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -5773,18 +5712,16 @@ Append at the very end of styles.css
   content: "";
   position: absolute;
   inset: -4%;
-  background: radial-gradient(
-    circle at 50% 55%,
-    rgba(217, 83, 79, 0.12) 0%,
-    rgba(217, 83, 79, 0) 42%
-  );
+  background: radial-gradient(circle at 50% 55%,
+      rgba(217, 83, 79, 0.12) 0%,
+      rgba(217, 83, 79, 0) 42%);
   filter: blur(10px);
   transform: translateZ(-40px) scale(1.04);
   pointer-events: none;
   z-index: 0;
 }
 
-.intro > .container {
+.intro>.container {
   position: relative;
   z-index: 2;
   transform-style: preserve-3d;
@@ -5795,11 +5732,9 @@ Append at the very end of styles.css
   transform-style: preserve-3d;
   transform: rotateX(5deg) rotateY(-2deg) translateZ(18px);
   border-radius: 28px;
-  background: linear-gradient(
-    180deg,
-    rgba(18, 18, 18, 0.28),
-    rgba(18, 18, 18, 0.14)
-  );
+  background: linear-gradient(180deg,
+      rgba(18, 18, 18, 0.28),
+      rgba(18, 18, 18, 0.14));
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     0 35px 90px rgba(0, 0, 0, 0.38),
@@ -5814,12 +5749,10 @@ Append at the very end of styles.css
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.05) 34%,
-    rgba(255, 255, 255, 0) 60%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.05) 34%,
+      rgba(255, 255, 255, 0) 60%);
   pointer-events: none;
 }
 
@@ -5867,6 +5800,7 @@ Append at the very end of styles.css
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .intro-glass,
   .intro .chain,
   .intro .thin-sep,
@@ -5887,7 +5821,7 @@ HERO 3D TILT - append at end of styles.css
   transform-style: preserve-3d;
 }
 
-.intro > .container {
+.intro>.container {
   position: relative;
   z-index: 2;
   transform-style: preserve-3d;
@@ -5897,8 +5831,7 @@ HERO 3D TILT - append at end of styles.css
   --tilt-x: 0deg;
   --tilt-y: 0deg;
   transform-style: preserve-3d;
-  transform: rotateX(calc(5deg + var(--tilt-x)))
-    rotateY(calc(-2deg + var(--tilt-y))) translateZ(18px);
+  transform: rotateX(calc(5deg + var(--tilt-x))) rotateY(calc(-2deg + var(--tilt-y))) translateZ(18px);
   transition:
     transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 220ms ease;
@@ -5949,6 +5882,7 @@ HERO 3D TILT - append at end of styles.css
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .intro-glass,
   .intro .chain,
   .intro .thin-sep,
@@ -5966,6 +5900,7 @@ HERO 3D TILT - append at end of styles.css
   overflow: hidden;
   height: 220px;
 }
+
 .profile-img.js-rotate-images img {
   position: absolute;
   top: 0;
@@ -5976,6 +5911,7 @@ HERO 3D TILT - append at end of styles.css
   opacity: 0;
   transition: opacity 500ms ease;
 }
+
 .profile-img.js-rotate-images img.is-active {
   opacity: 1;
 }
@@ -5990,6 +5926,7 @@ HERO 3D TILT - append at end of styles.css
   gap: 8px;
   z-index: 4;
 }
+
 .profile-img .img-dot {
   width: 8px;
   height: 8px;
@@ -6000,6 +5937,7 @@ HERO 3D TILT - append at end of styles.css
     background 250ms ease,
     transform 250ms ease;
 }
+
 .profile-img .img-dot.is-active {
   background: rgba(200, 200, 200, 0.95);
   transform: scale(1.1);
@@ -6014,10 +5952,12 @@ HERO 3D TILT - append at end of styles.css
 }
 
 @keyframes pillGlow {
+
   0%,
   100% {
     box-shadow: 0 0 0px 0px rgba(196, 30, 30, 0);
   }
+
   50% {
     box-shadow:
       0 0 18px 6px rgba(196, 30, 30, 0.55),
@@ -6059,12 +5999,10 @@ HERO 3D TILT - append at end of styles.css
   left: -75%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.22) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: skewX(-20deg);
   transition: none;
   pointer-events: none;
@@ -6080,6 +6018,7 @@ HERO 3D TILT - append at end of styles.css
   0% {
     left: -75%;
   }
+
   100% {
     left: 130%;
   }
@@ -6138,10 +6077,12 @@ HERO 3D TILT - append at end of styles.css
 }
 
 @keyframes fabFloat {
+
   0%,
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-5px);
   }
@@ -6235,10 +6176,12 @@ HERO 3D TILT - append at end of styles.css
 }
 
 @keyframes waPulse {
+
   0%,
   100% {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
+
   50% {
     box-shadow:
       0 0 0 8px rgba(37, 211, 102, 0.22),
@@ -6378,12 +6321,12 @@ textarea {
   margin: 16px auto 0 !important;
 }
 
-.content-section h2 + p,
-.content-section h2 + .thin-sep {
+.content-section h2+p,
+.content-section h2+.thin-sep {
   margin-top: 12px !important;
 }
 
-.content-section .row + .row {
+.content-section .row+.row {
   margin-top: 48px;
 }
 
@@ -6467,16 +6410,12 @@ body.light-mode .loader-text {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      ellipse at 20% 50%,
+    radial-gradient(ellipse at 20% 50%,
       rgba(196, 30, 30, 0.07) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse at 80% 20%,
+      transparent 60%),
+    radial-gradient(ellipse at 80% 20%,
       rgba(197, 160, 89, 0.05) 0%,
-      transparent 55%
-    );
+      transparent 55%);
   pointer-events: none;
   z-index: 0;
   will-change: transform;
@@ -6489,11 +6428,9 @@ body.light-mode .loader-text {
   width: 480px;
   height: 480px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(196, 30, 30, 0.06) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(196, 30, 30, 0.06) 0%,
+      transparent 70%);
   top: -100px;
   right: -120px;
   pointer-events: none;
@@ -6506,6 +6443,7 @@ body.light-mode .loader-text {
   0% {
     transform: translateY(0px) translateX(0px);
   }
+
   100% {
     transform: translateY(40px) translateX(-20px);
   }
@@ -6544,35 +6482,7 @@ body.light-mode .loader-text {
   animation-duration: 1s !important;
 }
 
-/* =============================================
-   DARK THEME — PITCH GREEN-BLACK COLOUR SWAP
-   Find the :root block and update these values:
-   ============================================= */
-:root {
-  --bg-body: #0a100d; /* was #0d1117 */
-  --bg-card: rgba(14, 22, 17, 0.45); /* was rgba(22,27,34,0.4) */
-  --bg-alt: #0e1711; /* was #0f1419 */
-  --nav-bg: rgba(10, 16, 13, 0.55); /* was rgba(13,17,23,0.5) */
-}
 
-/* =============================================
-   PITCH GREEN-BLACK — FOOTER & PROCESS PATCH
-   ============================================= */
-footer {
-  background: #060d09 !important; /* slightly deeper than bg-body */
-}
-
-/* Subtle green tint on card borders in dark mode */
-body:not(.light-mode) .profile-card,
-body:not(.light-mode) .team-card,
-body:not(.light-mode) .bat-finder-card {
-  border-color: rgba(30, 80, 50, 0.18) !important;
-}
-
-/* Slightly greenish tint on section alt backgrounds */
-body:not(.light-mode) .content-section.alt {
-  background: #0c1510 !important;
-}
 
 /* =============================================
    HERO HEADLINE — SUB-375px FIX
