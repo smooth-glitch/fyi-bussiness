@@ -2358,26 +2358,10 @@
       var testimonialsSection = document.getElementById("testimonials");
       if (!testimonialsSection) return;
 
-      var viewport = testimonialsSection.querySelector(
-        ".testimonials-viewport",
-      );
+      var viewport = testimonialsSection.querySelector(".testimonials-viewport");
       var track = testimonialsSection.querySelector(".testimonials-track");
-      var prevBtn = testimonialsSection.querySelector(
-        ".testimonials-nav.left",
-      );
-      var nextBtn = testimonialsSection.querySelector(
-        ".testimonials-nav.right",
-      );
-      var triggers = Array.prototype.slice.call(
-        testimonialsSection.querySelectorAll(".testimonial-reel-trigger"),
-      );
-      var previewVideos = Array.prototype.slice.call(
-        testimonialsSection.querySelectorAll(".testimonial-reel-preview"),
-      );
-
-      var modal = document.getElementById("testimonialVideoModal");
-      var modalVideo = document.getElementById("testimonialModalVideo");
-      var modalTitle = document.getElementById("testimonialVideoTitle");
+      var prevBtn = testimonialsSection.querySelector(".testimonials-nav.left");
+      var nextBtn = testimonialsSection.querySelector(".testimonials-nav.right");
 
       function getGapValue() {
         if (!track) return 24;
@@ -2392,52 +2376,34 @@
         return firstCard.getBoundingClientRect().width + getGapValue();
       }
 
-      function pauseAllPreviewVideos() {
-        previewVideos.forEach(function (video) {
-          try {
-            video.pause();
-            var card = video.closest(".testimonial-reel-card");
-            if (card) card.classList.remove("is-preview-playing");
-          } catch (err) { }
+      if (viewport) {
+        viewport.setAttribute("tabindex", "0");
+        viewport.setAttribute("role", "region");
+        viewport.setAttribute("aria-label", "Testimonials carousel");
+
+        testimonialsSection.addEventListener("mouseenter", function () {
+          viewport.focus();
         });
-      }
 
-      function playPreview(video) {
-        if (!video) return;
+        testimonialsSection.addEventListener("click", function () {
+          viewport.focus();
+        });
 
-        video.muted = true;
-        video.defaultMuted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
-        video.setAttribute("playsinline", "");
-        video.setAttribute("autoplay", "");
-
-        var promise = video.play();
-        if (promise && typeof promise.then === "function") {
-          promise
-            .then(function () {
-              var card = video.closest(".testimonial-reel-card");
-              if (card) card.classList.add("is-preview-playing");
-            })
-            .catch(function () {
-              var card = video.closest(".testimonial-reel-card");
-              if (card) card.classList.remove("is-preview-playing");
+        testimonialsSection.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            viewport.scrollBy({
+              left: -(getScrollStep() * 2),
+              behavior: "smooth"
             });
-        }
-      }
+          }
 
-      function resumeVisiblePreviews() {
-        previewVideos.forEach(function (video) {
-          var rect = video.getBoundingClientRect();
-          var visibleHorizontally =
-            rect.right > 0 && rect.left < window.innerWidth;
-          var visibleVertically =
-            rect.bottom > 0 && rect.top < window.innerHeight;
-
-          if (visibleHorizontally && visibleVertically) {
-            playPreview(video);
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            viewport.scrollBy({
+              left: getScrollStep() * 2,
+              behavior: "smooth"
+            });
           }
         });
       }
@@ -2446,7 +2412,7 @@
         prevBtn.addEventListener("click", function () {
           viewport.scrollBy({
             left: -(getScrollStep() * 2),
-            behavior: "smooth",
+            behavior: "smooth"
           });
         });
       }
@@ -2455,148 +2421,13 @@
         nextBtn.addEventListener("click", function () {
           viewport.scrollBy({
             left: getScrollStep() * 2,
-            behavior: "smooth",
+            behavior: "smooth"
           });
         });
       }
-
-      previewVideos.forEach(function (video) {
-        video.muted = true;
-        video.defaultMuted = true;
-        video.loop = true;
-        video.playsInline = true;
-
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
-        video.setAttribute("playsinline", "");
-        video.setAttribute("autoplay", "");
-
-        video.addEventListener("loadeddata", function () {
-          playPreview(video);
-        });
-
-        video.addEventListener("mouseenter", function () {
-          playPreview(video);
-        });
-      });
-
-      var observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            var video = entry.target;
-            var card = video.closest(".testimonial-reel-card");
-
-            if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
-              playPreview(video);
-              if (card) card.classList.add("is-preview-playing");
-            } else {
-              video.pause();
-              if (card) card.classList.remove("is-preview-playing");
-            }
-          });
-        },
-        {
-          root: viewport || null,
-          threshold: [0.25, 0.6, 0.85],
-        },
-      );
-
-      previewVideos.forEach(function (video) {
-        observer.observe(video);
-      });
-
-      triggers.forEach(function (trigger) {
-        trigger.addEventListener("click", function () {
-          var videoUrl = trigger.getAttribute("data-video");
-          var title = trigger.getAttribute("data-title") || "Player review";
-
-          pauseAllPreviewVideos();
-
-          if (modalTitle) {
-            modalTitle.textContent = title;
-          }
-
-          if (modalVideo && videoUrl) {
-            modalVideo.pause();
-            modalVideo.removeAttribute("src");
-            modalVideo.src = videoUrl;
-            modalVideo.load();
-          }
-        });
-      });
-
-      if (window.jQuery && modal) {
-        $("#testimonialVideoModal").on("shown.bs.modal", function () {
-          if (!modalVideo) return;
-
-          modalVideo.muted = false;
-          modalVideo.controls = true;
-          modalVideo.playsInline = true;
-
-          var promise = modalVideo.play();
-          if (promise && typeof promise.catch === "function") {
-            promise.catch(function () { });
-          }
-        });
-
-        $("#testimonialVideoModal").on("hidden.bs.modal", function () {
-          if (!modalVideo) return;
-
-          modalVideo.pause();
-          modalVideo.removeAttribute("src");
-          modalVideo.load();
-
-          if (modalTitle) {
-            modalTitle.textContent = "Player review";
-          }
-
-          resumeVisiblePreviews();
-        });
-      }
-
-      document.addEventListener("visibilitychange", function () {
-        if (document.hidden) {
-          pauseAllPreviewVideos();
-          if (modalVideo) modalVideo.pause();
-        } else {
-          if (!modal || !modal.classList.contains("in")) {
-            resumeVisiblePreviews();
-          }
-        }
-      });
-
-      window.addEventListener("resize", function () {
-        resumeVisiblePreviews();
-      });
-
-      resumeVisiblePreviews();
-
-      if (viewport) {
-        viewport.setAttribute('tabindex', '0');
-        viewport.setAttribute('role', 'region');
-        viewport.setAttribute('aria-label', 'Testimonials carousel');
-
-        viewport.addEventListener('keydown', function (e) {
-          if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            viewport.scrollBy({
-              left: -getScrollStep() / 2,
-              behavior: 'smooth'
-            });
-          }
-
-          if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            viewport.scrollBy({
-              left: getScrollStep() / 2,
-              behavior: 'smooth'
-            });
-          }
-        });
-      }
-
     });
   </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var intro = document.querySelector(".intro");
