@@ -223,7 +223,9 @@ body.light-mode {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 body {
@@ -233,7 +235,9 @@ body {
   line-height: 1.8;
   overflow-x: hidden;
   padding-top: var(--header-height);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 h1,
@@ -489,7 +493,8 @@ nav ul li a:hover::after {
 
 /* ---------- 6) HERO ---------- */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600")
       center center;
   background-size: cover;
@@ -571,8 +576,10 @@ nav ul li a:hover::after {
   padding: 40px 30px;
   border-radius: 16px;
   box-shadow: var(--shadow);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    box-shadow 0.4s ease, border-color 0.4s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -703,7 +710,8 @@ nav ul li a:hover::after {
 /* ---------- 11) PROCESS ---------- */
 .process-section {
   padding: 100px 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
     url("https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1600")
       center/cover;
   background-attachment: fixed;
@@ -870,7 +878,9 @@ footer a:hover {
   height: auto;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   position: relative;
 }
 
@@ -1763,7 +1773,9 @@ footer a:hover {
 
 /* 4. Polished Loader Transition */
 #cinematic-loader {
-  transition: opacity 0.8s ease-out, visibility 0.8s;
+  transition:
+    opacity 0.8s ease-out,
+    visibility 0.8s;
 }
 
 /* ===== PRICING TABLE POLISH (Desktop only, preserves mobile card layout) ===== */
@@ -1809,7 +1821,9 @@ footer a:hover {
   }
 
   .pricing-table.pricing-table--pro tbody tr {
-    transition: transform 220ms ease, background-color 220ms ease,
+    transition:
+      transform 220ms ease,
+      background-color 220ms ease,
       box-shadow 220ms ease;
   }
 
@@ -2095,7 +2109,8 @@ body.light-mode .pricing-table.pricing-table--pro td:nth-child(3) {
 /* ===== PREMIUM ENTRY LOADER POLISH ===== */
 #cinematic-loader {
   /* Slight dim + vignette instead of “flat black shutters only” */
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 50% 45%,
       rgba(255, 255, 255, 0.06),
       rgba(0, 0, 0, 0) 55%
@@ -2210,7 +2225,9 @@ body.loaded {
   fill: none;
   stroke-width: 5;
   stroke-miterlimit: 10;
-  transition: stroke 220ms ease, opacity 220ms ease;
+  transition:
+    stroke 220ms ease,
+    opacity 220ms ease;
 }
 
 /* Default DARK theme: white ball, black seam */
@@ -2749,7 +2766,9 @@ body.light-mode .theme-ball-svg .ring-stroke {
 
 .contact-submit-btn .btn-label {
   display: inline-block;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
 .contact-submit-btn .btn-check {
@@ -2759,7 +2778,9 @@ body.light-mode .theme-ball-svg .ring-stroke {
   place-items: center;
   opacity: 0;
   transform: scale(0.8);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
 .contact-submit-btn .check-svg {
@@ -2837,12 +2858,14 @@ body.light-mode .theme-ball-svg .ring-stroke {
 .footer-inquiry-btn:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45),
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.45),
     0 2px 0 rgba(255, 255, 255, 0.07) inset;
 }
 
 body.light-mode .footer-inquiry-btn:hover {
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.18),
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.18),
     0 2px 0 rgba(255, 255, 255, 0.6) inset;
 }
 
@@ -2852,7 +2875,9 @@ body.light-mode .footer-inquiry-btn:hover {
 
 .footer-inquiry-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.35), 0 18px 45px rgba(0, 0, 0, 0.38);
+  box-shadow:
+    0 0 0 3px rgba(217, 83, 79, 0.35),
+    0 18px 45px rgba(0, 0, 0, 0.38);
 }
 
 /* Header "Send a message" – subtle CTA, same theme */
@@ -2967,7 +2992,9 @@ body.light-mode #contact .footer-inquiry-btn:focus {
   );
 
   /* Mask out the center so only the border stays (best-looking method) */
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 
@@ -3266,7 +3293,9 @@ footer .social-icons a:hover i {
   background: rgba(180, 180, 180, 0.55);
   /* semi-transparent grey */
   border: 1px solid rgba(255, 255, 255, 0.35);
-  transition: background 250ms ease, transform 250ms ease;
+  transition:
+    background 250ms ease,
+    transform 250ms ease;
 }
 
 .profile-img .img-dot.is-active {
@@ -3359,7 +3388,10 @@ footer .social-icons a:hover i {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: transform 180ms ease, box-shadow 220ms ease, background 220ms ease,
+  transition:
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease,
     border-color 220ms ease;
 }
 
@@ -3529,7 +3561,10 @@ body.light-mode {
   letter-spacing: 0.8px;
   text-transform: uppercase;
 
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
 }
 
 .mobile-wa-btn--primary {
@@ -3595,7 +3630,9 @@ body.light-mode {
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: transform 180ms ease, filter 180ms ease;
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
 }
 
 .wa-pill i {
@@ -3737,8 +3774,12 @@ body.light-mode .bf-details {
   font-size: 12px;
   letter-spacing: 0.9px;
   text-transform: uppercase;
-  transition: transform 180ms ease, filter 180ms ease, background 220ms ease,
-    border-color 220ms ease, box-shadow 220ms ease;
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .bat-finder-btn:hover,
@@ -3748,19 +3789,23 @@ body.light-mode .bf-details {
   color: #fff;
   outline: none;
   transform: translateY(-2px);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45),
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.45),
     0 2px 0 rgba(255, 255, 255, 0.07) inset;
 }
 
 body.light-mode .bat-finder-btn:hover,
 body.light-mode .bat-finder-btn:focus {
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.18),
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.18),
     0 2px 0 rgba(255, 255, 255, 0.6) inset;
 }
 
 .bat-finder-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.35), 0 18px 45px rgba(0, 0, 0, 0.38);
+  box-shadow:
+    0 0 0 3px rgba(217, 83, 79, 0.35),
+    0 18px 45px rgba(0, 0, 0, 0.38);
 }
 
 .bat-finder-btn i {
@@ -4000,7 +4045,8 @@ header {
 .testimonial-card--rich {
   flex: 0 0 calc((100% - 48px) / 3);
   min-width: calc((100% - 48px) / 3);
-  background: linear-gradient(
+  background:
+    linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.04),
       rgba(255, 255, 255, 0.02)
@@ -4009,7 +4055,8 @@ header {
   border: 1px solid rgba(212, 175, 55, 0.14);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28),
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   scroll-snap-align: start;
   display: flex;
@@ -4034,7 +4081,9 @@ header {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.45s ease, filter 0.35s ease;
+  transition:
+    transform 0.45s ease,
+    filter 0.35s ease;
 }
 
 .testimonial-media:hover .testimonial-video-thumb,
@@ -4068,7 +4117,9 @@ header {
   border: 1px solid rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(4px);
   z-index: 2;
-  transition: transform 0.25s ease, background 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
 }
 
 .testimonial-media:hover .testimonial-play,
@@ -4144,7 +4195,10 @@ header {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.25px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .testimonial-watch-btn:hover,
@@ -4170,7 +4224,10 @@ header {
   justify-content: center;
   flex: 0 0 auto;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background 0.2s ease;
 }
 
 .testimonials-nav:hover,
@@ -4490,7 +4547,9 @@ body.light-mode .testimonial-excerpt {
   display: block;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.35s ease, filter 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
 }
 
 .testimonial-media:hover .testimonial-video-thumb,
@@ -4533,7 +4592,9 @@ body.light-mode .testimonial-media::after {
   -webkit-backdrop-filter: blur(6px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
   z-index: 2;
-  transition: transform 0.22s ease, background 0.22s ease;
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease;
 }
 
 .testimonial-media:hover .testimonial-play,
@@ -4598,7 +4659,10 @@ body.light-mode .testimonial-media::after {
   font-weight: 800 !important;
   letter-spacing: 0.2px;
   box-shadow: none !important;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease,
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
@@ -4783,7 +4847,9 @@ body.light-mode .testimonial-reel-card {
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: transform 0.45s ease, filter 0.35s ease;
+  transition:
+    transform 0.45s ease,
+    filter 0.35s ease;
 }
 
 .testimonial-reel-media:hover .testimonial-reel-thumb,
@@ -4824,7 +4890,9 @@ body.light-mode .testimonial-reel-card {
   -webkit-backdrop-filter: blur(8px);
   z-index: 2;
   font-size: 20px;
-  transition: transform 0.22s ease, background 0.22s ease;
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease;
 }
 
 .testimonial-reel-media:hover .testimonial-reel-play,
@@ -5050,7 +5118,9 @@ body.light-mode .testimonial-reel-card {
   display: block;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.45s ease, filter 0.35s ease;
+  transition:
+    transform 0.45s ease,
+    filter 0.35s ease;
 }
 
 .testimonial-reel-trigger:hover .testimonial-reel-thumb,
@@ -5092,7 +5162,9 @@ body.light-mode .testimonial-reel-card {
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
   font-size: 20px;
-  transition: transform 0.22s ease, background 0.22s ease;
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease;
 }
 
 .testimonial-reel-trigger:hover .testimonial-reel-play,
@@ -5359,7 +5431,9 @@ body.light-mode .testimonial-reel-card {
   object-fit: cover;
   object-position: center;
   background: #111;
-  transition: transform 0.45s ease, filter 0.35s ease;
+  transition:
+    transform 0.45s ease,
+    filter 0.35s ease;
 }
 
 .testimonial-reel-trigger:hover .testimonial-reel-preview,
@@ -5401,7 +5475,10 @@ body.light-mode .testimonial-reel-card {
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
   font-size: 20px;
-  transition: transform 0.22s ease, background 0.22s ease, opacity 0.22s ease;
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    opacity 0.22s ease;
 }
 
 .testimonial-reel-trigger:hover .testimonial-reel-play,
@@ -5546,7 +5623,8 @@ Append at the very end of styles.css
 .intro {
   position: relative;
   isolation: isolate;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 50% 34%,
       rgba(255, 255, 255, 0.1) 0%,
       rgba(255, 255, 255, 0) 30%
@@ -5584,7 +5662,8 @@ Append at the very end of styles.css
   content: "";
   position: absolute;
   inset: -6%;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 50% 38%,
       rgba(255, 255, 255, 0.1) 0%,
       rgba(255, 255, 255, 0.03) 18%,
@@ -5619,7 +5698,8 @@ Append at the very end of styles.css
 
 @media (max-width: 768px) {
   .intro {
-    background: radial-gradient(
+    background:
+      radial-gradient(
         circle at 50% 28%,
         rgba(255, 255, 255, 0.08) 0%,
         rgba(255, 255, 255, 0) 28%
@@ -5672,7 +5752,8 @@ Append at the very end of styles.css
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 50% 30%,
       rgba(255, 255, 255, 0.1) 0%,
       rgba(255, 255, 255, 0) 28%
@@ -5720,7 +5801,9 @@ Append at the very end of styles.css
     rgba(18, 18, 18, 0.14)
   );
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.38), 0 12px 30px rgba(0, 0, 0, 0.2),
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.38),
+    0 12px 30px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -5816,7 +5899,8 @@ HERO 3D TILT - append at end of styles.css
   transform-style: preserve-3d;
   transform: rotateX(calc(5deg + var(--tilt-x)))
     rotateY(calc(-2deg + var(--tilt-y))) translateZ(18px);
-  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 220ms ease;
   will-change: transform;
 }
@@ -5877,32 +5961,675 @@ HERO 3D TILT - append at end of styles.css
   }
 }
 
-.profile-img.js-rotate-images { position: relative; overflow: hidden; height: 220px; }
+.profile-img.js-rotate-images {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+}
 .profile-img.js-rotate-images img {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   opacity: 0;
   transition: opacity 500ms ease;
 }
-.profile-img.js-rotate-images img.is-active { opacity: 1; }
+.profile-img.js-rotate-images img.is-active {
+  opacity: 1;
+}
 
 .profile-img .img-dots {
   position: absolute;
-  left: 0; right: 0; bottom: 10px;
+  left: 0;
+  right: 0;
+  bottom: 10px;
   display: flex;
   justify-content: center;
   gap: 8px;
   z-index: 4;
 }
 .profile-img .img-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(180,180,180,0.55);
-  border: 1px solid rgba(255,255,255,0.35);
-  transition: background 250ms ease, transform 250ms ease;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(180, 180, 180, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition:
+    background 250ms ease,
+    transform 250ms ease;
 }
 .profile-img .img-dot.is-active {
-  background: rgba(200,200,200,0.95);
+  background: rgba(200, 200, 200, 0.95);
   transform: scale(1.1);
+}
+
+/* =============================================
+   LAUNCH OFFER PILL — GLOW PULSE
+   ============================================= */
+.launch-offer-pill {
+  animation: pillGlow 2.4s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+@keyframes pillGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0px 0px rgba(196, 30, 30, 0);
+  }
+  50% {
+    box-shadow:
+      0 0 18px 6px rgba(196, 30, 30, 0.55),
+      0 0 36px 12px rgba(196, 30, 30, 0.18);
+  }
+}
+
+/* =============================================
+   SCROLL PROGRESS BAR
+   ============================================= */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #c41e1e, #ff4444, #c41e1e);
+  z-index: 9999;
+  transition: width 0.08s linear;
+  will-change: width;
+}
+
+/* =============================================
+   CTA BUTTON SHIMMER
+   ============================================= */
+.intro-cta-btn,
+.shop-btn,
+.bat-finder-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-cta-btn::after,
+.shop-btn::after,
+.bat-finder-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: none;
+  pointer-events: none;
+}
+
+.intro-cta-btn:hover::after,
+.shop-btn:hover::after,
+.bat-finder-btn:hover::after {
+  animation: shimmerSweep 0.55s ease forwards;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 130%;
+  }
+}
+
+/* =============================================
+   WHATSAPP FAB — UPGRADED
+   ============================================= */
+.mobile-wa-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 18px;
+  z-index: 998;
+}
+
+.mobile-wa-fab .wa-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #25d366;
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 12px 18px 12px 14px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Outfit", sans-serif;
+  box-shadow:
+    0 6px 28px rgba(37, 211, 102, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+  animation: fabFloat 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.mobile-wa-fab .wa-pill:hover,
+.mobile-wa-fab .wa-pill:active {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 10px 36px rgba(37, 211, 102, 0.58),
+    0 4px 12px rgba(0, 0, 0, 0.28);
+}
+
+.wa-fab-icon {
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.wa-fab-label {
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+@keyframes fabFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* =============================================
+   PROFILE CARD 3D TILT
+   ============================================= */
+.profile-card {
+  transform-style: preserve-3d;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+  will-change: transform;
+}
+
+.profile-card:hover {
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(196, 30, 30, 0.18);
+}
+
+/* =============================================
+   RIBBON SEPARATOR
+   ============================================= */
+.ribbon-sep {
+  font-size: 13px;
+  opacity: 0.75;
+  margin: 0 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* =============================================
+   BAT FINDER FORM — MICRO-INTERACTIONS
+   ============================================= */
+
+/* Field focus glow */
+#batFinderForm .form-control:focus {
+  border-color: rgba(196, 30, 30, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(196, 30, 30, 0.12) !important;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Filled state */
+#batFinderForm .form-group {
+  position: relative;
+}
+
+#batFinderForm .form-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#batFinderForm .form-group label .field-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2ecc71;
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+#batFinderForm .form-group label .field-check svg {
+  width: 9px;
+  height: 9px;
+  stroke: #fff;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+#batFinderForm .form-group.is-filled label .field-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* WhatsApp button pulse */
+#batFinderBtn {
+  animation: waPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes waPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(37, 211, 102, 0.22),
+      0 0 20px 4px rgba(37, 211, 102, 0.1);
+  }
+}
+
+#batFinderBtn:hover {
+  animation: none;
+}
+
+/* =============================================
+   NAV ACTIVE SECTION INDICATOR
+   ============================================= */
+header nav ul li a {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+header nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: #c41e1e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+header nav ul li a.nav-active::after {
+  width: 100%;
+}
+
+/* =============================================
+   PROFILE CARDS — ANIMATED SPEC BARS
+   ============================================= */
+.profile-bars {
+  margin: 14px 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.pbar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pbar-label {
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.pbar-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pbar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #c41e1e, #ff5555);
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pbar-fill.animated {
+  /* width set by JS */
+}
+
+/* =============================================
+   TYPOGRAPHY SCALE — STANDARDISED
+   ============================================= */
+
+h1 {
+  font-family: "Outfit", sans-serif !important;
+  font-weight: 800 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.5px !important;
+}
+
+h2 {
+  font-family: "Outfit", sans-serif !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.2px !important;
+}
+
+h3 {
+  font-family: "Outfit", sans-serif !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+h4 {
+  font-family: "Inter", sans-serif !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+
+p,
+li,
+label,
+input,
+select,
+textarea {
+  font-family: "Inter", sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+}
+
+/* Standardised section spacing — 8px grid */
+.content-section {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+.content-section .row [class*="col-"] {
+  margin-bottom: 0;
+}
+
+/* Consistent section subtitle spacing */
+.thin-sep {
+  margin: 16px auto 0 !important;
+}
+
+.content-section h2 + p,
+.content-section h2 + .thin-sep {
+  margin-top: 12px !important;
+}
+
+.content-section .row + .row {
+  margin-top: 48px;
+}
+
+/* =============================================
+   PROFILE BADGE — FROSTED GLASS
+   ============================================= */
+.profile-badge {
+  background: rgba(196, 30, 30, 0.12) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(196, 30, 30, 0.35) !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-family: "Outfit", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  padding: 5px 12px !important;
+  border-radius: 50px !important;
+  box-shadow: 0 0 10px rgba(196, 30, 30, 0.15);
+  transition:
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.profile-card:hover .profile-badge {
+  box-shadow: 0 0 18px rgba(196, 30, 30, 0.35);
+  background: rgba(196, 30, 30, 0.22) !important;
+}
+
+/* =============================================
+   PROFILE SPEC BARS — LIGHT THEME FIX
+   ============================================= */
+
+/* Dark theme (default) — already set */
+.pbar-label {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Light theme override */
+body.light-mode .pbar-label {
+  color: rgba(30, 20, 20, 0.55);
+}
+
+/* Also fix the pbar track background in light theme */
+body.light-mode .pbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Founder pills in light theme */
+body.light-mode .founder-pill {
+  background: rgba(196, 30, 30, 0.08);
+  border-color: rgba(196, 30, 30, 0.3);
+  color: rgba(20, 10, 10, 0.7);
+}
+
+/* Grain counter labels in light theme */
+body.light-mode .grain-label {
+  color: rgba(20, 10, 10, 0.5);
+}
+
+/* Grain counter numbers stay red — fine as-is */
+
+/* Loader text if visible in light mode */
+body.light-mode .loader-text {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* =============================================
+   PROCESS SECTION — PARALLAX DEPTH
+   ============================================= */
+
+/* Floating grain texture overlay that shifts on scroll */
+.process-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.process-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at 20% 50%,
+      rgba(196, 30, 30, 0.07) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 80% 20%,
+      rgba(197, 160, 89, 0.05) 0%,
+      transparent 55%
+    );
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* Parallax floating orb 1 */
+.process-section::after {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(196, 30, 30, 0.06) 0%,
+    transparent 70%
+  );
+  top: -100px;
+  right: -120px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+  animation: processDrift 12s ease-in-out infinite alternate;
+}
+
+@keyframes processDrift {
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  100% {
+    transform: translateY(40px) translateX(-20px);
+  }
+}
+
+/* Keep content above the depth layers */
+.process-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Staggered depth on each process step */
+.process-list li {
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.process-list li:hover {
+  transform: translateX(10px);
+  text-shadow: 0 2px 20px rgba(196, 30, 30, 0.3);
+}
+
+/* Step number depth badge */
+.process-list li::before {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease !important;
+}
+
+.process-list li:hover::before {
+  transform: scale(1.15) !important;
+  filter: drop-shadow(2px 4px 10px rgba(196, 30, 30, 0.5)) !important;
+  animation-duration: 1s !important;
+}
+
+/* =============================================
+   DARK THEME — PITCH GREEN-BLACK COLOUR SWAP
+   Find the :root block and update these values:
+   ============================================= */
+:root {
+  --bg-body: #0a100d; /* was #0d1117 */
+  --bg-card: rgba(14, 22, 17, 0.45); /* was rgba(22,27,34,0.4) */
+  --bg-alt: #0e1711; /* was #0f1419 */
+  --nav-bg: rgba(10, 16, 13, 0.55); /* was rgba(13,17,23,0.5) */
+}
+
+/* =============================================
+   PITCH GREEN-BLACK — FOOTER & PROCESS PATCH
+   ============================================= */
+footer {
+  background: #060d09 !important; /* slightly deeper than bg-body */
+}
+
+/* Subtle green tint on card borders in dark mode */
+body:not(.light-mode) .profile-card,
+body:not(.light-mode) .team-card,
+body:not(.light-mode) .bat-finder-card {
+  border-color: rgba(30, 80, 50, 0.18) !important;
+}
+
+/* Slightly greenish tint on section alt backgrounds */
+body:not(.light-mode) .content-section.alt {
+  background: #0c1510 !important;
+}
+
+/* =============================================
+   HERO HEADLINE — SUB-375px FIX
+   ============================================= */
+@media (max-width: 375px) {
+  .chain {
+    font-size: 26px !important;
+    line-height: 1.18 !important;
+    letter-spacing: -0.3px !important;
+    word-break: break-word;
+  }
+
+  .text-intro {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .intro-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .intro-cta-btn {
+    justify-content: center !important;
+    padding: 13px 20px !important;
+    font-size: 12px !important;
+  }
+
+  .launch-offer-pill {
+    font-size: 11px !important;
+    padding: 11px 18px !important;
+    text-align: center;
+  }
+
+  .grain-counter-strip {
+    gap: 0 !important;
+  }
+
+  .grain-num {
+    font-size: 24px !important;
+  }
+
+  .grain-label {
+    font-size: 9px !important;
+    letter-spacing: 0.8px !important;
+  }
+
+  .grain-counter-item {
+    padding: 0 10px !important;
+  }
+}
+
+/* Slightly larger phones 376–480px — also needs tightening */
+@media (min-width: 376px) and (max-width: 480px) {
+  .chain {
+    font-size: 30px !important;
+    line-height: 1.15 !important;
+  }
 }

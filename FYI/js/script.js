@@ -438,6 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
     function closePopover() {
         if (!popover || !trigger) return;
         popover.hidden = true;
@@ -894,4 +895,180 @@ window.addEventListener("load", () => {
     window.addEventListener('load', updateNavState);
     updateNavState();
 })();
+
+// =============================================
+// SCROLL PROGRESS BAR
+// =============================================
+(function () {
+    var bar = document.getElementById('scroll-progress-bar');
+    if (!bar) return;
+
+    function updateBar() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = pct.toFixed(2) + '%';
+    }
+
+    window.addEventListener('scroll', updateBar, { passive: true });
+    updateBar();
+})();
+
+// =============================================
+// PROFILE CARD 3D TILT
+// =============================================
+(function () {
+    var isTouch = window.matchMedia('(hover: none)').matches;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouch || reduceMotion) return;
+
+    document.querySelectorAll('.profile-card').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+            var rect = card.getBoundingClientRect();
+            var px = (e.clientX - rect.left) / rect.width;   // 0–1
+            var py = (e.clientY - rect.top) / rect.height;  // 0–1
+            var rotateY = (px - 0.5) * 14;  // –7 to +7 deg
+            var rotateX = -(py - 0.5) * 10;  // –5 to +5 deg
+            card.style.transform = 'perspective(700px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateZ(8px)';
+        });
+
+        card.addEventListener('mouseleave', function () {
+            card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        });
+    });
+})();
+
+// =============================================
+// BAT FINDER — MICRO-INTERACTIONS
+// =============================================
+(function () {
+    var form = document.getElementById('batFinderForm');
+    if (!form) return;
+
+    // Inject check icon SVG into every label inside a .form-group
+    var groups = Array.prototype.slice.call(form.querySelectorAll('.form-group'));
+    groups.forEach(function (group) {
+        var label = group.querySelector('label');
+        if (!label) return;
+
+        var check = document.createElement('span');
+        check.className = 'field-check';
+        check.setAttribute('aria-hidden', 'true');
+        check.innerHTML = '<svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg>';
+        label.appendChild(check);
+
+        var field = group.querySelector('input, select, textarea');
+        if (!field) return;
+
+        function evaluate() {
+            var val = field.value.trim ? field.value.trim() : field.value;
+            var isEmpty = !val || val === '' || field.tagName === 'SELECT' && field.selectedIndex === 0;
+            group.classList.toggle('is-filled', !isEmpty);
+        }
+
+        field.addEventListener('change', evaluate);
+        field.addEventListener('input', evaluate);
+        evaluate(); // run on load in case of pre-filled values
+    });
+})();
+
+// =============================================
+// NAV ACTIVE SECTION INDICATOR
+// =============================================
+(function () {
+    var navLinks = Array.prototype.slice.call(
+        document.querySelectorAll('header nav ul li a[href^="#"], header nav ul li a[href^="/#"]')
+    );
+    if (!navLinks.length) return;
+
+    var sections = navLinks.map(function (link) {
+        var id = link.getAttribute('href').replace(/^\/?#/, '');
+        return document.getElementById(id);
+    }).filter(Boolean);
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            navLinks.forEach(function (link) {
+                var linkId = link.getAttribute('href').replace(/^\/?#/, '');
+                link.classList.toggle('nav-active', linkId === id);
+            });
+        });
+    }, {
+        rootMargin: '-30% 0px -60% 0px',
+        threshold: 0
+    });
+
+    sections.forEach(function (section) {
+        observer.observe(section);
+    });
+})();
+
+// =============================================
+// PROFILE CARDS — ANIMATED SPEC BARS
+// =============================================
+(function () {
+    var fills = Array.prototype.slice.call(document.querySelectorAll('.pbar-fill'));
+    if (!fills.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var fill = entry.target;
+            var target = fill.getAttribute('data-width') || '0';
+            // Slight delay so it doesn't fire before card is visible
+            setTimeout(function () {
+                fill.style.width = target + '%';
+                fill.classList.add('animated');
+            }, 120);
+            observer.unobserve(fill);
+        });
+    }, { threshold: 0.4 });
+
+    fills.forEach(function (fill) {
+        observer.observe(fill);
+    });
+})();
+
+// =============================================
+// PROCESS SECTION — SCROLL PARALLAX
+// =============================================
+(function () {
+    var section = document.querySelector('.process-section');
+    if (!section) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    function onScroll() {
+        var rect = section.getBoundingClientRect();
+        var vh = window.innerHeight;
+
+        // Only run when section is in view
+        if (rect.bottom < 0 || rect.top > vh) return;
+
+        // 0 = section top at viewport bottom, 1 = section bottom at viewport top
+        var progress = 1 - (rect.bottom / (vh + rect.height));
+
+        // Shift the ::before overlay slightly
+        var shiftY = progress * 40;
+        section.style.setProperty('--parallax-y', shiftY.toFixed(2) + 'px');
+
+        // Stagger each list item with depth offset
+        var items = section.querySelectorAll('.process-list li');
+        items.forEach(function (item, i) {
+            var depth = (i + 1) * 0.4;
+            var itemShift = progress * depth * 18;
+            item.style.transform = 'translateY(' + (-itemShift).toFixed(2) + 'px)';
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+
+
+
+
 
