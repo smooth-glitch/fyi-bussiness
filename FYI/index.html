@@ -2370,29 +2370,27 @@
       }
 
       function getScrollStep() {
-        if (!track || !viewport) return 320;
+        if (!track) return 320;
         var firstCard = track.querySelector(".testimonial-reel-card");
-        if (!firstCard) return viewport.clientWidth * 0.85;
+        if (!firstCard) return (viewport ? viewport.clientWidth : window.innerWidth) * 0.85;
         return firstCard.getBoundingClientRect().width + getGapValue();
       }
 
-      if (viewport) {
-        viewport.setAttribute("tabindex", "0");
-        viewport.setAttribute("role", "region");
-        viewport.setAttribute("aria-label", "Testimonials carousel");
+      if (track) {
+        track.setAttribute("tabindex", "0");
+        track.setAttribute("role", "region");
+        track.setAttribute("aria-label", "Testimonials carousel");
 
-        testimonialsSection.addEventListener("mouseenter", function () {
-          viewport.focus();
+        testimonialsSection.addEventListener("click", function (e) {
+          if (!e.target.closest(".testimonial-reel-trigger")) {
+            track.focus();
+          }
         });
 
-        testimonialsSection.addEventListener("click", function () {
-          viewport.focus();
-        });
-
-        testimonialsSection.addEventListener("keydown", function (e) {
+        track.addEventListener("keydown", function (e) {
           if (e.key === "ArrowLeft") {
             e.preventDefault();
-            viewport.scrollBy({
+            track.scrollBy({
               left: -(getScrollStep() * 2),
               behavior: "smooth"
             });
@@ -2400,7 +2398,7 @@
 
           if (e.key === "ArrowRight") {
             e.preventDefault();
-            viewport.scrollBy({
+            track.scrollBy({
               left: getScrollStep() * 2,
               behavior: "smooth"
             });
@@ -2408,18 +2406,18 @@
         });
       }
 
-      if (prevBtn && viewport) {
+      if (prevBtn && track) {
         prevBtn.addEventListener("click", function () {
-          viewport.scrollBy({
+          track.scrollBy({
             left: -(getScrollStep() * 2),
             behavior: "smooth"
           });
         });
       }
 
-      if (nextBtn && viewport) {
+      if (nextBtn && track) {
         nextBtn.addEventListener("click", function () {
-          viewport.scrollBy({
+          track.scrollBy({
             left: getScrollStep() * 2,
             behavior: "smooth"
           });
@@ -2427,6 +2425,7 @@
       }
     });
   </script>
+
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
