@@ -6138,7 +6138,7 @@ HERO 3D TILT - append at end of styles.css
 #batFinderForm .form-group label {
   display: flex;
   align-items: center;
-  gap: 6px;
+
 }
 
 #batFinderForm .form-group label .field-check {
