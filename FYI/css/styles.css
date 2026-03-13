@@ -6643,7 +6643,7 @@ body:not(.light-mode) .content-section.alt {
     -webkit-backdrop-filter: none !important;
     border-radius: 0 !important;
     padding: 0 !important;
-    max-width: 900px;
+    max-width: 900px;.
     margin: 0 auto;
   }
 
