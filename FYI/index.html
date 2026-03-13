@@ -2360,110 +2360,87 @@
 
       var viewport = testimonialsSection.querySelector(".testimonials-viewport");
       var track = testimonialsSection.querySelector(".testimonials-track");
+      var cards = Array.prototype.slice.call(
+        testimonialsSection.querySelectorAll(".testimonial-reel-card")
+      );
       var prevBtn = testimonialsSection.querySelector(".testimonials-nav.left");
       var nextBtn = testimonialsSection.querySelector(".testimonials-nav.right");
-      var triggers = Array.prototype.slice.call(
-        testimonialsSection.querySelectorAll(".testimonial-reel-trigger")
-      );
-      var previewVideos = Array.prototype.slice.call(
-        testimonialsSection.querySelectorAll(".testimonial-reel-preview")
-      );
 
-      var modal = document.getElementById("testimonialVideoModal");
-      var modalVideo = document.getElementById("testimonialModalVideo");
-      var modalTitle = document.getElementById("testimonialVideoTitle");
+      if (!viewport || !track || !cards.length) return;
 
-      if (!track) return;
+      var currentIndex = 0;
 
       function getGapValue() {
         var styles = window.getComputedStyle(track);
-        return parseFloat(styles.gap || styles.columnGap || 24);
+        return parseFloat(styles.gap || styles.columnGap || 24) || 24;
       }
 
-      function getScrollStep() {
-        var firstCard = track.querySelector(".testimonial-reel-card");
-        if (!firstCard) {
-          return viewport ? viewport.clientWidth * 0.85 : 320;
+      function getVisibleCards() {
+        if (window.innerWidth <= 767) return 1;
+        if (window.innerWidth <= 991) return 2;
+        return 4;
+      }
+
+      function getCardStep() {
+        return cards[0].getBoundingClientRect().width + getGapValue();
+      }
+
+      function getMaxIndex() {
+        return Math.max(0, cards.length - getVisibleCards());
+      }
+
+      function updateButtons() {
+        var maxIndex = getMaxIndex();
+
+        if (prevBtn) {
+          prevBtn.classList.toggle("is-disabled", currentIndex <= 0);
+          prevBtn.setAttribute("aria-disabled", currentIndex <= 0 ? "true" : "false");
         }
-        return firstCard.getBoundingClientRect().width + getGapValue();
+
+        if (nextBtn) {
+          nextBtn.classList.toggle("is-disabled", currentIndex >= maxIndex);
+          nextBtn.setAttribute("aria-disabled", currentIndex >= maxIndex ? "true" : "false");
+        }
+      }
+
+      function updateCarousel() {
+        var maxIndex = getMaxIndex();
+
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+        var offset = currentIndex * getCardStep();
+        track.style.transform = "translate3d(" + (-offset) + "px, 0, 0)";
+        updateButtons();
       }
 
       function scrollTestimonials(direction) {
-        track.scrollBy({
-          left: direction * getScrollStep() * 2,
-          behavior: "smooth"
-        });
+        var maxIndex = getMaxIndex();
+        var nextIndex = currentIndex + direction;
+
+        if (nextIndex < 0) nextIndex = 0;
+        if (nextIndex > maxIndex) nextIndex = maxIndex;
+
+        currentIndex = nextIndex;
+        updateCarousel();
       }
-
-      function pauseAllPreviewVideos() {
-        previewVideos.forEach(function (video) {
-          try {
-            video.pause();
-            var card = video.closest(".testimonial-reel-card");
-            if (card) card.classList.remove("is-preview-playing");
-          } catch (err) { }
-        });
-      }
-
-      function playPreview(video) {
-        if (!video) return;
-
-        video.muted = true;
-        video.defaultMuted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
-        video.setAttribute("playsinline", "");
-        video.setAttribute("autoplay", "");
-
-        var promise = video.play();
-        if (promise && typeof promise.then === "function") {
-          promise
-            .then(function () {
-              var card = video.closest(".testimonial-reel-card");
-              if (card) card.classList.add("is-preview-playing");
-            })
-            .catch(function () {
-              var card = video.closest(".testimonial-reel-card");
-              if (card) card.classList.remove("is-preview-playing");
-            });
-        }
-      }
-
-      function resumeVisiblePreviews() {
-        previewVideos.forEach(function (video) {
-          var rect = video.getBoundingClientRect();
-          var visibleHorizontally =
-            rect.right > 0 && rect.left < window.innerWidth;
-          var visibleVertically =
-            rect.bottom > 0 && rect.top < window.innerHeight;
-
-          if (visibleHorizontally && visibleVertically) {
-            playPreview(video);
-          }
-        });
-      }
-
-      track.setAttribute("tabindex", "0");
-      track.setAttribute("role", "region");
-      track.setAttribute("aria-label", "Testimonials carousel");
 
       if (prevBtn) {
         prevBtn.addEventListener("click", function () {
           scrollTestimonials(-1);
-          track.focus();
+          viewport.focus();
         });
       }
 
       if (nextBtn) {
         nextBtn.addEventListener("click", function () {
           scrollTestimonials(1);
-          track.focus();
+          viewport.focus();
         });
       }
 
-      track.addEventListener("keydown", function (e) {
+      viewport.setAttribute("tabindex", "0");
+      viewport.addEventListener("keydown", function (e) {
         if (e.key === "ArrowLeft") {
           e.preventDefault();
           scrollTestimonials(-1);
@@ -2475,125 +2452,16 @@
         }
       });
 
-      testimonialsSection.addEventListener("click", function (e) {
-        if (!e.target.closest(".testimonial-reel-trigger")) {
-          track.focus();
-        }
-      });
-
-      previewVideos.forEach(function (video) {
-        video.muted = true;
-        video.defaultMuted = true;
-        video.loop = true;
-        video.playsInline = true;
-
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
-        video.setAttribute("playsinline", "");
-        video.setAttribute("autoplay", "");
-
-        video.addEventListener("loadeddata", function () {
-          playPreview(video);
-        });
-
-        video.addEventListener("mouseenter", function () {
-          playPreview(video);
-        });
-      });
-
-      var observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            var video = entry.target;
-            var card = video.closest(".testimonial-reel-card");
-
-            if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
-              playPreview(video);
-              if (card) card.classList.add("is-preview-playing");
-            } else {
-              video.pause();
-              if (card) card.classList.remove("is-preview-playing");
-            }
-          });
-        },
-        {
-          root: viewport || null,
-          threshold: [0.25, 0.6, 0.85]
-        }
-      );
-
-      previewVideos.forEach(function (video) {
-        observer.observe(video);
-      });
-
-      triggers.forEach(function (trigger) {
-        trigger.addEventListener("click", function () {
-          var videoUrl = trigger.getAttribute("data-video");
-          var title = trigger.getAttribute("data-title") || "Player review";
-
-          pauseAllPreviewVideos();
-
-          if (modalTitle) {
-            modalTitle.textContent = title;
-          }
-
-          if (modalVideo && videoUrl) {
-            modalVideo.pause();
-            modalVideo.removeAttribute("src");
-            modalVideo.src = videoUrl;
-            modalVideo.load();
-          }
-        });
-      });
-
-      if (window.jQuery && modal) {
-        $("#testimonialVideoModal").on("shown.bs.modal", function () {
-          if (!modalVideo) return;
-
-          modalVideo.muted = false;
-          modalVideo.controls = true;
-          modalVideo.playsInline = true;
-
-          var promise = modalVideo.play();
-          if (promise && typeof promise.catch === "function") {
-            promise.catch(function () { });
-          }
-        });
-
-        $("#testimonialVideoModal").on("hidden.bs.modal", function () {
-          if (!modalVideo) return;
-
-          modalVideo.pause();
-          modalVideo.removeAttribute("src");
-          modalVideo.load();
-
-          if (modalTitle) {
-            modalTitle.textContent = "Player review";
-          }
-
-          resumeVisiblePreviews();
-          track.focus();
-        });
-      }
-
-      document.addEventListener("visibilitychange", function () {
-        if (document.hidden) {
-          pauseAllPreviewVideos();
-          if (modalVideo) modalVideo.pause();
-        } else {
-          if (!modal || !modal.classList.contains("in")) {
-            resumeVisiblePreviews();
-          }
-        }
-      });
-
       window.addEventListener("resize", function () {
-        resumeVisiblePreviews();
+        updateCarousel();
       });
 
-      resumeVisiblePreviews();
+      updateCarousel();
     });
   </script>
+
+
+
 
 
 
