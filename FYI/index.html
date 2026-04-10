@@ -122,6 +122,140 @@
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/styles.css" rel="stylesheet" />
+
+  <!-- ─── FYI polish layer – applied on top of styles.css ─── -->
+  <style>
+    /* ── Scroll progress bar ─────────────────────────── */
+    #scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent, #c8102e), #ff6b35);
+      z-index: 9999;
+      transition: width 0.1s linear;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* ── Smooth scroll ───────────────────────────────── */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ── Testimonial carousel dots ───────────────────── */
+    .testimonials-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .testimonials-dots .t-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted, #888);
+      opacity: 0.35;
+      transition: opacity 0.25s, transform 0.25s, background 0.25s;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+
+    .testimonials-dots .t-dot.is-active {
+      opacity: 1;
+      transform: scale(1.35);
+      background: var(--accent, #c8102e);
+    }
+
+    /* ── Testimonial card – lifted hover state ───────── */
+    .testimonial-reel-card {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease;
+    }
+
+    .testimonial-reel-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+    }
+
+    /* ── Nav scroll buttons ──────────────────────────── */
+    .scroll-btn {
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .scroll-btn:hover:not(.is-disabled) {
+      transform: scale(1.1);
+    }
+
+    .scroll-btn.is-disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    /* ── Focus ring for accessibility ───────────────── */
+    :focus-visible {
+      outline: 2px solid var(--accent, #c8102e);
+      outline-offset: 3px;
+    }
+
+    /* ── Profile card hover lift ─────────────────────── */
+    .profile-card {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ── Team card hover ─────────────────────────────── */
+    .team-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.14);
+    }
+
+    /* ── CTA buttons – subtle shimmer on hover ────────── */
+    .intro-cta-btn--primary {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-cta-btn--primary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.12);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .intro-cta-btn--primary:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ── Footer social icons ─────────────────────────── */
+    .footer-social a {
+      transition: color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .footer-social a:hover {
+      transform: translateY(-3px);
+    }
+
+    /* ── Ribbon – only needs 2 groups ───────────────── */
+    .fyi-ribbon__group:not([aria-hidden])+.fyi-ribbon__group[aria-hidden] {
+      /* duplicate group for seamless loop – already correct */
+    }
+  </style>
 </head>
 
 <body>
@@ -165,58 +299,28 @@
         <span class="ribbon-sep" aria-hidden="true">🏏</span>
         <span>Free Delivery within Tamilnadu</span>
         <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Rated #1 for Quality</span>
+        <span>Handpicked English Willow</span>
         <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Trusted by the Pros</span>
+        <span>2× Money-Back Guarantee</span>
         <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Free Delivery within Tamilnadu</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Rated #1 for Quality</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Trusted by the Pros</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Free Delivery within Tamilnadu</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Rated #1 for Quality</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Trusted by the Pros</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Free Delivery within Tamilnadu</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Rated #1 for Quality</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Trusted by the Pros</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Free Delivery within Tamilnadu</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Rated #1 for Quality</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Trusted by the Pros</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Free Delivery within Tamilnadu</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Rated #1 for Quality</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Trusted by the Pros</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Free Delivery within Tamilnadu</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Rated #1 for Quality</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Trusted by the Pros</span>
-        <span class="ribbon-sep" aria-hidden="true">🏏</span>
-        <span>Free Delivery within Tamilnadu</span>
+        <span>Custom Specs. Every Bat.</span>
         <span class="ribbon-sep" aria-hidden="true">🏏</span>
       </div>
 
       <!-- Duplicate for seamless loop -->
       <div class="fyi-ribbon__group" aria-hidden="true">
         <span>Rated #1 for Quality</span>
+        <span class="ribbon-sep" aria-hidden="true">🏏</span>
         <span>Trusted by the Pros</span>
+        <span class="ribbon-sep" aria-hidden="true">🏏</span>
         <span>Free Delivery within Tamilnadu</span>
-        <span>Rated #1 for Quality</span>
-        <span>Trusted by the Pros</span>
-        <span>Free Delivery within Tamilnadu</span>
+        <span class="ribbon-sep" aria-hidden="true">🏏</span>
+        <span>Handpicked English Willow</span>
+        <span class="ribbon-sep" aria-hidden="true">🏏</span>
+        <span>2× Money-Back Guarantee</span>
+        <span class="ribbon-sep" aria-hidden="true">🏏</span>
+        <span>Custom Specs. Every Bat.</span>
+        <span class="ribbon-sep" aria-hidden="true">🏏</span>
       </div>
     </div>
   </div>
@@ -1253,7 +1357,7 @@
                   </div>
 
                   <p class="testimonial-reel-quote">
-                    Vey happy with the straight grain structure, balance &
+                    Very happy with the straight grain structure, balance &
                     overall bat build and quality!
                   </p>
 
@@ -1291,8 +1395,39 @@
                 </div>
               </button>
             </article>
+
+            <!-- Card 6 — Vashisht -->
+            <article class="testimonial-reel-card" data-aos="fade-up" data-aos-delay="300">
+              <button type="button" class="testimonial-reel-trigger" data-toggle="modal"
+                data-target="#testimonialVideoModal" data-video="video/Vashisht Testimonial.mp4"
+                data-title="Vashisht - Cricketer" aria-label="Play Vashisht review video">
+                <video class="testimonial-reel-preview" muted loop playsinline autoplay preload="metadata"
+                  poster="img/thumbnail/vashisht thumbnail.png">
+                  <source src="video/Vashisht Testimonial.mp4" type="video/mp4" />
+                </video>
+
+                <span class="testimonial-reel-play">
+                  <i class="fa fa-play"></i>
+                </span>
+
+                <div class="testimonial-reel-overlay">
+                  <div class="testimonial-reel-meta">
+                    <h4>Vashisht</h4>
+                    <small>Cricketer</small>
+                  </div>
+
+                  <p class="testimonial-reel-quote">
+                    The process was transparent from start to finish — exactly
+                    what you want when buying a premium bat.
+                  </p>
+
+                  <span class="testimonial-reel-cta">Watch review</span>
+                </div>
+              </button>
+            </article>
+
             <!--
-                    <article class="testimonial-reel-card" data-aos="fade-up" data-aos-delay="300">
+                    <article class="testimonial-reel-card" data-aos="fade-up" data-aos-delay="350">
                         <button
                             type="button"
                             class="testimonial-reel-trigger"
@@ -1939,7 +2074,8 @@
 
           <!-- Optional: show email as plain text (not clickable) -->
           <div style="font-size: 13px; color: #aaa; margin-top: 6px">
-            foryourinningsfyi@gmail.com
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+              data-cfemail="076168757e6872756e69696e696074617e6e47606a666e6b2964686a">[email&#160;protected]</a>
           </div>
         </div>
         <div class="col-md-4">
@@ -2346,6 +2482,7 @@
   </div>
 
   <!-- SCRIPTS -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -2353,6 +2490,22 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-check-compat.js"></script>
   <script src="js/script.js"></script>
+  <!-- Scroll progress bar -->
+  <script>
+    (function () {
+      var bar = document.getElementById("scroll-progress-bar");
+      if (!bar) return;
+      function updateBar() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = pct.toFixed(2) + "%";
+      }
+      window.addEventListener("scroll", updateBar, { passive: true });
+      updateBar();
+    })();
+  </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var testimonialsSection = document.getElementById("testimonials");
@@ -2365,10 +2518,39 @@
       );
       var prevBtn = testimonialsSection.querySelector(".testimonials-nav.left");
       var nextBtn = testimonialsSection.querySelector(".testimonials-nav.right");
+      var dotsContainer = document.getElementById("testimonialsDots");
 
       if (!viewport || !track || !cards.length) return;
 
       var currentIndex = 0;
+
+      /* ── Build dot indicators ── */
+      function buildDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = "";
+        var maxIndex = getMaxIndex();
+        for (var i = 0; i <= maxIndex; i++) {
+          var dot = document.createElement("button");
+          dot.className = "t-dot" + (i === 0 ? " is-active" : "");
+          dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+          dot.setAttribute("type", "button");
+          (function (idx) {
+            dot.addEventListener("click", function () {
+              currentIndex = idx;
+              updateCarousel();
+            });
+          })(i);
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      function updateDots() {
+        if (!dotsContainer) return;
+        var dots = dotsContainer.querySelectorAll(".t-dot");
+        dots.forEach(function (d, i) {
+          d.classList.toggle("is-active", i === currentIndex);
+        });
+      }
 
       function getGapValue() {
         var styles = window.getComputedStyle(track);
@@ -2391,12 +2573,10 @@
 
       function updateButtons() {
         var maxIndex = getMaxIndex();
-
         if (prevBtn) {
           prevBtn.classList.toggle("is-disabled", currentIndex <= 0);
           prevBtn.setAttribute("aria-disabled", currentIndex <= 0 ? "true" : "false");
         }
-
         if (nextBtn) {
           nextBtn.classList.toggle("is-disabled", currentIndex >= maxIndex);
           nextBtn.setAttribute("aria-disabled", currentIndex >= maxIndex ? "true" : "false");
@@ -2405,22 +2585,19 @@
 
       function updateCarousel() {
         var maxIndex = getMaxIndex();
-
         if (currentIndex < 0) currentIndex = 0;
         if (currentIndex > maxIndex) currentIndex = maxIndex;
-
         var offset = currentIndex * getCardStep();
         track.style.transform = "translate3d(" + (-offset) + "px, 0, 0)";
         updateButtons();
+        updateDots();
       }
 
       function scrollTestimonials(direction) {
         var maxIndex = getMaxIndex();
         var nextIndex = currentIndex + direction;
-
         if (nextIndex < 0) nextIndex = 0;
         if (nextIndex > maxIndex) nextIndex = maxIndex;
-
         currentIndex = nextIndex;
         updateCarousel();
       }
@@ -2441,21 +2618,26 @@
 
       viewport.setAttribute("tabindex", "0");
       viewport.addEventListener("keydown", function (e) {
-        if (e.key === "ArrowLeft") {
-          e.preventDefault();
-          scrollTestimonials(-1);
-        }
-
-        if (e.key === "ArrowRight") {
-          e.preventDefault();
-          scrollTestimonials(1);
-        }
+        if (e.key === "ArrowLeft") { e.preventDefault(); scrollTestimonials(-1); }
+        if (e.key === "ArrowRight") { e.preventDefault(); scrollTestimonials(1); }
       });
 
+      /* Touch / swipe support */
+      var touchStartX = 0;
+      viewport.addEventListener("touchstart", function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      viewport.addEventListener("touchend", function (e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) scrollTestimonials(diff > 0 ? 1 : -1);
+      }, { passive: true });
+
       window.addEventListener("resize", function () {
+        buildDots();
         updateCarousel();
       });
 
+      buildDots();
       updateCarousel();
     });
   </script>
@@ -2594,16 +2776,14 @@
           dots[0].classList.add("is-active");
         }
 
-        setTimeout(function startCycle() {
-          show(1);
-          setInterval(function () {
-            var next = (current + 1) % imgs.length;
-            show(next);
-          }, 4200);
+        setTimeout(function start() {
+          show((current + 1) % imgs.length);
+          setTimeout(start, delay);
         }, delay);
       });
     });
   </script>
+
 </body>
 
 </html>
