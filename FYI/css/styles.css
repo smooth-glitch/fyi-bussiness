@@ -966,6 +966,12 @@ footer a:hover {
   transform: translateY(0);
 }
 
+.profile-clickable[aria-expanded="true"] .click-hint {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
 .profile-badge {
   position: absolute;
   top: 15px;
