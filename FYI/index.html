@@ -102,6 +102,12 @@
       --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
+    }
+
+    /* Ensures the safe-area zone above the nav is filled with the page background */
+    html {
+      background: #080808;
     }
 
     html {
@@ -358,13 +364,24 @@
       left: 0;
       right: 0;
       z-index: 5000;
+      /* Grow to fill the safe area — background extends behind notch/dynamic island */
+      height: calc(var(--nav-h) + var(--safe-top));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0;
+      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s, box-shadow 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+
+    /* Inner row — always exactly --nav-h tall, content correctly centred */
+    .nav-inner {
       height: var(--nav-h);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 40px;
-      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s, box-shadow 0.4s;
-      border-bottom: 1px solid transparent;
+      width: 100%;
     }
 
     nav#nav.scrolled {
@@ -570,7 +587,7 @@
     }
 
     @media (max-width: 1280px) {
-      nav#nav {
+      .nav-inner {
         padding: 0 24px;
       }
 
@@ -5377,25 +5394,27 @@
 
   <!-- ═══════ NAV ═══════ -->
   <nav id="nav">
-    <div class="nav-logo">
-      <img src="img/bussiness-logo-1.png" alt="For Your Innings" />
-      <span class="nav-logo-text">For Your Innings</span>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="img/bussiness-logo-1.png" alt="For Your Innings" />
+        <span class="nav-logo-text">For Your Innings</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#profiles">Profiles</a></li>
+        <li><a href="#bat-categories">Collection</a></li>
+        <li><a href="#cricket-balls">Balls</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#bat-finder">Bat Finder</a></li>
+      </ul>
+      <a href="#bat-finder" class="nav-cta">Find Your Bat</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+      </button>
     </div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#profiles">Profiles</a></li>
-      <li><a href="#bat-categories">Collection</a></li>
-      <li><a href="#cricket-balls">Balls</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#bat-finder">Bat Finder</a></li>
-    </ul>
-    <a href="#bat-finder" class="nav-cta">Find Your Bat</a>
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-      <i class="fa-solid fa-bars" id="hamburger-icon"></i>
-    </button>
   </nav>
 
   <!-- Mobile menu -->
@@ -5414,7 +5433,7 @@
   </div>
 
   <!-- ═══════ HERO ═══════ -->
-  <section id="hero" style="padding-top:var(--nav-h);">
+  <section id="hero" style="padding-top:calc(var(--nav-h) + var(--safe-top));">
     <canvas id="hero-canvas"></canvas>
     <div class="hero-vignette"></div>
     <div class="hero-gradient-bot"></div>
