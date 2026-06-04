@@ -1,0 +1,13 @@
+# robots.txt — For Your Innings (foryourinnings.com)
+# Allow all search engines to crawl and index the entire site.
+
+User-agent: *
+Allow: /
+
+# Block access to any private or utility files if they exist
+Disallow: /firebase.json
+Disallow: /.env
+Disallow: /node_modules/
+
+# Sitemap location — tells Google and Bing where to find your sitemap
+Sitemap: https://www.foryourinnings.com/sitemap.xml
