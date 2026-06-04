@@ -124,31 +124,6 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* Custom cursor only on hoverable devices */
-    @media (hover: hover) and (pointer: fine) {
-
-      body,
-      button,
-      a,
-      summary,
-      [role="button"],
-      .profile-card,
-      input,
-      textarea,
-      select {
-        cursor: none;
-      }
-    }
-
-    @media (hover: none),
-    (pointer: coarse) {
-
-      #cur-dot,
-      #cur-ring {
-        display: none !important;
-      }
-    }
-
     h1,
     h2,
     h3,
@@ -246,54 +221,6 @@
     ::selection {
       background: var(--gold);
       color: #080808;
-    }
-
-    /* ═══════════════════════════════════════════════════
-   CURSOR
-═══════════════════════════════════════════════════ */
-    #cur-dot {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
-      top: 0;
-      left: 0;
-      will-change: transform;
-      box-shadow: 0 0 10px rgba(197, 160, 89, 0.8);
-    }
-
-    #cur-ring {
-      position: fixed;
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba(197, 160, 89, 0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99998;
-      top: 0;
-      left: 0;
-      transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out), border-color 0.3s, opacity 0.3s, background 0.3s;
-      will-change: transform;
-    }
-
-    #cur-ring.hov {
-      width: 64px;
-      height: 64px;
-      border-color: var(--gold);
-      background: rgba(197, 160, 89, 0.06);
-      opacity: 0.9;
-    }
-
-    @media (hover:none),
-    (max-width:768px) {
-
-      #cur-dot,
-      #cur-ring {
-        display: none;
-      }
     }
 
     /* ═══════════════════════════════════════════════════
@@ -479,14 +406,14 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 36px;
+      gap: 22px;
       list-style: none;
     }
 
     .nav-links a {
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 2.5px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
       color: var(--muted);
       transition: color 0.25s;
@@ -635,7 +562,14 @@
       margin-top: 16px;
     }
 
-    @media (max-width:1024px) {
+    /* Hide logo text at mid-range to give nav links more room */
+    @media (max-width: 1380px) {
+      .nav-logo-text {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1280px) {
       nav#nav {
         padding: 0 24px;
       }
@@ -1370,7 +1304,7 @@
     }
 
     /* ═══════════════════════════════════════════════════
-   WHO IS FYI FOR
+   WHO IS For Your Innings FOR
 ═══════════════════════════════════════════════════ */
     .audience-grid {
       display: grid;
@@ -2936,6 +2870,10 @@
       transform: translateY(-3px) !important;
     }
 
+    .low-perf .cat-row:hover .cat-row-img img {
+      transform: none !important;
+    }
+
     .low-perf body::after {
       display: none;
     }
@@ -3749,6 +3687,1675 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ═══════════════════════════════════════════════════
+   BAT CATEGORIES — THE COLLECTION
+═══════════════════════════════════════════════════ */
+    #bat-categories {
+      position: relative;
+      overflow: hidden;
+      background: #060608;
+      padding: 160px 0;
+    }
+
+    #bat-categories::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(197, 160, 89, 0.07), transparent 60%),
+        radial-gradient(ellipse 50% 60% at 5% 90%, rgba(197, 160, 89, 0.03), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 95% 90%, rgba(197, 160, 89, 0.03), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cat-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(100px, 20vw, 300px);
+      color: rgba(255, 255, 255, 0.016);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 10px;
+      z-index: 0;
+    }
+
+    /* Grade progression strip */
+    .cat-grade-strip {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      max-width: 640px;
+      margin: 0 auto 72px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cat-gs-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      position: relative;
+    }
+
+    .cat-gs-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: calc(50% + 7px);
+      right: calc(-50% + 7px);
+      height: 1px;
+      background: rgba(197, 160, 89, 0.15);
+      z-index: 0;
+    }
+
+    .cat-gs-item:nth-child(3):not(:last-child)::after {
+      background: linear-gradient(90deg, rgba(197, 160, 89, 0.4), rgba(197, 160, 89, 0.2));
+    }
+
+    .cat-gs-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(197, 160, 89, 0.2);
+      background: transparent;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .cat-gs-item:nth-child(2) .cat-gs-dot {
+      border-color: rgba(197, 160, 89, 0.35);
+      background: rgba(197, 160, 89, 0.1);
+    }
+
+    .cat-gs-item:nth-child(3) .cat-gs-dot {
+      border-color: rgba(197, 160, 89, 0.55);
+      background: rgba(197, 160, 89, 0.22);
+    }
+
+    .cat-gs-item:last-child .cat-gs-dot {
+      width: 14px;
+      height: 14px;
+      border-color: var(--gold);
+      background: var(--gold);
+      box-shadow: 0 0 16px rgba(197, 160, 89, 0.55);
+    }
+
+    .cat-gs-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--muted-d);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .cat-gs-item:nth-child(3) .cat-gs-label {
+      color: var(--muted);
+    }
+
+    .cat-gs-item:last-child .cat-gs-label {
+      color: var(--gold);
+    }
+
+    /* ── Editorial rows layout ── */
+    .categories-rows {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cat-row {
+      display: grid;
+      grid-template-columns: 44% 56%;
+      min-height: 520px;
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.4s;
+      position: relative;
+    }
+
+    .cat-row:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-row:hover {
+      border-color: var(--border-h);
+    }
+
+    /* Flip variant: content left, image right */
+    .cat-row--flip {
+      grid-template-columns: 56% 44%;
+    }
+
+    /* ── Image column ── */
+    .cat-row-img {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #0f0f13 0%, #090910 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* hover ambient radial glow */
+    .cat-row-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(197, 160, 89, 0.07), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s;
+      z-index: 1;
+    }
+
+    .cat-row:hover .cat-row-img::after {
+      opacity: 1;
+    }
+
+    .cat-row-img img {
+      position: relative;
+      z-index: 2;
+      height: 78%;
+      max-height: 400px;
+      width: auto;
+      max-width: 68%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.62));
+      transition: transform 0.8s var(--ease-out), filter 0.55s;
+    }
+
+    .cat-row:hover .cat-row-img img {
+      transform: scale(1.05) translateY(-10px);
+      filter: drop-shadow(0 32px 52px rgba(0, 0, 0, 0.72)) drop-shadow(0 0 36px rgba(197, 160, 89, 0.2));
+    }
+
+    /* under-bat glow */
+    .cat-row-img-glow {
+      position: absolute;
+      bottom: 11%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 36px;
+      background: radial-gradient(ellipse, rgba(197, 160, 89, 0.22), transparent 70%);
+      filter: blur(14px);
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.55s;
+      pointer-events: none;
+    }
+
+    .cat-row:hover .cat-row-img-glow {
+      opacity: 1;
+    }
+
+    /* Grade number watermark */
+    .cat-row-grade-wm {
+      position: absolute;
+      bottom: -12px;
+      left: -6px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(110px, 14vw, 180px);
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.028);
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      letter-spacing: -5px;
+    }
+
+    /* ── Content column ── */
+    .cat-row-content {
+      padding: 64px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* vertical separator — on left side by default (image is on left) */
+    .cat-row-content::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 60px;
+      bottom: 60px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border-h) 25%, var(--border-h) 75%, transparent);
+      pointer-events: none;
+    }
+
+    /* flip: separator on right (image is on right) */
+    .cat-row--flip .cat-row-content::before {
+      left: auto;
+      right: 0;
+    }
+
+    /* Zeus: subtle content-side glow */
+    .cat-row--zeus .cat-row-content {
+      background: radial-gradient(ellipse 90% 70% at 85% 35%, rgba(197, 160, 89, 0.03), transparent 70%);
+    }
+
+    /* Pinnacle tag (Zeus only) */
+    .cat-pinnacle-tag {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      background: rgba(197, 160, 89, 0.06);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .cat-row--zeus .cat-pinnacle-tag {
+      display: flex;
+    }
+
+    /* Grade label */
+    .cat-row-grade-lbl {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cat-row-grade-lbl::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* Symbol + name block */
+    .cat-title-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+
+    /* Greek god symbol SVG */
+    .cat-god-symbol {
+      width: 52px;
+      height: 52px;
+      color: var(--gold);
+      opacity: 0.85;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.2));
+      transition: opacity 0.3s, transform 0.4s var(--ease-spring), filter 0.4s;
+    }
+
+    .cat-row:hover .cat-god-symbol {
+      opacity: 1;
+      transform: scale(1.12);
+      filter: drop-shadow(0 0 20px rgba(197, 160, 89, 0.5));
+    }
+
+    .cat-row-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(44px, 4.5vw, 64px);
+      font-weight: 900;
+      letter-spacing: -2.5px;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    /* Zeus name gets gold gradient */
+    .cat-row--zeus .cat-row-name {
+      background: var(--grad-gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cat-row-tagline {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cat-row-tagline::after {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(197, 160, 89, 0.6), transparent);
+      flex-shrink: 0;
+    }
+
+    .cat-row-desc {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.85;
+      margin-bottom: 28px;
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    /* Specs table */
+    .cat-spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-bottom: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cat-spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .cat-spec-key {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted-d);
+    }
+
+    .cat-spec-val {
+      font-size: 13px;
+      color: var(--text-soft);
+      font-weight: 500;
+      letter-spacing: -0.2px;
+    }
+
+    .cat-spec-val--gold {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Row CTA */
+    .cat-row-cta {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 32px;
+      background: none;
+      border: 1px solid var(--border-h);
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s, background 0.25s, transform 0.3s var(--ease-out);
+      align-self: flex-start;
+    }
+
+    .cat-row-cta i {
+      font-size: 11px;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .cat-row-cta:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(197, 160, 89, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .cat-row-cta:hover i {
+      transform: translateX(5px);
+    }
+
+    .cat-row--zeus .cat-row-cta {
+      background: rgba(197, 160, 89, 0.08);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .cat-row--zeus .cat-row-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transition: left 0.7s var(--ease-out);
+    }
+
+    .cat-row--zeus .cat-row-cta:hover {
+      background: var(--gold);
+      color: #080808;
+    }
+
+    .cat-row--zeus .cat-row-cta:hover::before {
+      left: 100%;
+    }
+
+    /* Responsive — collection rows */
+    @media (max-width: 1100px) {
+      .cat-row {
+        grid-template-columns: 42% 58%;
+        min-height: 460px;
+      }
+
+      .cat-row--flip {
+        grid-template-columns: 58% 42%;
+      }
+
+      .cat-row-content {
+        padding: 52px 44px;
+      }
+
+      #bat-categories {
+        padding: 130px 0;
+      }
+
+      .cat-grade-strip {
+        margin-bottom: 56px;
+        max-width: 480px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .cat-row,
+      .cat-row--flip {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      /* Always: image on top, content below */
+      .cat-row-img {
+        min-height: 340px;
+        order: 1;
+      }
+
+      .cat-row-content {
+        order: 2;
+        padding: 44px 36px;
+      }
+
+      /* Swap vertical separator to horizontal */
+      .cat-row-content::before,
+      .cat-row--flip .cat-row-content::before {
+        top: 0;
+        bottom: auto;
+        left: 44px;
+        right: 44px;
+        width: auto;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--border-h) 20%, var(--border-h) 80%, transparent);
+      }
+
+      .cat-row-img img {
+        max-height: 280px;
+        max-width: 52%;
+      }
+
+      .cat-row-name {
+        font-size: clamp(40px, 7vw, 52px);
+      }
+
+      #bat-categories {
+        padding: 100px 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cat-row-content {
+        padding: 36px 24px;
+      }
+
+      .cat-title-block {
+        gap: 14px;
+      }
+
+      .cat-god-symbol {
+        width: 40px;
+        height: 40px;
+      }
+
+      .cat-row-name {
+        font-size: clamp(34px, 9.5vw, 46px);
+      }
+
+      .cat-row-desc {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .cat-spec-grid {
+        gap: 12px 20px;
+        margin-bottom: 24px;
+        padding-top: 18px;
+      }
+
+      .cat-row-img {
+        min-height: 280px;
+      }
+
+      .cat-row-img img {
+        max-height: 240px;
+        max-width: 62%;
+      }
+
+      #bat-categories {
+        padding: 70px 0;
+      }
+
+      .cat-grade-strip {
+        display: none;
+      }
+
+      .cat-row-cta {
+        align-self: stretch;
+        justify-content: center;
+        padding: 16px 24px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════
+   CRICKET BALLS — THE RANGE
+═══════════════════════════════════════════════════ */
+    #cricket-balls {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .balls-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    /* Card */
+    .ball-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.45s var(--ease-out), box-shadow 0.45s, border-color 0.35s;
+    }
+
+    .ball-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(197, 160, 89, 0.75) 0%, transparent 35%, transparent 65%, rgba(197, 160, 89, 0.75) 100%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 1px;
+      z-index: 4;
+    }
+
+    .ball-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5), 0 0 40px rgba(197, 160, 89, 0.1);
+      border-color: transparent;
+    }
+
+    .ball-card:hover::before {
+      opacity: 0.5;
+    }
+
+    .ball-card--premium {
+      border-color: rgba(197, 160, 89, 0.16);
+    }
+
+    .ball-card--premium:hover {
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5), 0 0 60px rgba(197, 160, 89, 0.18), 0 0 0 1px rgba(197, 160, 89, 0.14);
+    }
+
+    /* Ball image area */
+    .ball-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 42%, #1c1c22 0%, #0d0d10 50%, #060608 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Radial vignette — mimics sphere lighting + hides non-professional shots */
+    .ball-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle 42% at 50% 46%, transparent 22%, rgba(6, 6, 8, 0.92) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ball-img-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+      filter: brightness(0.78) contrast(1.12) saturate(0.82) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.75));
+      transition: transform 0.7s var(--ease-out), filter 0.5s;
+    }
+
+    .ball-card:hover .ball-img-wrap img {
+      transform: scale(1.08) translateY(-6px);
+      filter: brightness(0.92) contrast(1.08) saturate(0.95) drop-shadow(0 18px 36px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 22px rgba(200, 50, 50, 0.28));
+    }
+
+    /* Crimson ambient glow under ball on hover */
+    .ball-img-glow {
+      position: absolute;
+      bottom: 9%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 24px;
+      background: radial-gradient(ellipse, rgba(200, 50, 50, 0.22), transparent 70%);
+      filter: blur(10px);
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .ball-card:hover .ball-img-glow {
+      opacity: 1;
+    }
+
+    /* Ball card body */
+    .ball-body {
+      padding: 24px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .ball-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 3px;
+      margin-bottom: 12px;
+    }
+
+    .ball-price-currency {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .ball-price-amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: var(--text);
+      line-height: 0.9;
+      letter-spacing: -1px;
+    }
+
+    .ball-card--premium .ball-price-amount {
+      background: var(--grad-gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .ball-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.05;
+    }
+
+    .ball-tagline {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ball-tagline::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(197, 160, 89, 0.35), transparent);
+    }
+
+    .ball-desc {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.8;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .ball-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .ball-features li {
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      line-height: 1.5;
+    }
+
+    .ball-features li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .ball-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px;
+      background: none;
+      border: 1px solid var(--border-h);
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s, background 0.25s, transform 0.25s;
+    }
+
+    .ball-cta i {
+      font-size: 15px;
+    }
+
+    .ball-cta:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(197, 160, 89, 0.06);
+      transform: translateY(-1px);
+    }
+
+    .ball-card--premium .ball-cta {
+      background: rgba(197, 160, 89, 0.08);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .ball-card--premium .ball-cta:hover {
+      background: var(--gold);
+      color: #080808;
+    }
+
+    /* Mission CTA box */
+    .balls-mission {
+      position: relative;
+      padding: 52px 60px;
+      border: 1px solid var(--border);
+      background: var(--bg-elev);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .balls-mission::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 80% at 50% 50%, rgba(197, 160, 89, 0.04), transparent 70%);
+      pointer-events: none;
+    }
+
+    .balls-mission > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .balls-mission-tagline {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .balls-mission-tagline::before,
+    .balls-mission-tagline::after {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    .balls-mission-tagline::after {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .balls-mission-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .balls-mission-title em {
+      font-style: normal;
+      background: var(--grad-gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .balls-mission-sub {
+      font-size: 16px;
+      color: var(--text-soft);
+      font-weight: 300;
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
+    }
+
+    .balls-mission-cta {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 44px;
+      background: var(--gold);
+      color: #080808;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.35s, box-shadow 0.35s;
+      box-shadow: 0 0 28px rgba(197, 160, 89, 0.3);
+    }
+
+    .balls-mission-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transition: left 0.7s var(--ease-out);
+    }
+
+    .balls-mission-cta i {
+      font-size: 20px;
+    }
+
+    .balls-mission-cta:hover {
+      background: var(--gold2);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 44px rgba(197, 160, 89, 0.5);
+      color: #080808;
+    }
+
+    .balls-mission-cta:hover::before {
+      left: 100%;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .balls-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .balls-mission {
+        padding: 44px 40px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .balls-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 44px;
+      }
+
+      .balls-mission {
+        padding: 36px 28px;
+      }
+
+      .balls-mission-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 32px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════
+   BAT CATEGORIES — CARD GRID
+═══════════════════════════════════════════════════ */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cat-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.45s var(--ease-out), box-shadow 0.45s, border-color 0.35s;
+    }
+
+    /* gradient corner border on hover */
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(197, 160, 89, 0.75) 0%, transparent 35%, transparent 65%, rgba(197, 160, 89, 0.75) 100%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 1px;
+      z-index: 4;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 72px rgba(0, 0, 0, 0.55), 0 0 50px rgba(197, 160, 89, 0.1);
+      border-color: transparent;
+    }
+
+    .cat-card:hover::before {
+      opacity: 0.55;
+    }
+
+    /* Zeus — pinnacle treatment */
+    .cat-card--zeus {
+      border-color: rgba(197, 160, 89, 0.18);
+    }
+
+    .cat-card--zeus:hover {
+      box-shadow: 0 28px 72px rgba(0, 0, 0, 0.55), 0 0 80px rgba(197, 160, 89, 0.2), 0 0 0 1px rgba(197, 160, 89, 0.16);
+    }
+
+    /* Top accent bar (animated in) */
+    .cat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold2));
+      transition: width 0.6s 0.15s var(--ease-out);
+      z-index: 5;
+    }
+
+    .cat-card.in::after {
+      width: 100%;
+    }
+
+    .cat-card--zeus::after {
+      background: var(--grad-gold);
+      box-shadow: 0 0 14px rgba(197, 160, 89, 0.4);
+    }
+
+    /* Image area */
+    .cat-img-wrap {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #0f0f13 0%, #090910 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* hover ambient glow */
+    .cat-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(197, 160, 89, 0.07), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s;
+      z-index: 1;
+    }
+
+    .cat-card:hover .cat-img-wrap::after {
+      opacity: 1;
+    }
+
+    .cat-img-wrap img {
+      position: relative;
+      z-index: 2;
+      height: 82%;
+      max-height: 252px;
+      width: auto;
+      max-width: 70%;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.6));
+      transition: transform 0.75s var(--ease-out), filter 0.5s;
+    }
+
+    .cat-card:hover .cat-img-wrap img {
+      transform: scale(1.06) translateY(-8px);
+      filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 28px rgba(197, 160, 89, 0.18));
+    }
+
+    /* under-bat ambient glow */
+    .cat-img-glow {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 26px;
+      background: radial-gradient(ellipse, rgba(197, 160, 89, 0.22), transparent 70%);
+      filter: blur(10px);
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .cat-card:hover .cat-img-glow {
+      opacity: 1;
+    }
+
+    /* grade badge */
+    .cat-grade-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      padding: 5px 12px;
+      background: rgba(8, 8, 8, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .cat-card--zeus .cat-grade-badge {
+      background: var(--gold);
+      color: #080808;
+      border-color: var(--gold2);
+      box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+    }
+
+    /* card body */
+    .cat-body {
+      padding: 20px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .cat-pinnacle-tag {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      background: rgba(197, 160, 89, 0.06);
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
+    .cat-card--zeus .cat-pinnacle-tag {
+      display: flex;
+    }
+
+    .cat-grade-lbl {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cat-grade-lbl::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .cat-title-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .cat-god-symbol {
+      width: 34px;
+      height: 34px;
+      color: var(--gold);
+      opacity: 0.85;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.2));
+      transition: opacity 0.3s, transform 0.4s var(--ease-spring), filter 0.4s;
+    }
+
+    .cat-card:hover .cat-god-symbol {
+      opacity: 1;
+      transform: scale(1.12);
+      filter: drop-shadow(0 0 16px rgba(197, 160, 89, 0.5));
+    }
+
+    /* PNG icon — natural aspect ratio at fixed height so transparent padding doesn't skew alignment */
+    img.cat-god-symbol {
+      display: block;
+      width: auto;
+      height: 32px;
+      max-width: 48px;
+      flex-shrink: 0;
+      opacity: 1;
+      align-self: center;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      filter: contrast(1.3) brightness(1.1) saturate(1.2) drop-shadow(0 0 10px rgba(197, 160, 89, 0.25));
+    }
+
+    .cat-card:hover img.cat-god-symbol {
+      filter: contrast(1.25) brightness(1.15) saturate(1.25) drop-shadow(0 0 18px rgba(197, 160, 89, 0.55));
+    }
+
+    .cat-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(22px, 2.2vw, 28px);
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .cat-card--zeus .cat-name {
+      background: var(--grad-gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cat-tagline {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cat-tagline::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(197, 160, 89, 0.4), transparent);
+    }
+
+    .cat-desc {
+      font-size: 12px;
+      color: var(--text-soft);
+      line-height: 1.75;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .cat-spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 14px;
+      margin-bottom: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cat-card .cat-spec-key {
+      font-size: 7px;
+    }
+
+    .cat-card .cat-spec-val {
+      font-size: 11px;
+    }
+
+    .cat-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px;
+      background: none;
+      border: 1px solid var(--border-h);
+      font-family: 'Outfit', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s, background 0.25s, transform 0.25s;
+    }
+
+    .cat-cta i {
+      font-size: 10px;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .cat-cta:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(197, 160, 89, 0.06);
+      transform: translateY(-1px);
+    }
+
+    .cat-cta:hover i {
+      transform: translateX(4px);
+    }
+
+    .cat-card--zeus .cat-cta {
+      background: rgba(197, 160, 89, 0.08);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .cat-card--zeus .cat-cta:hover {
+      background: var(--gold);
+      color: #080808;
+    }
+
+    @media (max-width: 1100px) {
+      .categories-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .cat-img-wrap {
+        height: 270px;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .cat-img-wrap {
+        height: 250px;
+      }
+
+      .cat-grade-strip {
+        display: none;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════
+   ANIMATION POLISH — BAT CATEGORIES & BALLS
+═══════════════════════════════════════════════════ */
+
+    /* Gold keyword highlight for headings */
+    .kw {
+      background: var(--grad-gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Cat rows: directional two-panel entrance ── */
+
+    /* Parent row fades; children do the directional slide */
+    .cat-row.reveal {
+      transform: none;
+    }
+
+    /* Image panel slides from its natural side */
+    .cat-row .cat-row-img {
+      opacity: 0;
+      transform: translateX(-56px);
+      transition: opacity 1s 0.04s var(--ease-out), transform 1s 0.04s var(--ease-out), filter 0.55s;
+    }
+
+    .cat-row--flip .cat-row-img {
+      transform: translateX(56px);
+    }
+
+    /* Content panel slides from opposite side */
+    .cat-row .cat-row-content {
+      opacity: 0;
+      transform: translateX(56px);
+      transition: opacity 1s 0.18s var(--ease-out), transform 1s 0.18s var(--ease-out);
+    }
+
+    .cat-row--flip .cat-row-content {
+      transform: translateX(-56px);
+    }
+
+    .cat-row.in .cat-row-img,
+    .cat-row.in .cat-row-content {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Gold top-border sweeps in on hover */
+    .cat-row::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold) 25%, var(--gold2) 50%, var(--gold) 75%, transparent);
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: opacity 0.4s, transform 0.6s var(--ease-out);
+      z-index: 6;
+    }
+
+    .cat-row:hover::before {
+      opacity: 0.65;
+      transform: scaleX(1);
+    }
+
+    .cat-row--zeus:hover::before {
+      opacity: 1;
+      box-shadow: 0 2px 16px rgba(197, 160, 89, 0.35);
+    }
+
+    /* Separator line draws in vertically after row enters */
+    .cat-row-content::before {
+      transform-origin: top center;
+      transform: scaleY(0);
+      transition: transform 0.75s 0.58s var(--ease-out);
+    }
+
+    .cat-row.in .cat-row-content::before {
+      transform: scaleY(1);
+    }
+
+    /* God symbol: spring entrance after content slides in */
+    .cat-row:not(.in) .cat-god-symbol {
+      opacity: 0;
+      transform: scale(0.55) rotate(-20deg);
+    }
+
+    .cat-row.in .cat-god-symbol {
+      opacity: 0.85;
+      transform: scale(1) rotate(0deg);
+      transition: opacity 0.45s 0.70s var(--ease-out), transform 0.5s 0.70s var(--ease-spring), filter 0.4s;
+    }
+
+    .cat-row.in:hover .cat-god-symbol {
+      opacity: 1;
+      transform: scale(1.12) rotate(0deg);
+      filter: drop-shadow(0 0 20px rgba(197, 160, 89, 0.5));
+      transition: opacity 0.3s, transform 0.4s var(--ease-spring), filter 0.4s;
+    }
+
+    /* Spec items: staggered fade-up after content arrives */
+    .cat-spec-item {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.42s var(--ease-out), transform 0.42s var(--ease-out);
+    }
+
+    .cat-row.in .cat-spec-item,
+    .cat-card.in .cat-spec-item {
+      opacity: 1;
+      transform: none;
+    }
+
+    .cat-row.in .cat-spec-item:nth-child(1) { transition-delay: 0.50s; }
+    .cat-row.in .cat-spec-item:nth-child(2) { transition-delay: 0.57s; }
+    .cat-row.in .cat-spec-item:nth-child(3) { transition-delay: 0.64s; }
+    .cat-row.in .cat-spec-item:nth-child(4) { transition-delay: 0.71s; }
+    .cat-row.in .cat-spec-item:nth-child(5) { transition-delay: 0.78s; }
+    .cat-row.in .cat-spec-item:nth-child(6) { transition-delay: 0.85s; }
+
+    /* Card stagger — shorter delays since whole card already fades in */
+    .cat-card.in .cat-spec-item:nth-child(1) { transition-delay: 0.20s; }
+    .cat-card.in .cat-spec-item:nth-child(2) { transition-delay: 0.26s; }
+    .cat-card.in .cat-spec-item:nth-child(3) { transition-delay: 0.32s; }
+    .cat-card.in .cat-spec-item:nth-child(4) { transition-delay: 0.38s; }
+
+    /* Cat row name: subtle shimmer on row enter */
+    .cat-row:not(.in) .cat-row-name {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .cat-row.in .cat-row-name {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.55s 0.28s var(--ease-out), transform 0.55s 0.28s var(--ease-out);
+    }
+
+    .cat-row--zeus .cat-row-name {
+      /* keep the gold gradient on Zeus */
+      background: var(--grad-gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Pinnacle tag slides in for Zeus */
+    .cat-row:not(.in) .cat-pinnacle-tag {
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+
+    .cat-row.in .cat-pinnacle-tag {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.4s 0.22s var(--ease-out), transform 0.4s 0.22s var(--ease-out);
+    }
+
+    /* ── Cricket ball cards: polish ── */
+
+    /* Top accent bar animates in on scroll */
+    .ball-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold2));
+      transition: width 0.65s 0.15s var(--ease-out);
+      z-index: 5;
+    }
+
+    .ball-card.in::after {
+      width: 100%;
+    }
+
+    .ball-card--premium::after {
+      background: var(--grad-gold);
+      box-shadow: 0 0 14px rgba(197, 160, 89, 0.4);
+    }
+
+    /* Price appears with a pop */
+    .ball-card:not(.in) .ball-price-amount {
+      opacity: 0;
+      transform: scale(0.75) translateY(8px);
+    }
+
+    .ball-card.in .ball-price-amount {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.5s 0.28s var(--ease-out), transform 0.55s 0.28s var(--ease-spring);
+    }
+
+    /* Ball name slides up */
+    .ball-card:not(.in) .ball-name {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .ball-card.in .ball-name {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.45s 0.38s var(--ease-out), transform 0.45s 0.38s var(--ease-out);
+    }
+
+    /* Mobile: replace horizontal slides with simple fade */
+    @media (max-width: 900px) {
+      .cat-row .cat-row-img,
+      .cat-row--flip .cat-row-img {
+        transform: translateY(-20px);
+      }
+
+      .cat-row .cat-row-content,
+      .cat-row--flip .cat-row-content {
+        transform: translateY(-16px);
+      }
+
+      .cat-row-content::before,
+      .cat-row--flip .cat-row-content::before {
+        transform-origin: left center !important;
+        transform: scaleX(0) !important;
+        transition: transform 0.6s 0.32s var(--ease-out) !important;
+      }
+
+      .cat-row.in .cat-row-content::before {
+        transform: scaleX(1) !important;
+      }
+    }
+
+    /* Reduced motion: skip all entrance transforms */
+    @media (prefers-reduced-motion: reduce) {
+      .cat-row .cat-row-img,
+      .cat-row--flip .cat-row-img,
+      .cat-row .cat-row-content,
+      .cat-row--flip .cat-row-content {
+        opacity: 1 !important;
+        transform: none !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .cat-spec-item,
+      .cat-row:not(.in) .cat-row-name,
+      .cat-row:not(.in) .cat-pinnacle-tag,
+      .cat-card::after,
+      .ball-card:not(.in) .ball-name {
+        opacity: 1 !important;
+        transform: none !important;
+        transition-duration: 0.01ms !important;
+        width: 100% !important;
+      }
+
+      .cat-row-content::before {
+        transform: scaleY(1) !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .cat-row:not(.in) .cat-god-symbol {
+        opacity: 0.85 !important;
+        transform: scale(1) !important;
+      }
+
+      .ball-card::after {
+        width: 100% !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .ball-card:not(.in) .ball-price-amount,
+      .ball-card:not(.in) .ball-name {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -3756,16 +5363,12 @@
   <!-- Skip to content (accessibility) -->
   <a href="#hero" class="skip-link">Skip to content</a>
 
-  <!-- Cursor -->
-  <div id="cur-dot"></div>
-  <div id="cur-ring"></div>
-
   <!-- Progress -->
   <div id="progress"></div>
 
   <!-- Loader -->
   <div id="loader">
-    <img src="img/bussiness-logo-1.png" alt="FYI" class="loader-logo" />
+    <img src="img/bussiness-logo-1.png" alt="For Your Innings" class="loader-logo" />
     <div class="loader-word">HANDPICKED &nbsp;·&nbsp; CUSTOM &nbsp;·&nbsp; PREMIUM</div>
     <div class="loader-bar-wrap">
       <div class="loader-bar-fill"></div>
@@ -3775,12 +5378,14 @@
   <!-- ═══════ NAV ═══════ -->
   <nav id="nav">
     <div class="nav-logo">
-      <img src="img/bussiness-logo-1.png" alt="FYI" />
+      <img src="img/bussiness-logo-1.png" alt="For Your Innings" />
       <span class="nav-logo-text">For Your Innings</span>
     </div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#profiles">Profiles</a></li>
+      <li><a href="#bat-categories">Collection</a></li>
+      <li><a href="#cricket-balls">Balls</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#testimonials">Reviews</a></li>
@@ -3797,6 +5402,8 @@
   <div class="mobile-menu" id="mobile-menu">
     <a href="#about" class="mm-link">About</a>
     <a href="#profiles" class="mm-link">Profiles</a>
+    <a href="#bat-categories" class="mm-link">Collection</a>
+    <a href="#cricket-balls" class="mm-link">Balls</a>
     <a href="#team" class="mm-link">Team</a>
     <a href="#process" class="mm-link">Process</a>
     <a href="#testimonials" class="mm-link">Reviews</a>
@@ -3892,7 +5499,7 @@
     </div>
   </section>
 
-  <!-- ═══════ WHO IS FYI FOR ═══════ -->
+  <!-- ═══════ WHO IS For Your Innings FOR ═══════ -->
   <section class="section section-alt">
     <div class="container">
       <div class="section-head reveal">
@@ -4127,6 +5734,290 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════ BAT CATEGORIES — THE COLLECTION ═══════ -->
+  <section id="bat-categories">
+    <div class="cat-bg-text">COLLECTION</div>
+    <div class="container" style="position:relative;z-index:1;">
+
+      <div class="section-head reveal">
+        <span class="section-label">The Collection</span>
+        <h2 class="section-title">Every <span class="kw">Stage.</span> Every <span class="kw">Player.</span></h2>
+        <p class="section-sub">Four grades of premium English willow — each crafted to match where you are, and where you're going.</p>
+        <div class="sep"></div>
+      </div>
+
+      <!-- Grade progression indicator -->
+      <div class="cat-grade-strip reveal">
+        <div class="cat-gs-item">
+          <div class="cat-gs-dot"></div>
+          <span class="cat-gs-label">Orion<br />Grade 4</span>
+        </div>
+        <div class="cat-gs-item">
+          <div class="cat-gs-dot"></div>
+          <span class="cat-gs-label">Titan<br />Grade 3</span>
+        </div>
+        <div class="cat-gs-item">
+          <div class="cat-gs-dot"></div>
+          <span class="cat-gs-label">Hercules<br />Grade 2</span>
+        </div>
+        <div class="cat-gs-item">
+          <div class="cat-gs-dot"></div>
+          <span class="cat-gs-label">Zeus<br />Grade 1</span>
+        </div>
+      </div>
+
+      <div class="categories-grid">
+
+        <!-- ORION — Grade 4 -->
+        <div class="cat-card cat-card--orion reveal" style="transition-delay:0s">
+          <div class="cat-img-wrap">
+            <img src="img/categories/orion.png" alt="Orion — Grade 4 English Willow Cricket Bat" loading="lazy" decoding="async" />
+            <div class="cat-img-glow"></div>
+            <div class="cat-grade-badge">Grade 4</div>
+          </div>
+          <div class="cat-body">
+            <div class="cat-grade-lbl">Grade 4 · English Willow</div>
+            <div class="cat-title-block">
+              <img src="img/icons/orion%20logo-Photoroom.png" class="cat-god-symbol" alt="" aria-hidden="true" loading="lazy" />
+              <h3 class="cat-name">Orion</h3>
+            </div>
+            <div class="cat-tagline">Growth &amp; Progression</div>
+            <p class="cat-desc">Where every journey begins. Reliable, balanced, and built to shape your game.</p>
+            <div class="cat-spec-grid">
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Target Player</span>
+                <span class="cat-spec-val">Rising &amp; Academy</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Best For</span>
+                <span class="cat-spec-val">Nets + Match Play</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Pressing</span>
+                <span class="cat-spec-val">Medium – Hard</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Ready In</span>
+                <span class="cat-spec-val">5 – 8 Sessions</span>
+              </div>
+            </div>
+            <a href="#bat-finder" class="cat-cta">Explore Orion <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- TITAN — Grade 3 -->
+        <div class="cat-card cat-card--titan reveal" style="transition-delay:0.1s">
+          <div class="cat-img-wrap">
+            <img src="img/categories/titan.png" alt="Titan — Grade 3 English Willow Cricket Bat" loading="lazy" decoding="async" />
+            <div class="cat-img-glow"></div>
+            <div class="cat-grade-badge">Grade 3</div>
+          </div>
+          <div class="cat-body">
+            <div class="cat-grade-lbl">Grade 3 · English Willow</div>
+            <div class="cat-title-block">
+              <img src="img/icons/titan%20logo-Photoroom.png" class="cat-god-symbol" alt="" aria-hidden="true" loading="lazy" />
+              <h3 class="cat-name">Titan</h3>
+            </div>
+            <div class="cat-tagline">Power &amp; Presence</div>
+            <p class="cat-desc">Strength meets consistency for the evolving cricketer. Built to take your performance to the next level.</p>
+            <div class="cat-spec-grid">
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Target Player</span>
+                <span class="cat-spec-val">Club &amp; Competitive</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Best For</span>
+                <span class="cat-spec-val">League Cricket</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Pressing</span>
+                <span class="cat-spec-val">Medium</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Ready In</span>
+                <span class="cat-spec-val">4 – 6 Sessions</span>
+              </div>
+            </div>
+            <a href="#bat-finder" class="cat-cta">Explore Titan <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- HERCULES — Grade 2 -->
+        <div class="cat-card cat-card--hercules reveal" style="transition-delay:0.2s">
+          <div class="cat-img-wrap">
+            <img src="img/categories/hercules.png" alt="Hercules — Grade 2 English Willow Cricket Bat" loading="lazy" decoding="async" />
+            <div class="cat-img-glow"></div>
+            <div class="cat-grade-badge">Grade 2</div>
+          </div>
+          <div class="cat-body">
+            <div class="cat-grade-lbl">Grade 2 · English Willow</div>
+            <div class="cat-title-block">
+              <img src="img/icons/hercules%20logo-Photoroom.png" class="cat-god-symbol" alt="" aria-hidden="true" loading="lazy" />
+              <h3 class="cat-name">Hercules</h3>
+            </div>
+            <div class="cat-tagline">Strength &amp; Balance</div>
+            <p class="cat-desc">Engineered for power, trusted by serious players. Dominate the crease with every shot you play.</p>
+            <div class="cat-spec-grid">
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Target Player</span>
+                <span class="cat-spec-val">Serious Competitive</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Best For</span>
+                <span class="cat-spec-val">Tournament Cricket</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Pressing</span>
+                <span class="cat-spec-val">Soft – Medium</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Ready In</span>
+                <span class="cat-spec-val">2 – 4 Sessions</span>
+              </div>
+            </div>
+            <a href="#bat-finder" class="cat-cta">Explore Hercules <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ZEUS — Grade 1 -->
+        <div class="cat-card cat-card--zeus reveal" style="transition-delay:0.3s">
+          <div class="cat-img-wrap">
+            <img src="img/categories/zeus.png" alt="Zeus — Grade 1 English Willow Cricket Bat" loading="lazy" decoding="async" />
+            <div class="cat-img-glow"></div>
+            <div class="cat-grade-badge">Grade 1</div>
+          </div>
+          <div class="cat-body">
+            <div class="cat-pinnacle-tag"><i class="fa-solid fa-bolt" style="font-size:7px"></i> Grade 1 Pinnacle</div>
+            <div class="cat-grade-lbl">Grade 1 · English Willow</div>
+            <div class="cat-title-block">
+              <img src="img/icons/zeus%20logo-Photoroom.png" class="cat-god-symbol" alt="" aria-hidden="true" loading="lazy" />
+              <h3 class="cat-name">Zeus</h3>
+            </div>
+            <div class="cat-tagline">Peak Performance</div>
+            <p class="cat-desc">The pinnacle of craftsmanship. Unleash elite power — play like the gods of the game.</p>
+            <div class="cat-spec-grid">
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Target Player</span>
+                <span class="cat-spec-val">Elite &amp; Semi-Pro</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Best For</span>
+                <span class="cat-spec-val cat-spec-val--gold">Match Use Only</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Pressing</span>
+                <span class="cat-spec-val">Soft</span>
+              </div>
+              <div class="cat-spec-item">
+                <span class="cat-spec-key">Ready In</span>
+                <span class="cat-spec-val cat-spec-val--gold">1 – 2 Sessions</span>
+              </div>
+            </div>
+            <a href="#bat-finder" class="cat-cta">Explore Zeus <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CRICKET BALLS ═══════ -->
+  <section class="section section-alt" id="cricket-balls">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <span class="section-label">Cricket Balls</span>
+        <h2 class="section-title">Our Red Leather <span class="kw">Collection</span></h2>
+        <p class="section-sub">Every cricketer has a different game — so we made a different ball for each one.</p>
+        <div class="sep"></div>
+      </div>
+
+      <div class="balls-grid">
+
+        <!-- SELECT -->
+        <div class="ball-card ball-card--select reveal" style="transition-delay:0s">
+          <div class="ball-img-wrap">
+            <img src="img/red%20balls/select.png" alt="Select Cricket Ball" loading="lazy" decoding="async" />
+            <div class="ball-img-glow"></div>
+          </div>
+          <div class="ball-body">
+            <div class="ball-price-row">
+              <span class="ball-price-currency">₹</span>
+              <span class="ball-price-amount count-up" data-target="249">249</span>
+            </div>
+            <div class="ball-name">Select</div>
+            <div class="ball-tagline">Never Stop Playing</div>
+            <p class="ball-desc">Built for the players who never stop playing. Strong seam, durable body — perfect for drills, events, and weekend games.</p>
+            <ul class="ball-features">
+              <li>Strong, well-defined seam</li>
+              <li>Durable, long-lasting body</li>
+              <li>Ideal for drills &amp; casual play</li>
+            </ul>
+            <a href="https://wa.me/919445778177?text=Hi%20For Your Innings%2C%20I%27m%20interested%20in%20the%20Select%20Cricket%20Ball%20(%E2%82%B9249)." target="_blank" rel="noopener" class="ball-cta"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- ADVANCE -->
+        <div class="ball-card ball-card--advance reveal" style="transition-delay:0.1s">
+          <div class="ball-img-wrap">
+            <img src="img/red%20balls/advance.png" alt="Advance Cricket Ball" loading="lazy" decoding="async" />
+            <div class="ball-img-glow"></div>
+          </div>
+          <div class="ball-body">
+            <div class="ball-price-row">
+              <span class="ball-price-currency">₹</span>
+              <span class="ball-price-amount count-up" data-target="310">310</span>
+            </div>
+            <div class="ball-name">Advance</div>
+            <div class="ball-tagline">Consistency in Every Delivery</div>
+            <p class="ball-desc">Made for serious players who want consistency in every delivery. Better grip, consistent seam — built for regular match performance.</p>
+            <ul class="ball-features">
+              <li>Better grip &amp; hand feel</li>
+              <li>Consistent seam for bowlers</li>
+              <li>Built for regular match play</li>
+            </ul>
+            <a href="https://wa.me/919445778177?text=Hi%20For Your Innings%2C%20I%27m%20interested%20in%20the%20Advance%20Cricket%20Ball%20(%E2%82%B9310)." target="_blank" rel="noopener" class="ball-cta"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="ball-card ball-card--premium reveal" style="transition-delay:0.2s">
+          <div class="ball-img-wrap">
+            <img src="img/red%20balls/premium.png" alt="Premium Cricket Ball" loading="lazy" decoding="async" />
+            <div class="ball-img-glow"></div>
+          </div>
+          <div class="ball-body">
+            <div class="ball-price-row">
+              <span class="ball-price-currency">₹</span>
+              <span class="ball-price-amount count-up" data-target="399">399</span>
+            </div>
+            <div class="ball-name">Premium</div>
+            <div class="ball-tagline">Crafted for Match Day</div>
+            <p class="ball-desc">Crafted for players who demand the best. Professional feel, superior finish — ready for pressure, ready for match day.</p>
+            <ul class="ball-features">
+              <li>Professional-grade feel &amp; finish</li>
+              <li>Superior construction quality</li>
+              <li>Engineered for high-pressure play</li>
+            </ul>
+            <a href="https://wa.me/919445778177?text=Hi%20For Your Innings%2C%20I%27m%20interested%20in%20the%20Premium%20Cricket%20Ball%20(%E2%82%B9399)." target="_blank" rel="noopener" class="ball-cta"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mission CTA -->
+      <div class="balls-mission reveal">
+        <div class="balls-mission-tagline">One Mission</div>
+        <h3 class="balls-mission-title">Three <span class="kw">balls.</span> Three <span class="kw">playing styles.</span><br /><em>Play More. Pay Less.</em></h3>
+        <p class="balls-mission-sub">Which one matches your game?</p>
+        <a href="https://wa.me/919445778177?text=Hi%20For Your Innings%2C%20I%27d%20like%20to%20order%20cricket%20balls." target="_blank" rel="noopener" class="balls-mission-cta">
+          <i class="fa-brands fa-whatsapp"></i> Order Your Balls Now
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -4709,7 +6600,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="img/bussiness-logo-1.png" alt="FYI" loading="lazy" />
+          <img src="img/bussiness-logo-1.png" alt="For Your Innings" loading="lazy" />
           <p class="footer-tagline"><strong>For Your Innings</strong><br />Handpicked by Hari<br />Chennai, Tamil Nadu,
             India</p>
           <div class="footer-legal">
@@ -4734,7 +6625,7 @@
             </div>
           </div>
           <button type="button" class="footer-msg-btn contact-open-btn" data-toggle="modal" data-target="#contactModal"
-            data-recipient="FYI Team">
+            data-recipient="For Your Innings Team">
             <i class="fa-solid fa-envelope"></i> Send a message
           </button>
         </div>
@@ -4765,7 +6656,7 @@
 
   <!-- Mobile WA FAB -->
   <div class="wa-fab">
-    <a href="https://wa.me/919445778177?text=Hi%20FYI%2C%20I%20want%20to%20chat%20about%20a%20bat." target="_blank"
+    <a href="https://wa.me/919445778177?text=Hi%20For Your Innings%2C%20I%20want%20to%20chat%20about%20a%20bat." target="_blank"
       rel="noopener">
       <i class="fa-brands fa-whatsapp"></i> Chat with us
     </a>
@@ -4881,7 +6772,7 @@
                 class="form-control" id="contactEmail" placeholder="example@email.com or +91..." required /></div>
             <div class="form-group"><label for="contactMessage">Message</label><textarea class="form-control"
                 id="contactMessage" rows="5" placeholder="Tell us your playing style, weight preference, budget, etc."
-                required></textarea></div><input type="hidden" id="contactRecipient" value="FYI Team" />
+                required></textarea></div><input type="hidden" id="contactRecipient" value="For Your Innings Team" />
             <div class="contact-status" id="contactStatus" aria-live="polite"></div><button type="submit"
               class="contact-submit-btn" id="contactSubmitBtn"><span class="btn-label">Send Message</span><span
                 class="btn-check"><svg viewBox="0 0 52 52" class="check-svg">
@@ -4925,33 +6816,6 @@
     ═══════════════════════════════════════════════════ */
     (function () {
       'use strict';
-
-      /* ── Cursor ── */
-      (function () {
-        if (window.matchMedia('(hover:none)').matches) return;
-        var dot = document.getElementById('cur-dot');
-        var ring = document.getElementById('cur-ring');
-        if (!dot || !ring) return;
-        var rx = 0, ry = 0, cx = -100, cy = -100;
-        var ringW = 18, ringH = 18; /* half of 36px default size */
-        /* Use transform translate3d — stays on GPU compositor, never triggers layout */
-        document.addEventListener('mousemove', function (e) {
-          cx = e.clientX; cy = e.clientY;
-          dot.style.transform = 'translate3d(' + (cx - 2.5) + 'px,' + (cy - 2.5) + 'px,0)';
-        }, { passive: true });
-        (function raf() {
-          rx += (cx - rx) * 0.12; ry += (cy - ry) * 0.12;
-          ring.style.transform = 'translate3d(' + (rx - ringW) + 'px,' + (ry - ringH) + 'px,0)';
-          requestAnimationFrame(raf);
-        })();
-        /* Update half-sizes when ring expands/contracts */
-        var ringEl = ring;
-        function updateRingOffsets() { ringW = ringEl.offsetWidth / 2; ringH = ringEl.offsetHeight / 2; }
-        document.querySelectorAll('a,button,.profile-card,.hero-btn-primary,.hero-btn-ghost').forEach(function (el) {
-          el.addEventListener('mouseenter', function () { ring.classList.add('hov'); setTimeout(updateRingOffsets, 320); });
-          el.addEventListener('mouseleave', function () { ring.classList.remove('hov'); setTimeout(updateRingOffsets, 320); });
-        });
-      })();
 
       /* ── Device performance detection ── */
       (function () {
@@ -5383,7 +7247,7 @@
         $('#contactModal').on('hidden.bs.modal', function () { setStatus('', ''); resetBtn(); if (form) form.reset(); });
 
         document.querySelectorAll('.contact-open-btn').forEach(function (btn) {
-          btn.addEventListener('click', function () { if (recipientEl) recipientEl.value = btn.dataset.recipient || 'FYI Team'; setStatus('', ''); resetBtn(); });
+          btn.addEventListener('click', function () { if (recipientEl) recipientEl.value = btn.dataset.recipient || 'For Your Innings Team'; setStatus('', ''); resetBtn(); });
         });
 
         if (form) form.addEventListener('submit', async function (e) {
@@ -5395,10 +7259,10 @@
           if (!name || !contact || !message) { setStatus('Please fill all fields.', 'is-error'); return; }
           try {
             submitBtn.disabled = true; submitBtn.classList.add('is-sending'); setStatus('Sending…', '');
-            if (db) await db.collection('inquiries').add({ name, contact, message, recipient: recipientEl?.value || 'FYI Team', source: 'contact_modal', createdAtIso: new Date().toISOString(), pagePath: window.location.pathname });
+            if (db) await db.collection('inquiries').add({ name, contact, message, recipient: recipientEl?.value || 'For Your Innings Team', source: 'contact_modal', createdAtIso: new Date().toISOString(), pagePath: window.location.pathname });
             track('generate_lead', { method: 'contact_modal' });
             var FYI_WORKER = 'https://fyiinnings.arjunsridhar445.workers.dev/api/contact';
-            try { await fetch(FYI_WORKER, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email: contact, message, recipient: recipientEl?.value || 'FYI Team', pageUrl: window.location.href }) }); } catch (ex) { }
+            try { await fetch(FYI_WORKER, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email: contact, message, recipient: recipientEl?.value || 'For Your Innings Team', pageUrl: window.location.href }) }); } catch (ex) { }
             setStatus('Sent successfully.', 'is-success');
             submitBtn.classList.remove('is-sending'); submitBtn.classList.add('is-success');
             setTimeout(function () { $('#contactModal').modal('hide'); }, 900);
