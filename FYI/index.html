@@ -140,7 +140,7 @@
           "name": "Orion Grade 4 English Willow Cricket Bat",
           "description": "Entry-level premium English willow for rising and academy players. Medium-hard pressing, suitable for nets and match play.",
           "brand": { "@type": "Brand", "name": "For Your Innings" },
-          "image": "https://www.foryourinnings.com/img/categories/orion.png",
+          "image": "https://www.foryourinnings.com/img/categories/orion.webp",
           "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR", "seller": { "@type": "Organization", "name": "For Your Innings" } }
         }
       },
@@ -151,7 +151,7 @@
           "name": "Titan Grade 3 English Willow Cricket Bat",
           "description": "Strength and consistency for club and competitive cricketers. Tighter grain, improved rebound.",
           "brand": { "@type": "Brand", "name": "For Your Innings" },
-          "image": "https://www.foryourinnings.com/img/categories/titan.png",
+          "image": "https://www.foryourinnings.com/img/categories/titan.webp",
           "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR", "seller": { "@type": "Organization", "name": "For Your Innings" } }
         }
       },
@@ -162,7 +162,7 @@
           "name": "Hercules Grade 2 English Willow Cricket Bat",
           "description": "Engineered for power. Tight grain, minimal blemishes, outstanding natural rebound for serious competitive cricketers.",
           "brand": { "@type": "Brand", "name": "For Your Innings" },
-          "image": "https://www.foryourinnings.com/img/categories/hercules.png",
+          "image": "https://www.foryourinnings.com/img/categories/hercules.webp",
           "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR", "seller": { "@type": "Organization", "name": "For Your Innings" } }
         }
       },
@@ -173,7 +173,7 @@
           "name": "Zeus Grade 1 English Willow Cricket Bat",
           "description": "The pinnacle of English willow. Straight 6-12+ grains, soft pressing, immediate performance. For elite and semi-professional players.",
           "brand": { "@type": "Brand", "name": "For Your Innings" },
-          "image": "https://www.foryourinnings.com/img/categories/zeus.png",
+          "image": "https://www.foryourinnings.com/img/categories/zeus.webp",
           "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "INR", "seller": { "@type": "Organization", "name": "For Your Innings" } }
         }
       }
@@ -552,7 +552,6 @@
       width: 110px;
       opacity: 0;
       animation: ldFade 0.7s 0.3s var(--ease-out) forwards;
-      filter: drop-shadow(0 0 24px rgba(197, 160, 89, 0.4));
       position: relative;
       z-index: 1;
     }
@@ -644,12 +643,6 @@
 
     .nav-logo img {
       height: 58px;
-      filter: drop-shadow(0 0 12px rgba(197, 160, 89, 0.4));
-      transition: filter 0.3s;
-    }
-
-    .nav-logo:hover img {
-      filter: drop-shadow(0 0 18px rgba(197, 160, 89, 0.6));
     }
 
     .nav-logo-text {
@@ -2717,47 +2710,143 @@
       left: 100%;
     }
 
-    .bf-details-row {
-      border-top: 1px solid var(--border);
-      margin-top: 24px;
-      padding-top: 24px;
+    /* ── Bat Finder wizard ── */
+    .bf-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 36px;
     }
 
-    .bf-details-summary {
-      font-size: 11px;
+    .bf-step-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bf-step-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border-h);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.25s, width 0.25s;
+    }
+
+    .bf-step-dot.is-active {
+      background: var(--gold);
+      width: 22px;
+      border-radius: 3px;
+    }
+
+    .bf-step-dot.is-done {
+      background: var(--accent-d);
+    }
+
+    .bf-step-counter {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      list-style: none;
-      background: none;
-      border: none;
-      padding: 0;
-      transition: color 0.25s;
-      margin-bottom: 22px;
+      white-space: nowrap;
     }
 
-    .bf-details-summary::-webkit-details-marker {
+    .bf-step {
       display: none;
     }
 
-    .bf-details-summary:hover {
-      color: var(--gold);
+    .bf-step.active {
+      display: block;
+      animation: bfStepIn 0.45s var(--ease-out);
     }
 
-    .bf-details-summary i {
-      font-size: 10px;
-      transition: transform 0.35s var(--ease-out);
-      width: 12px;
-      display: inline-block;
+    @keyframes bfStepIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    details[open] .bf-details-summary i {
-      transform: rotate(90deg);
-      color: var(--gold);
+    .bf-step-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .bf-step-note {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 22px;
+      font-style: italic;
+    }
+
+    .bf-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .bf-next,
+    .bf-back {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s, border-color 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .bf-next {
+      flex: 1;
+      padding: 18px 32px;
+      background: var(--gold);
+      color: #080808;
+      box-shadow: 0 0 24px rgba(197, 160, 89, 0.24);
+    }
+
+    .bf-next:hover {
+      background: var(--gold2);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(197, 160, 89, 0.4);
+    }
+
+    .bf-back {
+      padding: 18px 24px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .bf-back:hover {
+      border-color: var(--border-h);
+      color: var(--text);
+    }
+
+    .bf-nav-final .bf-submit {
+      width: auto;
+      flex: 1;
+      margin-top: 0;
     }
 
     @media (max-width:640px) {
@@ -2768,6 +2857,14 @@
 
       .bat-finder-card {
         padding: 32px 24px;
+      }
+
+      .bf-nav {
+        flex-direction: column-reverse;
+      }
+
+      .bf-nav button {
+        width: 100%;
       }
     }
 
@@ -3379,7 +3476,6 @@
 
     .footer-brand img {
       height: 72px;
-      filter: drop-shadow(0 0 14px rgba(197, 160, 89, 0.35));
       margin-bottom: 24px;
     }
 
@@ -5733,7 +5829,7 @@
     <div class="hero-vignette"></div>
     <div class="hero-gradient-bot"></div>
 
-    <img src="img/hero-bat.png" alt="" class="hero-bat-img" aria-hidden="true" loading="lazy" decoding="async" />
+    <img src="img/hero-bat.webp" alt="" class="hero-bat-img" aria-hidden="true" loading="lazy" decoding="async" />
 
     <div class="hero-content">
       <span class="hero-eyebrow">Premium Custom Cricket Bats · Chennai, India</span>
@@ -5864,8 +5960,8 @@
         <!-- Full Profile -->
         <div class="profile-card reveal" style="transition-delay:0s">
           <div class="profile-img-wrap">
-            <img src="img/profiles/full-profile.png" alt="Full Profile" loading="lazy" decoding="async" />
-            <img src="img/profiles/Full2.png" alt="Full Profile alt" loading="lazy" decoding="async" />
+            <img src="img/profiles/full-profile.webp" alt="Full Profile" loading="lazy" decoding="async" />
+            <img src="img/profiles/Full2.webp" alt="Full Profile alt" loading="lazy" decoding="async" />
             <div class="profile-img-grad"></div>
             <div class="profile-badge-wrap">
               <div class="profile-badge">Power &amp; Stability</div>
@@ -5910,7 +6006,7 @@
         <!-- Duckbill -->
         <div class="profile-card reveal" style="transition-delay:0.1s">
           <div class="profile-img-wrap">
-            <img src="img/profiles/duckbill.png" alt="Duckbill" loading="lazy" decoding="async" />
+            <img src="img/profiles/duckbill.webp" alt="Duckbill" loading="lazy" decoding="async" />
             <div class="profile-img-grad"></div>
             <div class="profile-badge-wrap">
               <div class="profile-badge">Fast Pickup</div>
@@ -5956,8 +6052,8 @@
         <!-- SRT -->
         <div class="profile-card reveal" style="transition-delay:0.2s">
           <div class="profile-img-wrap">
-            <img src="img/profiles/SRT.png" alt="SRT" loading="lazy" decoding="async" />
-            <img src="img/profiles/SRT2.png" alt="SRT alt" loading="lazy" decoding="async" />
+            <img src="img/profiles/SRT.webp" alt="SRT" loading="lazy" decoding="async" />
+            <img src="img/profiles/SRT2.webp" alt="SRT alt" loading="lazy" decoding="async" />
             <div class="profile-img-grad"></div>
             <div class="profile-badge-wrap">
               <div class="profile-badge">Low Sweet Spot</div>
@@ -6003,8 +6099,8 @@
         <!-- Hitter -->
         <div class="profile-card reveal" style="transition-delay:0.3s">
           <div class="profile-img-wrap">
-            <img src="img/profiles/power-profile.png" alt="Hitter" loading="lazy" decoding="async" />
-            <img src="img/profiles/power2.png" alt="Hitter alt" loading="lazy" decoding="async" />
+            <img src="img/profiles/power-profile.webp" alt="Hitter" loading="lazy" decoding="async" />
+            <img src="img/profiles/power2.webp" alt="Hitter alt" loading="lazy" decoding="async" />
             <div class="profile-img-grad"></div>
             <div class="profile-badge-wrap">
               <div class="profile-badge">Maximum Power</div>
@@ -6088,7 +6184,7 @@
         <!-- ORION — Grade 4 -->
         <div class="cat-card cat-card--orion reveal" style="transition-delay:0s">
           <div class="cat-img-wrap">
-            <img src="img/categories/orion.png" alt="Orion — Grade 4 English Willow Cricket Bat" loading="lazy" decoding="async" />
+            <img src="img/categories/orion.webp" alt="Orion — Grade 4 English Willow Cricket Bat" loading="lazy" decoding="async" />
             <div class="cat-img-glow"></div>
             <div class="cat-grade-badge">Grade 4</div>
           </div>
@@ -6125,7 +6221,7 @@
         <!-- TITAN — Grade 3 -->
         <div class="cat-card cat-card--titan reveal" style="transition-delay:0.1s">
           <div class="cat-img-wrap">
-            <img src="img/categories/titan.png" alt="Titan — Grade 3 English Willow Cricket Bat" loading="lazy" decoding="async" />
+            <img src="img/categories/titan.webp" alt="Titan — Grade 3 English Willow Cricket Bat" loading="lazy" decoding="async" />
             <div class="cat-img-glow"></div>
             <div class="cat-grade-badge">Grade 3</div>
           </div>
@@ -6162,7 +6258,7 @@
         <!-- HERCULES — Grade 2 -->
         <div class="cat-card cat-card--hercules reveal" style="transition-delay:0.2s">
           <div class="cat-img-wrap">
-            <img src="img/categories/hercules.png" alt="Hercules — Grade 2 English Willow Cricket Bat" loading="lazy" decoding="async" />
+            <img src="img/categories/hercules.webp" alt="Hercules — Grade 2 English Willow Cricket Bat" loading="lazy" decoding="async" />
             <div class="cat-img-glow"></div>
             <div class="cat-grade-badge">Grade 2</div>
           </div>
@@ -6199,7 +6295,7 @@
         <!-- ZEUS — Grade 1 -->
         <div class="cat-card cat-card--zeus reveal" style="transition-delay:0.3s">
           <div class="cat-img-wrap">
-            <img src="img/categories/zeus.png" alt="Zeus — Grade 1 English Willow Cricket Bat" loading="lazy" decoding="async" />
+            <img src="img/categories/zeus.webp" alt="Zeus — Grade 1 English Willow Cricket Bat" loading="lazy" decoding="async" />
             <div class="cat-img-glow"></div>
             <div class="cat-grade-badge">Grade 1</div>
           </div>
@@ -6254,7 +6350,7 @@
         <!-- SELECT -->
         <div class="ball-card ball-card--select reveal" style="transition-delay:0s">
           <div class="ball-img-wrap">
-            <img src="img/red%20balls/select.png" alt="Select Cricket Ball" loading="lazy" decoding="async" />
+            <img src="img/red%20balls/select.webp" alt="Select Cricket Ball" loading="lazy" decoding="async" />
             <div class="ball-img-glow"></div>
           </div>
           <div class="ball-body">
@@ -6277,7 +6373,7 @@
         <!-- ADVANCE -->
         <div class="ball-card ball-card--advance reveal" style="transition-delay:0.1s">
           <div class="ball-img-wrap">
-            <img src="img/red%20balls/advance.png" alt="Advance Cricket Ball" loading="lazy" decoding="async" />
+            <img src="img/red%20balls/advance.webp" alt="Advance Cricket Ball" loading="lazy" decoding="async" />
             <div class="ball-img-glow"></div>
           </div>
           <div class="ball-body">
@@ -6300,7 +6396,7 @@
         <!-- PREMIUM -->
         <div class="ball-card ball-card--premium reveal" style="transition-delay:0.2s">
           <div class="ball-img-wrap">
-            <img src="img/red%20balls/premium.png" alt="Premium Cricket Ball" loading="lazy" decoding="async" />
+            <img src="img/red%20balls/premium.webp" alt="Premium Cricket Ball" loading="lazy" decoding="async" />
             <div class="ball-img-glow"></div>
           </div>
           <div class="ball-body">
@@ -6348,7 +6444,7 @@
       <div class="team-grid">
         <div class="team-card reveal-left">
           <div class="team-img-col">
-            <img src="img/founder-alt.jpeg" alt="Hariharan Ravi" loading="lazy" />
+            <img src="img/founder-alt.webp" alt="Hariharan Ravi" loading="lazy" />
             <div class="team-img-grad"></div>
           </div>
           <div class="team-info">
@@ -6361,7 +6457,7 @@
         </div>
         <div class="team-card reveal-right">
           <div class="team-img-col">
-            <img src="img/founder-alt2.jpeg" alt="Ananthakrishnan CN" loading="lazy" />
+            <img src="img/founder-alt2.webp" alt="Ananthakrishnan CN" loading="lazy" />
             <div class="team-img-grad"></div>
           </div>
           <div class="team-info">
@@ -6711,85 +6807,110 @@
 
       <div class="bat-finder-card reveal">
         <form id="batFinderForm" novalidate>
-          <div class="bf-grid-2">
-            <div class="form-group">
-              <label for="bfPreferredCommunication">Preferred communication</label>
-              <select id="bfPreferredCommunication" class="form-control">
-                <option value="WhatsApp">WhatsApp</option>
-                <option value="Call">Call</option>
-                <option value="Email">Email</option>
-              </select>
+          <div class="bf-progress">
+            <div class="bf-step-dots" id="bfStepDots">
+              <button type="button" class="bf-step-dot" data-dot="0" aria-label="Step 1"></button>
+              <button type="button" class="bf-step-dot" data-dot="1" aria-label="Step 2"></button>
+              <button type="button" class="bf-step-dot" data-dot="2" aria-label="Step 3"></button>
+              <button type="button" class="bf-step-dot" data-dot="3" aria-label="Step 4"></button>
+              <button type="button" class="bf-step-dot" data-dot="4" aria-label="Step 5"></button>
             </div>
-            <div class="form-group">
-              <label for="bfContact">Email (optional)</label>
-              <input id="bfContact" type="text" class="form-control" placeholder="name@email.com" maxlength="60" />
-            </div>
-          </div>
-          <div class="bf-grid-2">
-            <div class="form-group">
-              <label for="bfBattingHand">Batting hand</label>
-              <select id="bfBattingHand" class="form-control">
-                <option value="Right-handed">Right-handed</option>
-                <option value="Left-handed">Left-handed</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="bfAgeGroup">Age group (optional)</label>
-              <select id="bfAgeGroup" class="form-control">
-                <option value="">Select (optional)</option>
-                <option value="Under 15">Under 15</option>
-                <option value="15–19">15–19</option>
-                <option value="19–25">19–25</option>
-                <option value="25–35">25–35</option>
-                <option value="35+">35+</option>
-              </select>
-            </div>
-          </div>
-          <div class="bf-grid-2">
-            <div class="form-group">
-              <label for="bfBattingPosition">Batting position</label>
-              <select id="bfBattingPosition" class="form-control">
-                <option value="Opener">Opener</option>
-                <option value="Top order">Top order</option>
-                <option value="Middle order">Middle order</option>
-                <option value="Lower order">Lower order</option>
-                <option value="Finisher">Finisher</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="bfPlayingStyle">Playing style</label>
-              <select id="bfPlayingStyle" class="form-control">
-                <option value="Balanced">Balanced</option>
-                <option value="Aggressive">Aggressive</option>
-                <option value="Timing / Athletic">Timing / Athletic</option>
-                <option value="Power hitter">Power hitter</option>
-              </select>
-            </div>
-          </div>
-          <div class="bf-grid-2">
-            <div class="form-group">
-              <label for="bfFormat">Primary format</label>
-              <select id="bfFormat" class="form-control">
-                <option value="T20">T20</option>
-                <option value="ODI">ODI</option>
-                <option value="Tests / Red ball">Tests / Red ball</option>
-                <option value="Multiple formats">Multiple formats</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="bfBudget">Budget (optional)</label>
-              <input id="bfBudget" type="text" class="form-control" placeholder="e.g., ₹45k–₹50k" maxlength="60" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="bfWeight">Preferred bat weight / pick-up</label>
-            <input id="bfWeight" type="text" class="form-control" placeholder="e.g., 1150–1200g / 2lb 9oz / not sure"
-              maxlength="60" />
+            <span class="bf-step-counter" id="bfStepCounter">Step 1 of 5</span>
           </div>
 
-          <details class="bf-details-row">
-            <summary class="bf-details-summary"><i class="fa-solid fa-chevron-right"></i> Add bat specs (optional)
-            </summary>
+          <div class="bf-step active" data-step="0">
+            <h3 class="bf-step-title">About You</h3>
+            <div class="bf-grid-2">
+              <div class="form-group">
+                <label for="bfPreferredCommunication">Preferred communication</label>
+                <select id="bfPreferredCommunication" class="form-control">
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Call">Call</option>
+                  <option value="Email">Email</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bfContact">Email (optional)</label>
+                <input id="bfContact" type="text" class="form-control" placeholder="name@email.com" maxlength="60" />
+              </div>
+            </div>
+            <div class="bf-grid-2">
+              <div class="form-group">
+                <label for="bfBattingHand">Batting hand</label>
+                <select id="bfBattingHand" class="form-control">
+                  <option value="Right-handed">Right-handed</option>
+                  <option value="Left-handed">Left-handed</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bfAgeGroup">Age group (optional)</label>
+                <select id="bfAgeGroup" class="form-control">
+                  <option value="">Select (optional)</option>
+                  <option value="Under 15">Under 15</option>
+                  <option value="15–19">15–19</option>
+                  <option value="19–25">19–25</option>
+                  <option value="25–35">25–35</option>
+                  <option value="35+">35+</option>
+                </select>
+              </div>
+            </div>
+            <div class="bf-nav">
+              <button type="button" class="bf-next">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <div class="bf-step" data-step="1">
+            <h3 class="bf-step-title">Your Game</h3>
+            <div class="bf-grid-2">
+              <div class="form-group">
+                <label for="bfBattingPosition">Batting position</label>
+                <select id="bfBattingPosition" class="form-control">
+                  <option value="Opener">Opener</option>
+                  <option value="Top order">Top order</option>
+                  <option value="Middle order">Middle order</option>
+                  <option value="Lower order">Lower order</option>
+                  <option value="Finisher">Finisher</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bfPlayingStyle">Playing style</label>
+                <select id="bfPlayingStyle" class="form-control">
+                  <option value="Balanced">Balanced</option>
+                  <option value="Aggressive">Aggressive</option>
+                  <option value="Timing / Athletic">Timing / Athletic</option>
+                  <option value="Power hitter">Power hitter</option>
+                </select>
+              </div>
+            </div>
+            <div class="bf-grid-2">
+              <div class="form-group">
+                <label for="bfFormat">Primary format</label>
+                <select id="bfFormat" class="form-control">
+                  <option value="T20">T20</option>
+                  <option value="ODI">ODI</option>
+                  <option value="Tests / Red ball">Tests / Red ball</option>
+                  <option value="Multiple formats">Multiple formats</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bfBudget">Budget (optional)</label>
+                <input id="bfBudget" type="text" class="form-control" placeholder="e.g., ₹45k–₹50k" maxlength="60" />
+              </div>
+            </div>
+            <div class="bf-nav">
+              <button type="button" class="bf-back">Back</button>
+              <button type="button" class="bf-next">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <div class="bf-step" data-step="2">
+            <h3 class="bf-step-title">Bat Weight &amp; Specs</h3>
+            <span class="bf-step-note">Not sure about some of these? Skip them — we'll help you figure it out.</span>
+            <div class="form-group">
+              <label for="bfWeight">Preferred bat weight / pick-up</label>
+              <input id="bfWeight" type="text" class="form-control"
+                placeholder="e.g., 1150–1200g / 2lb 9oz / not sure" maxlength="60" />
+            </div>
             <div class="bf-grid-2">
               <div class="form-group"><label for="bfBallType">Ball type</label><select id="bfBallType"
                   class="form-control">
@@ -6873,11 +6994,15 @@
                   <option>Not sure</option>
                 </select></div>
             </div>
-          </details>
+            <div class="bf-nav">
+              <button type="button" class="bf-back">Back</button>
+              <button type="button" class="bf-next">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
 
-          <details class="bf-details-row">
-            <summary class="bf-details-summary"><i class="fa-solid fa-chevron-right"></i> Delivery &amp; services
-              (optional)</summary>
+          <div class="bf-step" data-step="3">
+            <h3 class="bf-step-title">Delivery &amp; Add-ons</h3>
+            <span class="bf-step-note">Optional — skip if you're not sure yet.</span>
             <div class="bf-grid-2">
               <div class="form-group"><label for="bfDeliveryLocation">Delivery location</label><input
                   id="bfDeliveryLocation" type="text" class="form-control" placeholder="e.g., Chennai" maxlength="60" />
@@ -6900,11 +7025,15 @@
                   <option>No</option>
                 </select></div>
             </div>
-          </details>
+            <div class="bf-nav">
+              <button type="button" class="bf-back">Back</button>
+              <button type="button" class="bf-next">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
 
-          <details class="bf-details-row">
-            <summary class="bf-details-summary"><i class="fa-solid fa-chevron-right"></i> Current bat &amp; notes
-              (optional)</summary>
+          <div class="bf-step" data-step="4">
+            <h3 class="bf-step-title">Previous Bat &amp; Notes</h3>
+            <span class="bf-step-note">Last step — optional, but helps us fine-tune your recommendation.</span>
             <div class="bf-grid-2">
               <div class="form-group"><label for="bfUsedBatBefore">Used a bat before?</label><select
                   id="bfUsedBatBefore" class="form-control">
@@ -6919,12 +7048,14 @@
             <div class="form-group"><label for="bfNotes">Anything else we should know?</label><textarea id="bfNotes"
                 class="form-control" rows="4"
                 placeholder="Likes/dislikes, injury concerns, bat feel you want…"></textarea></div>
-          </details>
-
-          <button type="button" class="bf-submit" id="batFinderBtn">
-            <i class="fa-brands fa-whatsapp" style="font-size:18px"></i>
-            Get my recommendation on WhatsApp
-          </button>
+            <div class="bf-nav bf-nav-final">
+              <button type="button" class="bf-back">Back</button>
+              <button type="button" class="bf-submit" id="batFinderBtn">
+                <i class="fa-brands fa-whatsapp" style="font-size:18px"></i>
+                Get my recommendation on WhatsApp
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -7642,6 +7773,40 @@
             submitBtn.disabled = false; submitBtn.classList.remove('is-sending');
           }
         });
+      })();
+
+      /* ── Bat Finder step wizard ── */
+      (function () {
+        var form = document.getElementById('batFinderForm');
+        if (!form) return;
+        var steps = Array.prototype.slice.call(form.querySelectorAll('.bf-step'));
+        var dots = Array.prototype.slice.call(form.querySelectorAll('.bf-step-dot'));
+        var counter = document.getElementById('bfStepCounter');
+        var card = form.closest('.bat-finder-card');
+        var current = 0;
+
+        function show(i, scroll) {
+          current = Math.max(0, Math.min(steps.length - 1, i));
+          steps.forEach(function (s, idx) { s.classList.toggle('active', idx === current); });
+          dots.forEach(function (d, idx) {
+            d.classList.toggle('is-active', idx === current);
+            d.classList.toggle('is-done', idx < current);
+          });
+          if (counter) counter.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+          if (scroll && card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        form.querySelectorAll('.bf-next').forEach(function (b) {
+          b.addEventListener('click', function () { show(current + 1, true); });
+        });
+        form.querySelectorAll('.bf-back').forEach(function (b) {
+          b.addEventListener('click', function () { show(current - 1, true); });
+        });
+        dots.forEach(function (d, idx) {
+          d.addEventListener('click', function () { show(idx, true); });
+        });
+
+        show(0, false);
       })();
 
       /* ── Bat Finder WhatsApp ── */
