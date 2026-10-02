@@ -7949,6 +7949,17 @@
       });
 
     })(); // end IIFE
+
+    // Deep links: /#terms, /#privacy and /#shipping open the matching policy popup
+    (function () {
+      var modals = { '#terms': '#termsModal', '#privacy': '#privacyModal', '#shipping': '#shippingModal' };
+      function openFromHash() {
+        var target = modals[window.location.hash];
+        if (target && window.jQuery) window.jQuery(target).modal('show');
+      }
+      window.addEventListener('load', openFromHash);
+      window.addEventListener('hashchange', openFromHash);
+    })();
   </script>
 </body>
 
